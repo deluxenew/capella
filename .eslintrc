@@ -1,0 +1,63 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "extends": [
+    "@nuxtjs/eslint-config-typescript",
+    "plugin:nuxt/recommended",
+    "plugin:tailwindcss/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "vue/max-len": ["error", {
+      "code": 100,
+      "template": 9000,
+      "ignoreComments": true,
+      "ignoreTrailingComments": true,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true
+    }],
+    "max-len": ["error", {
+      "code": 100,
+      "ignoreComments": true,
+      "ignoreTrailingComments": true,
+      "ignoreUrls": true,
+      "ignoreStrings": true,
+      "ignoreTemplateLiterals": true,
+      "ignoreRegExpLiterals": true
+    }],
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off",
+    "vue/multi-word-component-names": "off",
+    "vue/no-multiple-template-root": "off",
+    "vue/no-setup-props-destructure": "off",
+    //"@typescript-eslint/no-unused-vars": "off",
+    "semi": ["error", "never"],
+    "quotes": ["error", "single", { "avoidEscape": true } ],
+    "tailwindcss/no-custom-classname": "off",
+    "vue/html-self-closing": [
+      "error", {
+        "html": {
+          "void": "always",
+          "normal": "always",
+          "component": "always"
+        },
+        "svg": "always",
+        "math": "always"
+      }],
+    "no-redeclare": "off" //для функций с перегрузкой
+  },
+  "overrides": [
+    {
+      "files": ["*.vue"],
+      "rules": {
+        "max-len": "off" // disables line length check
+      }
+    }
+  ]
+}

@@ -3,9 +3,11 @@
 </script>
 
 <template>
-    <NuxtPage />
+  <div>
+    <div class="container">
+      <header-component />
+
+      <NuxtPage />
+    </div>
+  </div>
 </template>
-
-<style scoped>
-
-</style>
