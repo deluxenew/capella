@@ -45,7 +45,7 @@ declare global {
     ethereum?: EthereumProvider
   }
 }
-const { t, locales } = useI18n()
+const { t } = useI18n()
 // Composables
 const { $auth, $device, $store, $notify, $modal, $router, $route } = useNuxtApp()
 const route = useRoute()

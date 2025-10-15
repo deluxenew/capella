@@ -16,7 +16,7 @@
               </UiButton>
               <img src="~/assets/img/avatar.png" alt="" class="w-8 h-8" />
               <h2 class="user-text">
-                {{ $t('AuthHeader.greeting') }}, {{ userName }}
+                {{ t('AuthHeader.greeting') }}, {{ userName }}
               </h2>
             </div>
             <div class="user-buttons flex items-center">
@@ -24,7 +24,7 @@
               <!-- <AppSelectLocale /> -->
               <div v-if="!metamaskAddresses">
                 <UiButton @click="connectMetamask">
-                  {{ $t('connect_wallet') }}
+                  {{ t('connect_wallet') }}
                 </UiButton>
               </div>
               <div v-else>
@@ -54,17 +54,17 @@
     <UiModal name="account-activation" height="auto" classes="account-activation-modal" adaptive>
       <div class="modal-content activation-modal">
         <div class="modal-header flex justify-between items-center">
-          <h2 class="modal-title">{{ $t('account_activation') }}</h2>
+          <h2 class="modal-title">{{ t('account_activation') }}</h2>
           <UiButton theme="icon" @click="$modal.hide('account-activation')">
             <UiSvgImage svg="close" />
           </UiButton>
         </div>
         <div class="modal-body">
           <p class="activation-text mb-6">
-            {{ $t('activation_required_text') }}
+            {{ t('activation_required_text') }}
           </p>
           <div class="currency-selector mb-4">
-            <label class="selector-label">{{ $t('select_currency') }}</label>
+            <label class="selector-label">{{ t('select_currency') }}</label>
             <div class="radio-group">
               <div
                 v-for="currency in availableCurrencies"
@@ -90,9 +90,9 @@
             {{ balanceError }}
           </div>
           <div class="payment-info mb-6">
-            <p><strong>{{ $t('amount_to_pay') }}:</strong> $250</p>
-            <p><strong>{{ $t('your_balance') }}:</strong> {{ currentBalance }} {{ selectedCurrency }}</p>
-            <p><strong>{{ $t('required_amount') }}:</strong> {{ requiredAmount }} {{ selectedCurrency }}</p>
+            <p><strong>{{ t('amount_to_pay') }}:</strong> $250</p>
+            <p><strong>{{ t('your_balance') }}:</strong> {{ currentBalance }} {{ selectedCurrency }}</p>
+            <p><strong>{{ t('required_amount') }}:</strong> {{ requiredAmount }} {{ selectedCurrency }}</p>
           </div>
           <UiButton
             size="md"
@@ -100,7 +100,7 @@
             :disabled="!canPay"
             @click="processPayment"
           >
-            {{ $t('pay_now') }}
+            {{ t('pay_now') }}
           </UiButton>
         </div>
       </div>
@@ -124,8 +124,8 @@
 
 <script setup>
 import { ref, computed, watch } from 'vue'
-
-const { $api, $auth, $device, $t, $notify, $modal } = useNuxtApp()
+const { t } = useI18n()
+const { $api, $auth, $device, $notify, $modal } = useNuxtApp()
 const store = useStore()
 const router = useRouter()
 
@@ -163,7 +163,7 @@ const onComplete = async ({ metaMaskAddress }) => {
       await $api.user.connectMM({ id: user.value.id, metaMaskAddress })
       $notify({
         type: 'success',
-        text: $t('metamask_linked'),
+        text: t('metamask_linked'),
       })
     } catch (error) {
       $auth.logout()
@@ -174,7 +174,7 @@ const onComplete = async ({ metaMaskAddress }) => {
     setTimeout(() => {
       $notify({
         type: 'error',
-        text: $t('metamask_invalid'),
+        text: t('metamask_invalid'),
       })
     }, 100)
   }
@@ -206,7 +206,7 @@ const onCurrencyChange = (currency) => {
 const checkBalance = () => {
   balanceError.value = null
   if (currentBalance.value < requiredAmount.value) {
-    balanceError.value = $t('insufficient_balance_error')
+    balanceError.value = t('insufficient_balance_error')
   }
 }
 

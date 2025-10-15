@@ -24,7 +24,7 @@
           y1="0"
         />
         <text v-if="pointStartDay" :x="pointStartDay.cx" y="62" class="small">
-          {{ $t('startDay') }}
+          {{ t('startDay') }}
         </text>
       </g>
       <g fill="transparent">
@@ -70,6 +70,8 @@
 
 <script>
 import ChartHint from './chartHint.vue'
+
+const { t } = useI18n()
 
 export default {
   components: { ChartHint },
