@@ -1,11 +1,15 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-
+  <div></div>
 </template>
 
-<style scoped>
+<script setup lang="ts">
+definePageMeta({
+  middleware: 'auth'
+})
 
-</style>
+const { redirectToAppropriatePage } = useAuth()
+
+onMounted(() => {
+  redirectToAppropriatePage()
+})
+</script>

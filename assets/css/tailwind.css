@@ -3,3 +3,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* CSS Variables for themes */
+:root {
+  --color: #ffffff;
+  --color_gray: #787b89;
+  --bg: #22252f;
+  --border-color: #343841;
+  --bg-secondary: #1c2027;
+  --color_blue: rgb(66, 118, 246);
+  --color_blue--darken: #3c67d0;
+  --color_svg: #ffffff;
+  --bg-charade: #232630;
+  --bg-progress-bar: #343841;
+}
+
+.light-mode {
+  --color: #1c2027;
+  --bg: #ffffff;
+  --bg-reversed: 34, 37, 47;
+  --border-color: #e2e2e2;
+  --bg-secondary: #f6f6f6;
+  --color_svg: #787b89;
+  --bg-charade: #ffffff;
+  --bg-progress-bar: #f6f6f6;
+}
+
+.dark-mode {
+  --color: #ffffff;
+  --bg: #22252f;
+  --bg-reversed: 255, 255, 255;
+  --border-color: #343841;
+  --bg-secondary: #1c2027;
+  --color_svg: #ffffff;
+  --bg-charade: #232630;
+  --bg-progress-bar: #343841;
+}
+
+body {
+  color: var(--color);
+  background: var(--bg);
+}
