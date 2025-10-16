@@ -9,7 +9,8 @@ export default defineNuxtConfig({
   $test: undefined,
   compatibilityDate: '2025-07-15',
   devtools: {enabled: true},
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/nuxt', '@nuxtjs/device', '@nuxtjs/i18n'],
+  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/nuxt', '@nuxtjs/device', '@nuxtjs/i18n', 'nuxt-toast'],
+  toast: { composableName: 'useNotification' },
   css: [
     '~/assets/css/fonts.css'
   ],

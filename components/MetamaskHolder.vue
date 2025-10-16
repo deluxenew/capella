@@ -1,3 +1,7 @@
+<template>
+ <div></div>
+</template>
+
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from 'vue'
 import { useNuxtApp } from '#app'

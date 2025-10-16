@@ -50,7 +50,7 @@
     </client-only>
     <MetamaskHolder ref="metamask" @onComplete="onComplete" />
     <ModalTermsConditions />
-    <MetamaskBrowserModal />
+    <LazyMetamaskBrowserModal />
     <UiModal name="account-activation" height="auto" classes="account-activation-modal" adaptive>
       <div class="modal-content activation-modal">
         <div class="modal-header flex justify-between items-center">
