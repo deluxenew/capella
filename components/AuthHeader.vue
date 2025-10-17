@@ -6,7 +6,7 @@
         <!-- TODO Включить переключатель языков-->
         <!-- <AppSelectLocale /> -->
         <div class="buttons ml-auto">
-          <div class="auth-buttons">
+          <div class="auth-buttons gap-4">
             <UiButton theme="outline" to="/sign-in">
               {{ t('AuthHeader.sign_in') }}
             </UiButton>
@@ -37,50 +37,39 @@ const availableLocales = computed(() => {
 
 <style scoped>
 .auth-header {
-  border-bottom: 1px solid var(--border-color);
-  height: 60px;
-  padding: 0 20px;
+  @apply border-b border-border-color h-20 px-5;
 }
 
 .auth-header .logo {
-  font-weight: 600;
-  font-size: 18px;
+  @apply font-semibold text-lg;
 }
 
 .auth-header .wrapper {
-  display: flex;
-  align-items: center;
-  height: 100%;
+  @apply flex items-center h-full;
 }
 
 .auth-header .right-block {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  @apply flex items-center justify-between w-full;
 }
 
 .auth-header .right-block .buttons {
-  display: flex;
+  @apply flex;
 }
 
 .auth-header .right-block .buttons .auth-buttons {
-  display: flex;
+  @apply flex;
 }
 
 .auth-header .right-block .buttons .auth-buttons .UiButton {
-  border-radius: 6px;
-  padding: 12px 18px;
+  @apply rounded py-3 px-4;
 }
 
 .auth-header .right-block .buttons .auth-buttons .UiButton:first-of-type {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
+  @apply rounded-tr-none rounded-br-none;
 }
 
 .auth-header .right-block .buttons .auth-buttons .UiButton:last-of-type {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
+  @apply rounded-tl-none rounded-bl-none;
 }
 
 .auth-header .sign-in-btn:hover {
@@ -88,13 +77,13 @@ const availableLocales = computed(() => {
 }
 
 .auth-header .select-lang {
-  color: #787b89;
+  @apply text-gray;
 }
 
 /* Mobile styles */
 @media screen and (max-width: 600px) {
   .auth-header .right-block .buttons .connectWallet {
-    display: none;
+    @apply hidden;
   }
 }
 </style>

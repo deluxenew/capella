@@ -7,7 +7,7 @@
     <div class="container">
       <header-component />
 
-      <NuxtPage />
+      <slot />
     </div>
   </div>
 </template>

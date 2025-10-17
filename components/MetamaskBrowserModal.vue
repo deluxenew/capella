@@ -1,12 +1,12 @@
 <template>
-  <UiModal name="openMetamaskBrowser" width="350" height="auto">
+  <UiModal modal-id="openMetamaskBrowser" width="350" height="auto">
     <div class="content">
       <div class="header">
         {{ t('switch_metamask') }}
         <UiButton
           class="ml-auto"
           theme="icon"
-          @click="$modal.hide('openMetamaskBrowser')"
+          @click="$modal.close('openMetamaskBrowser')"
         >
           <UiSvgImage svg="close" />
         </UiButton>

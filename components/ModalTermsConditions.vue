@@ -1,7 +1,7 @@
 <template>
-  <VueFinalModal name="terms" classes="modal-terms" height="80%" width="80%">
+  <UiModal modal-id="terms" classes="modal-terms" height="80%" width="80%">
     <div class="modal-content" v-html="terms" />
-  </VueFinalModal>
+  </UiModal>
 </template>
 
 <script setup lang="ts">
@@ -12,7 +12,7 @@ const { t } = useI18n()
 
 // Computed
 const terms = computed(() => {
-  return $utils.replaceHostToTitle?.(window?.location?.host, t('ModalTermsConditions')) || t('ModalTermsConditions')
+  return $utils.replaceHostToTitle?.(window?.location?.host, t('ModalTermsConditions'))
 })
 </script>
 

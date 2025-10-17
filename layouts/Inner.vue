@@ -40,7 +40,7 @@
             </div>
           </header>
           <div class="inner-layout pb-10">
-            <NuxtPage />
+            <slot />
           </div>
         </div>
       </div>
@@ -55,7 +55,7 @@
       <div class="modal-content activation-modal">
         <div class="modal-header flex justify-between items-center">
           <h2 class="modal-title">{{ t('account_activation') }}</h2>
-          <UiButton theme="icon" @click="$modal.hide('account-activation')">
+          <UiButton theme="icon" @click="$modal.close('account-activation')">
             <UiSvgImage svg="close" />
           </UiButton>
         </div>
@@ -189,7 +189,7 @@ const showActivationModal = async () => {
     const { data } = await $api.dashboard.getRegistrationFee()
     registrationFees.value = data
     checkBalance()
-    $modal.show('account-activation')
+    $modal.open('account-activation')
   } catch (error) {
     $notify({
       type: 'error',
@@ -218,7 +218,7 @@ const processPayment = async () => {
     const address = user.value.addresses.registrationFee[selectedCurrency.value]
 
     // Emit metamask send event
-    $modal.hide('account-activation')
+    $modal.close('account-activation')
   } catch (error) {
     $notify({
       type: 'error',

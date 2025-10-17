@@ -2,10 +2,8 @@
   <div class="sign-in">
     <div class="main-block">
       <div class="content">
-        <h2 class="main-title">
-          <h3 class="to-auth" theme="transparent">
+        <h2 class="main-title to-auth">
             {{ t('AuthHeader.sign_in') }}
-          </h3>
         </h2>
         <div class="custom-wrapper wallet-connect">
           <h3 class="title">
@@ -100,7 +98,7 @@ const connect = async (): Promise<void> => {
 
   if (!window.ethereum) {
     if ($device.isIos || $device.isAndroid || $device.isEdge || $device.isMobile) {
-      $modal.show('openMetamaskBrowser')
+      $modal.open('openMetamaskBrowser')
     } else {
       $notify({
         title: 'Error',
@@ -112,6 +110,7 @@ const connect = async (): Promise<void> => {
     return
   }
 
+  console.log($auth)
   if ($auth.loggedIn && isMetamaskConnected.value) {
     loadingMetamask.value = false
     await router.replace('/cabinet/dashboard')

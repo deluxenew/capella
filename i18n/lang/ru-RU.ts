@@ -1,4 +1,4 @@
-import { rus as ModalTermsConditions } from './terms.js'
+import { rus as ModalTermsConditions } from './terms'
 export default {
   connect_wallet: 'Подключить кошелек',
   account_activation: 'Активация аккаунта',

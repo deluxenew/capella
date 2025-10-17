@@ -2,7 +2,7 @@
   <div class="AuthLayout">
     <AuthHeader />
     <div class="container">
-      <NuxtPage />
+      <slot />
     </div>
     <ClientOnly>
       <notifications

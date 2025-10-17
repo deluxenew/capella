@@ -9,11 +9,23 @@ export default defineNuxtConfig({
   $test: undefined,
   compatibilityDate: '2025-07-15',
   devtools: {enabled: true},
-  modules: ['@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/nuxt', '@nuxtjs/device', '@nuxtjs/i18n', 'nuxt-toast'],
-  toast: { composableName: 'useNotification' },
+  modules: [ '@sidebase/nuxt-auth', '@nuxtjs/tailwindcss', '@pinia/nuxt', '@vueuse/nuxt', '@nuxtjs/device', '@nuxtjs/i18n'],
   css: [
     '~/assets/css/fonts.css'
   ],
+  auth: {
+    isEnabled: false,
+    disableServerSideAuth: true,
+    provider: {
+      type: 'authjs'
+    },
+    // originEnvKey: 'AUTH_ORIGIN',
+    // baseURL: 'http://localhost:3000/api/auth',
+    // sessionRefresh: {
+    //   enablePeriodically: true,
+    //   enableOnWindowFocus: true,
+    // }
+  },
   i18n: {
     locales: [
       {

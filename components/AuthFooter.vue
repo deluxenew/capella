@@ -17,11 +17,12 @@ const { t } = useI18n()
 
 // Methods
 const showModal = (): void => {
-  $modal.show('terms')
+  $modal.open('terms')
+  console.log($modal)
 }
 
 const hideModal = (): void => {
-  $modal.hide('terms')
+  $modal.close('terms')
 }
 </script>
 

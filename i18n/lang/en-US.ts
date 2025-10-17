@@ -1,4 +1,6 @@
+import { rus as ModalTermsConditions } from './terms'
 export default {
+  ModalTermsConditions,
   connect_wallet: 'Connect Wallet',
   account_activation: 'Account Activation',
   activation_required_text: 'To verify your account, you need to pay $250. Please select your preferred currency and complete the payment.',

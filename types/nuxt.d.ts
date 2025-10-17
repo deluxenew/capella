@@ -1,5 +1,4 @@
-// types/nuxt.d.ts
-import type { Plugin } from '#app'
+import type {PromisifiedModal} from "~/plugins/modal/promisify-modal";
 interface EthereumProvider {
   request: (args: { method: string }) => Promise<string[]>
   on?: (event: string, callback: (...args: any[]) => void) => void
@@ -73,10 +72,7 @@ declare module '#app' {
     }
     $t: (key: string) => string
     $notify: (options: { title?: string; type: string; text: string }) => void
-    $modal: {
-      show: (name: string) => void
-      hide: (name: string) => void
-    }
+    $modal: PromisifiedModal
     $router: {
       replace: (path: string) => void
       push: (path: string) => void
@@ -95,10 +91,10 @@ declare module '@vue/runtime-core' {
     $device: NuxtApp['$device']
     $t: NuxtApp['$t']
     $notify: NuxtApp['$notify']
-    $modal: NuxtApp['$modal']
+    $modal:  PromisifiedModal
     $router: NuxtApp['$router']
     $utm: NuxtApp['$utm']
-    $utils: any
+    $utils: NuxtApp['$utils']
   }
 }
 
