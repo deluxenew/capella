@@ -5,7 +5,7 @@ export interface User {
   email?: string
   role?: string
   confirmRegistration?: boolean
-  metaMaskAddress?: string
+  address?: string
   addresses?: {
     registrationFee: Record<string, string>
   }
@@ -25,7 +25,7 @@ export interface NuxtAppAuth {
 export interface LoginCredentials {
   login?: string
   password?: string
-  metaMaskAddress?: string
+  address?: string
   source?: string
   invite?: string
 }
@@ -36,13 +36,13 @@ export interface AuthResponse {
     email: string
     name: string
     role?: string
-    metaMaskAddress?: string
+    address?: string
   }
   token: string
 }
 
 export interface MetamaskState {
-  metaMaskAddress: string | null
+  address: string | null
   isConnected: boolean
   balance: Record<string, number>
 }

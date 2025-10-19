@@ -17,9 +17,7 @@ declare module '#app' {
       auth: {
         login: (credentials: any) => Promise<any>
       }
-      user: {
-        connectMM: (data: any) => Promise<any>
-      }
+      user: any
       dashboard: {
         deposit: (params: any) => Promise<any>
         getRegistrationFee: () => Promise<any>
@@ -33,7 +31,7 @@ declare module '#app' {
           name?: string
           login?: string
           role?: string
-          metaMaskAddress?: string
+          address?: string
           confirmRegistration?: boolean
           addresses?: {
             registrationFee: Record<string, string>
@@ -46,7 +44,7 @@ declare module '#app' {
     $store: {
       state: {
         metamask: {
-          metaMaskAddress: string | null
+          address: string | null
           isConnected: boolean
         }
         system: {

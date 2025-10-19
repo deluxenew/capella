@@ -42,7 +42,7 @@ const props = defineProps({
 
 const emit = defineEmits(['input'])
 
-const selected = ref(props.default ? props.default : props.options.length > 0 ? props.options[0] : null)
+const selected = ref(props.default ? props.default : props.options?.length > 0 ? props.options[0] : null)
 const open = ref(false)
 
 onMounted(() => {

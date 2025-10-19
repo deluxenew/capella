@@ -25,11 +25,14 @@
 </template>
 
 <script setup lang="ts">
+definePageMeta({
+  layout: 'auth'
+})
 // Types
 interface LoginParams {
   login?: string
   password?: string
-  metaMaskAddress?: string
+  address?: string
   source?: string
   invite?: string
 }
@@ -61,7 +64,7 @@ const passwordRegExp = computed(() => {
   return new RegExp($store.state.system.regExp?.user?.password || '')
 })
 
-const metaMaskAddress = computed(() => {
+const address = computed(() => {
   return $store.getters['metamask/METAMASK_ADDRESS']
 })
 
@@ -110,25 +113,25 @@ const connect = async (): Promise<void> => {
     return
   }
 
-  console.log($auth)
-  if ($auth.loggedIn && isMetamaskConnected.value) {
-    loadingMetamask.value = false
-    await router.replace('/cabinet/dashboard')
+  loadingMetamask.value = false
+  await router.replace('/cabinet/dashboard')
+  if ( isMetamaskConnected.value) {
+
   } else if (isMetamaskConnected.value) {
     await login({
       invite: invite.value,
-      metaMaskAddress: metaMaskAddress.value,
+      address: address.value,
       source: '', // Add your UTM source logic here
     })
   } else {
     // Emit event for metamask connection and login
     // TODO: Добавьте логику подключения MetaMask
     console.log('Need to connect MetaMask first')
-    $notify({
-      title: 'Info',
-      type: 'info',
-      text: 'Please connect your MetaMask wallet first',
-    })
+    // $notify({
+    //   title: 'Info',
+    //   type: 'info',
+    //   text: 'Please connect your MetaMask wallet first',
+    // })
     loadingMetamask.value = false
   }
 }
@@ -146,7 +149,7 @@ const loginByEmail = async (): Promise<void> => {
   await login({
     login: email.value,
     password: password.value,
-    metaMaskAddress: metaMaskAddress.value || undefined,
+    address: address.value || undefined,
     source: '',
     invite: invite.value,
   })
@@ -169,11 +172,6 @@ onMounted(() => {
 // Head
 useHead({
   title: 'Sign In'
-})
-
-// Define page meta
-definePageMeta({
-  layout: 'auth'
 })
 </script>
 

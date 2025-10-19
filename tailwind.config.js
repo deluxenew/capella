@@ -18,6 +18,9 @@ module.exports = {
       maxWidth: {
         '85': '340px',
       },
+      minHeight: {
+        '70': '280px',
+      },
       colors: {
         dark: '#1c2027',
         onyx: '#343841',
@@ -76,6 +79,23 @@ module.exports = {
       },
       boxShadow: {
         'blue': '0px 9px 24px rgba(66, 118, 246, 0.4)',
+      },
+      animation: {
+        'bounce-loader': 'bounce-loader 1.2s ease-in-out infinite',
+      },
+      keyframes: {
+        'bounce-loader': {
+          '0%': { transform: 'translateY(0)' },
+          '25%': { transform: 'translateY(-100%)' },
+          '75%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        }
+      },
+      animationDelay: {
+        '100': '100ms',
+        '200': '200ms',
+        '300': '300ms',
+        '400': '400ms',
       }
     },
   },

@@ -1,4 +1,3 @@
-// composables/useMetamask.ts
 interface EthereumProvider {
   request: (args: { method: string }) => Promise<string[]>
 }
@@ -30,7 +29,7 @@ export const useMetamask = () => {
     }
   }
 
-  const metaMaskAddress = computed(() => {
+  const address = computed(() => {
     return $store.getters['metamask/METAMASK_ADDRESS'] as string
   })
 
@@ -44,7 +43,7 @@ export const useMetamask = () => {
 
   return {
     connectMetamask,
-    metaMaskAddress,
+    address,
     isConnected,
     hasMetamask
   }

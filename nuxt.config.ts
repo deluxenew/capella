@@ -60,4 +60,11 @@ export default defineNuxtConfig({
     typeCheck: true,
     strict: true
   },
+  plugins: [
+    '~/plugins/currency-input.client.ts',
+    '~/plugins/currency.global.ts'
+  ],
+  build: {
+    transpile: ['vue-currency-input']
+  }
 })

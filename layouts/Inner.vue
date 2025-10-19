@@ -1,6 +1,6 @@
 <template>
   <div class="cabinet" :class="{
-    'cabinet_mobile': $device.isMobile,
+    'cabinet_mobile': $device?.isMobile,
     'sidebar_expanded': expandSidebar,
   }">
     <div class="wrapper">
@@ -20,21 +20,14 @@
               </h2>
             </div>
             <div class="user-buttons flex items-center">
-              <!-- TODO Включить переключатель языков-->
-              <!-- <AppSelectLocale /> -->
-              <div v-if="!metamaskAddresses">
+              <div v-if="!addresses">
                 <UiButton @click="connectMetamask">
                   {{ t('connect_wallet') }}
                 </UiButton>
               </div>
               <div v-else>
-                <UiButton class="metamask-button" title="click to copy" @click="
-                  copyToClipboard(
-                    metamaskAddresses,
-                    'Metamask id copied to clipboard'
-                  )
-                  ">
-                  {{ parseMM(metamaskAddresses) }}
+                <UiButton class="metamask-button" title="click to copy" @click="copyToClipboard(addresses, t('copied'))">
+                  {{ parseMM(addresses) }}
                 </UiButton>
               </div>
             </div>
@@ -45,9 +38,11 @@
         </div>
       </div>
     </div>
-    <client-only>
-      <notifications position="top center" width="100%" :max="3" :duration="3000" />
-    </client-only>
+    <ClientOnly>
+      <Notivue v-slot="item">
+        <Notification :item="item" />
+      </Notivue>
+    </ClientOnly>
     <MetamaskHolder ref="metamask" @onComplete="onComplete" />
     <ModalTermsConditions />
     <LazyMetamaskBrowserModal />
@@ -55,7 +50,7 @@
       <div class="modal-content activation-modal">
         <div class="modal-header flex justify-between items-center">
           <h2 class="modal-title">{{ t('account_activation') }}</h2>
-          <UiButton theme="icon" @click="$modal.close('account-activation')">
+          <UiButton theme="icon" @click="$modal?.close('account-activation')">
             <UiSvgImage svg="close" />
           </UiButton>
         </div>
@@ -105,7 +100,7 @@
         </div>
       </div>
     </UiModal>
-    <div v-if="!user.confirmRegistration" class="required-registration">
+    <div v-if="user && !user.confirmRegistration" class="required-registration">
       <div class="container">
         <p>
           Attention!<br />
@@ -122,30 +117,66 @@
   </div>
 </template>
 
-<script setup>
-import { ref, computed, watch } from 'vue'
-const { t } = useI18n()
-const { $api, $auth, $device, $notify, $modal } = useNuxtApp()
-const store = useStore()
-const router = useRouter()
+<script setup lang="ts">
+// Types
+import LeftSidebar from "~/components/cabinet/LeftSidebar.vue";
 
+interface User {
+  id: string
+  name?: string
+  login?: string
+  address?: string
+  confirmRegistration?: boolean
+  addresses?: {
+    registrationFee: Record<string, string>
+  }
+}
+
+interface MetamaskData {
+  address: string
+}
+
+// Composables
+const { $api, $auth, $device, $modal } = useNuxtApp()
+const { t } = useI18n()
+const { push } = useRouter()
+
+// Refs
 const expandSidebar = ref(false)
 const selectedCurrency = ref('ETH')
 const availableCurrencies = ref(['ETH', 'USDT', 'USDC'])
-const balanceError = ref(null)
-const registrationFees = ref({})
+const balanceError = ref<string | null>(null)
+const registrationFees = ref<Record<string, number>>({})
 const metamask = ref(null)
 
+// Store (замените на вашу реализацию store)
+const store = useMetamaskStore() // Убедитесь что этот store существует
+
 // Computed properties
-const metamaskAddresses = computed(() => store.state.metamask.metaMaskAddress)
-const user = computed(() => store.state.auth.user)
-const userName = computed(() => user.value?.name || user.value?.login || '')
+const addresses = computed(() => {
+  return store?.address || null
+})
+
+const user = computed((): User | null => {
+  return store?.auth?.user || null
+})
+
+const userName = computed(() => {
+  return user.value?.name || user.value?.login || 'User'
+})
+
 const currentBalance = computed(() => {
-  const balance = store.getters['metamask/BALANCE'](selectedCurrency.value)
+  const balance = store?.BALANCE?.(selectedCurrency.value)
   return balance || 0
 })
-const requiredAmount = computed(() => registrationFees.value[selectedCurrency.value] || 0)
-const canPay = computed(() => currentBalance.value >= requiredAmount.value && !balanceError.value)
+
+const requiredAmount = computed(() => {
+  return registrationFees.value[selectedCurrency.value] || 0
+})
+
+const canPay = computed(() => {
+  return currentBalance.value >= requiredAmount.value && !balanceError.value
+})
 
 // Watchers
 watch(selectedCurrency, () => {
@@ -157,48 +188,47 @@ watch(currentBalance, () => {
 })
 
 // Methods
-const onComplete = async ({ metaMaskAddress }) => {
-  if (!user.value.metaMaskAddress) {
+const onComplete = async ({ address }: MetamaskData) => {
+  if (!user.value?.address) {
     try {
-      await $api.user.connectMM({ id: user.value.id, metaMaskAddress })
-      $notify({
-        type: 'success',
-        text: t('metamask_linked'),
+      await $api.user.connectMM({
+        id: user.value?.id || '',
+        address
       })
+      // Используем composable для уведомлений вместо $notify
+      const { success } = useToast()
+      success(t('metamask_linked'))
     } catch (error) {
-      $auth.logout()
+      $auth?.logout?.()
     }
-  } else if (user.value.metaMaskAddress !== metaMaskAddress) {
-    await $auth.logout()
-    router.replace('/sign-in')
+  } else if (user.value.address !== address) {
+    await $auth?.logout?.()
+    push('/sign-in')
     setTimeout(() => {
-      $notify({
-        type: 'error',
-        text: t('metamask_invalid'),
-      })
+      const { error } = useToast()
+      error(t('metamask_invalid'))
     }, 100)
   }
 }
 
 const connectMetamask = () => {
   // Emit event for metamask connection
+  // await $nuxt.$emit('connectMetamask')
 }
 
 const showActivationModal = async () => {
   try {
-    const { data } = await $api.dashboard.getRegistrationFee()
+    const data = await $api.dashboard.getRegistrationFee()
     registrationFees.value = data
     checkBalance()
-    $modal.open('account-activation')
+    $modal?.open('account-activation')
   } catch (error) {
-    $notify({
-      type: 'error',
-      text: 'Failed to load registration fees',
-    })
+    const { error: showError } = useToast()
+    showError('Failed to load registration fees')
   }
 }
 
-const onCurrencyChange = (currency) => {
+const onCurrencyChange = (currency: string) => {
   selectedCurrency.value = currency
   checkBalance()
 }
@@ -215,28 +245,73 @@ const processPayment = async () => {
 
   try {
     const amount = requiredAmount.value.toString()
-    const address = user.value.addresses.registrationFee[selectedCurrency.value]
+    const address = user.value?.addresses?.registrationFee?.[selectedCurrency.value]
+
+    if (!address) {
+      throw new Error('Payment address not found')
+    }
 
     // Emit metamask send event
-    $modal.close('account-activation')
-  } catch (error) {
-    $notify({
-      type: 'error',
-      text: error.message || 'Payment failed',
-    })
+    // await $nuxt.$emit('metamaskSend', {
+    //   currency: selectedCurrency.value,
+    //   pool: null,
+    //   amount,
+    //   address,
+    // })
+
+    $modal?.close('account-activation')
+
+    const { success } = useToast()
+    success('Payment processed successfully')
+  } catch (error: any) {
+    const { error: showError } = useToast()
+    showError(error.message || 'Payment failed')
   }
 }
 
-const copyToClipboard = (text, message) => {
-  navigator.clipboard.writeText(text)
-  $notify({
-    type: 'success',
-    text: message,
-  })
+const copyToClipboard = async (text: string, message: string) => {
+  try {
+    await navigator.clipboard.writeText(text)
+    const { success } = useToast()
+    success(message)
+  } catch (error) {
+    const { error: showError } = useToast()
+    showError('Failed to copy to clipboard')
+  }
 }
 
-const parseMM = (value) => {
+const parseMM = (value: string): string => {
+  if (!value || value.length < 12) return value
   return value.slice(0, 6) + '...' + value.slice(-6)
+}
+
+// Composable для уведомлений (добавьте в composables/useToast.ts)
+const useToast = () => {
+  const { $notify } = useNuxtApp()
+
+  return {
+    success: (message: string) => {
+      if ($notify) {
+        $notify({ type: 'success', text: message })
+      } else {
+        console.log('✅', message)
+      }
+    },
+    error: (message: string) => {
+      if ($notify) {
+        $notify({ type: 'error', text: message })
+      } else {
+        console.error('❌', message)
+      }
+    },
+    info: (message: string) => {
+      if ($notify) {
+        $notify({ type: 'info', text: message })
+      } else {
+        console.info('ℹ️', message)
+      }
+    }
+  }
 }
 </script>
 
@@ -268,12 +343,12 @@ const parseMM = (value) => {
 }
 
 .cabinet .right {
-  margin-left: 125px; /* $sidebar-closed-width */
-  @apply overflow-auto transition-all;
+  margin-left: 125px;
+  @apply overflow-auto transition-all duration-300;
 }
 
 .cabinet .right.expanded {
-  margin-left: 320px; /* $sidebar-opened-width */
+  margin-left: 320px;
 }
 
 .cabinet .right .header {
@@ -355,7 +430,7 @@ const parseMM = (value) => {
 }
 
 .activation-modal .modal-body .payment-info {
-  @apply bg-gray-100 border border-gray-200 rounded-lg p-4;
+  @apply bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4;
 }
 
 .activation-modal .modal-body .payment-info p {
@@ -371,19 +446,19 @@ const parseMM = (value) => {
 }
 
 /* Modal width adjustments */
-.account-activation-modal.vm--modal {
+:global(.account-activation-modal.vm--modal) {
   width: 400px !important;
   max-width: 90vw !important;
 }
 
 @media (max-width: 768px) {
-  .account-activation-modal.vm--modal {
+  :global(.account-activation-modal.vm--modal) {
     width: 90vw !important;
   }
 }
 
 @media (max-width: 480px) {
-  .account-activation-modal.vm--modal {
+  :global(.account-activation-modal.vm--modal) {
     width: 95vw !important;
   }
 }

@@ -8072,6 +8072,11 @@ type-fest@^0.8.1:
   resolved "https://registry.npmjs.org/type-fest/-/type-fest-0.8.1.tgz"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
+type-fest@^4.3.1:
+  version "4.41.0"
+  resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-4.41.0.tgz#6ae1c8e5731273c2bf1f58ad39cbae2c91a46c58"
+  integrity sha512-TeTSQ6H5YHvpqVwBRcnLDCBnDOHWYu7IvGbHT6N8AOymcr9PJGjc1GTtiWZTYg0NCgYwvnYWEkVChQAr9bjfwA==
+
 type-fest@^5.0.0:
   version "5.1.0"
   resolved "https://registry.npmjs.org/type-fest/-/type-fest-5.1.0.tgz"
@@ -8403,6 +8408,14 @@ vary@^1.1.2:
   resolved "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
+vee-validate@4.11.8:
+  version "4.11.8"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-4.11.8.tgz#396b00c247af65714926a53a2e7e5e76725d1b92"
+  integrity sha512-ZuVpw0axWYBM3aVTD/bm94hcWHumqeUgNjptOqfBT0gyqyHaGYCrm0tSD/0bygEbWUDwEPJOQaEKaUGM82j8TQ==
+  dependencies:
+    "@vue/devtools-api" "^6.5.0"
+    type-fest "^4.3.1"
+
 vite-dev-rpc@^1.1.0:
   version "1.1.0"
   resolved "https://registry.npmjs.org/vite-dev-rpc/-/vite-dev-rpc-1.1.0.tgz"
@@ -8492,6 +8505,11 @@ vue-bundle-renderer@^2.2.0:
   integrity sha512-sz/0WEdYH1KfaOm0XaBmRZOWgYTEvUDt6yPYaUzl4E52qzgWLlknaPPTTZmp6benaPTlQAI/hN1x3tAzZygycg==
   dependencies:
     ufo "^1.6.1"
+
+vue-currency-input@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/vue-currency-input/-/vue-currency-input-3.0.0.tgz#0317869f16aa3b0a7d0e7a63647cf99d56065dce"
+  integrity sha512-af1RYIdK+GrcoJRgmKThrheRL0quW8TV3d0LeyzN39vQQi5xRrx3AhqPtcxM+moW/4G71Q1UoxjRu+wtK465mQ==
 
 vue-demi@>=0.14.8:
   version "0.14.10"
