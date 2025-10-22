@@ -31,19 +31,19 @@
               <span class="item-value text-lg leading-5.5 whitespace-nowrap w-full">
                 {{ $filters.toCurrency(poolData.price, { minimumFractionDigits: 4 }) }}
               </span>
-              <span class="item-name text-xs text-gray capitalize">{{ $t('price') }}</span>
+              <span class="item-name text-xs text-gray capitalize">{{ t('price') }}</span>
             </div>
             <div class="flex flex-row flex-wrap">
               <span class="item-value text-lg leading-5.5 whitespace-nowrap w-full">
                 {{ $filters.toPercent(poolData.apy, { minimumFractionDigits: 2 }) }}
               </span>
-              <span class="item-name text-xs text-gray capitalize">{{ $t('apy') }}</span>
+              <span class="item-name text-xs text-gray capitalize">{{ t('apy') }}</span>
             </div>
             <div class="flex flex-row flex-wrap">
               <span class="item-value text-lg leading-5.5 whitespace-nowrap w-full">
                 {{ $filters.toPercent(poolData.daily, { minimumFractionDigits: 2 }) }}
               </span>
-              <span class="item-name text-xs text-gray capitalize">{{ $t('daily') }}</span>
+              <span class="item-name text-xs text-gray capitalize">{{ t('daily') }}</span>
               <span
                 v-if="poolData.daily"
                 class="item-changeTo ml-2 text-xs"
@@ -88,7 +88,7 @@
             fill="fill-white"
             @click="showliquidity = !showliquidity"
           >
-            {{ $t('add_liquidity') }}
+            {{ t('add_liquidity') }}
             <UiSvgImage
               :class="`transform ${showliquidity ? 'rotate-0' : 'rotate-180'}`"
               svg="arrow_up"
@@ -104,7 +104,7 @@
                   <UiCurrencyInput
                     :config="balanceCurrencyConfig"
                     :value="max > 0 ? balance.value : 'no balance'"
-                    :label="`${$t('balance')}: ${balanceMax}`"
+                    :label="`${t('balance')}: ${balanceMax}`"
                     :disabled="max <= 0"
                     class="z-10"
                     @numberInput="balanceInput($event)"
@@ -122,7 +122,7 @@
                           :disabled="balance.value === balanceMax"
                           @click="balanceInput(balanceMax)"
                         >
-                          {{ $t('max') }}
+                          {{ t('max') }}
                         </UiButton>
                       </div>
                     </template>
@@ -138,7 +138,7 @@
                   />
 
                   <div v-if="balanceMax <= 0" class="hint-text text-xs min-w-full">
-                    {{ $t('no_balance_by_coin', { coin }) }}
+                    {{ t('no_balance_by_coin', { coin }) }}
                   </div>
 
                   <div class="footer-items mt-auto flex flex-col gap-1.25">
@@ -149,10 +149,10 @@
                       :disabled="!user?.confirmRegistration"
                       @click="sendDeposit"
                     >
-                      {{ $t('deposit') }}
+                      {{ t('deposit') }}
                     </UiButton>
                     <p class="hint-text text-gray text-xs mt-0.25">
-                      {{ $t('deposit_fee') }}: 0%
+                      {{ t('deposit_fee') }}: 0%
                     </p>
                   </div>
                 </div>
@@ -163,7 +163,7 @@
                     :config="depositCurrencyConfig"
                     :value="depositMax > 0 ? deposit.value : 'no balance'"
                     :disabled="depositMax <= 0 || !!userWithdrawRequestByPool"
-                    :label="`${$t('deposited')} : ${userCoinBalanceByPool - userWithdrawRequestByPool}`"
+                    :label="`${t('deposited')} : ${userCoinBalanceByPool - userWithdrawRequestByPool}`"
                     @numberInput="depositInput($event)"
                   >
                     <template #append>
@@ -173,7 +173,7 @@
                         :disabled="deposit.value === depositMax || !!userWithdrawRequestByPool"
                         @click="depositInput(depositMax)"
                       >
-                        {{ $t('max') }}
+                        {{ t('max') }}
                       </UiButton>
                     </template>
                   </UiCurrencyInput>
@@ -189,7 +189,7 @@
                   />
 
                   <div v-if="depositMax <= 0" class="hint-text text-xs min-w-full">
-                    {{ $t('no_balance_by_pool', { coin }) }}
+                    {{ t('no_balance_by_pool', { coin }) }}
                   </div>
 
                   <div class="footer-items mt-auto flex flex-col gap-1.25">
@@ -201,7 +201,7 @@
                       :disabled="deposit.value == 0"
                       @click="withdraw"
                     >
-                      {{ $t('withdraw') }}
+                      {{ t('withdraw') }}
                     </UiButton>
                     <UiButton
                       v-else
@@ -212,11 +212,11 @@
                       :disabled="true"
                       @click="withdraw"
                     >
-                      {{ $t('withdraw_request') }}
+                      {{ t('withdraw_request') }}
                       <AppLoader class="loader ml-3.5 w-7.5 gap-1.25" color="gray" size="5px" />
                     </UiButton>
                     <p class="hint-text text-gray text-xs mt-0.25">
-                      {{ $t('withdrawal_fee') }}: 0.01%
+                      {{ t('withdrawal_fee') }}: 0.01%
                     </p>
                   </div>
                 </div>
@@ -227,7 +227,7 @@
 
         <AppLoader v-else-if="pending" :color="markerColor" />
         <div v-else key="infoSlot">
-          {{ $t(`pools_info.${pool}`) }}
+          {{ t(`pools_info.${pool}`) }}
         </div>
       </transition>
     </section>
@@ -236,17 +236,20 @@
 
 <script setup lang="ts">
 import { usdConfig } from '~/composables/useCurrency'
-import type { PoolData, Coin } from '~/types/pools'
+
+import {type PoolName, usePoolsStore, type Coin } from "~/stores/pools";
 
 interface Props {
   name?: string
-  pool: string
+  pool: PoolName
   markerColor?: string
   isExpanded?: boolean
 }
 
+const {t} = useI18n()
+
 const props = withDefaults(defineProps<Props>(), {
-  name: () => useNuxtApp().$t('stable_pool'),
+  name: () => useI18n().t('stable_pool'),
   markerColor: '#9FE0FF',
   isExpanded: false
 })
@@ -259,12 +262,14 @@ const emit = defineEmits<{
 const showliquidity = ref(props.isExpanded)
 const deposit = ref({ value: 0 })
 const balance = ref({ value: 0 })
-const coin = ref<string | null>(null)
+const coin = ref<string | undefined>(undefined)
 const showInfoPool = ref(false)
 
 // Composable
 const { $api, $auth, $filters, $notify } = useNuxtApp()
-const store = useMetamaskStore()
+const store = usePoolsStore()
+const metamaskStore = useMetamaskStore()
+const userStore = $auth
 const route = useRoute()
 
 // Data fetching
@@ -272,8 +277,8 @@ const { data: poolData, pending, refresh } = await useAsyncData(
   `pool-${props.pool}`,
   async () => {
     try {
-      await store.dispatch('pools/getPool', { pool: props.pool })
-      return store.state.pools[props.pool]
+      await store.getPool({ pool: props.pool })
+      return store.getPoolData(props.pool)
     } catch (error) {
       console.error('Error fetching pool data:', error)
       return null
@@ -283,10 +288,10 @@ const { data: poolData, pending, refresh } = await useAsyncData(
 
 // Computed
 const balanceMax = computed(() =>
-  store?.['walletBalance']?.(coin.value)
+  metamaskStore?.BALANCE(coin.value)
 )
 
-const user = computed(() => store?.auth?.user)
+const user = computed(() => userStore?.auth?.user)
 
 const max = computed(() => balanceMax.value * 0.95)
 
@@ -321,7 +326,7 @@ const depositCurrencyConfig = computed(() => ({
 }))
 
 const coins = computed(() =>
-  store?.getters?.['poolCoins']?.(props.pool)
+  store.COINS(props.pool)
 )
 
 const chart = computed(() =>
@@ -352,12 +357,12 @@ watch(currentCoin, () => {
 })
 
 // Methods
-const balanceInput = (value: number = 0) => {
+const balanceInput = (value?: number = 0) => {
   value = +value
   balance.value.value = value > max.value ? max.value : value
 }
 
-const depositInput = (value: number = 0) => {
+const depositInput = (value?: number = 0) => {
   value = +value
   deposit.value.value = value > depositMax.value ? depositMax.value : value
 }

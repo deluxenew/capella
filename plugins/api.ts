@@ -225,3 +225,22 @@ export default defineNuxtPlugin(() => {
     }
   }
 })
+
+
+declare module '#app' {
+  interface NuxtApp {
+    $api: Api
+  }
+}
+
+declare module '~/node_modules/nuxt/dist/app/nuxt' {
+  interface NuxtApp {
+    $api: Api
+  }
+}
+
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $api: Api
+  }
+}

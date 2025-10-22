@@ -8,7 +8,7 @@ interface PercentOptions extends Intl.NumberFormatOptions {}
 
 export default defineNuxtPlugin(() => {
   // Форматирование валюты
-  const toCurrency = (value: number, options: CurrencyOptions = { currency: 'usd' }): string => {
+  const toCurrency = (value: number, options?: CurrencyOptions | undefined): string => {
     if (typeof value !== 'number') {
       console.warn('provided not a number!', value)
       return String(value)
@@ -16,7 +16,7 @@ export default defineNuxtPlugin(() => {
 
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
-      currency: options.currency ?? 'usd',
+      currency: options?.currency ?? 'usd',
       ...options,
     })
 
@@ -25,7 +25,7 @@ export default defineNuxtPlugin(() => {
   }
 
   // Форматирование процентов
-  const toPercent = (value: number, options: PercentOptions = {}): string => {
+  const toPercent = (value: number, options?: PercentOptions): string => {
     if (typeof value !== 'number') {
       console.warn('provided not a number!', value)
       return String(value)
@@ -65,3 +65,33 @@ export default defineNuxtPlugin(() => {
     }
   }
 })
+
+declare module '#app' {
+  interface NuxtApp {
+    $filters: {
+      toCurrency: (value: number, options?: CurrencyOptions  ) => string
+      toPercent: (value: number, options?: PercentOptions) => string
+      toDate: (value: string | Date) => string
+    }
+  }
+}
+
+declare module '~/node_modules/nuxt/dist/app/nuxt' {
+  interface NuxtApp {
+    $filters: {
+      toCurrency: (value: number, options?: CurrencyOptions  ) => string
+      toPercent: (value: number, options?: PercentOptions) => string
+      toDate: (value: string | Date) => string
+    }
+  }
+}
+
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $filters: {
+      toCurrency: (value: number, options?: CurrencyOptions ) => string
+      toPercent: (value: number, options?: PercentOptions) => string
+      toDate: (value: string | Date) => string
+    }
+  }
+}

@@ -25,7 +25,7 @@ export const useMetamaskStore = defineStore('metamask', {
     METAMASK_NET_ID: (state): number => state.netId,
     METAMASK_ADDRESS: (state): string => state.address,
     IS_CONNECT: (state): boolean => state.isConnect,
-    BALANCE: (state) => (currency: string): number => state.balances[currency] || 0
+    BALANCE: (state) => (currency?: string): number => state.balances[currency || ''] || 0
   },
 
   actions: {

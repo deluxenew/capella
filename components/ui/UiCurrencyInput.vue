@@ -19,20 +19,20 @@
 import type { CurrencyInputOptions } from 'vue-currency-input'
 
 interface Props {
-  modelValue?: number | null
-  value?: number | null
+  modelValue?: number | string | undefined
+  value?: number | string | undefined
   currencyOptions?: CurrencyInputOptions
 }
 
 interface Emits {
-  (e: 'update:modelValue', value: number | null): void
-  (e: 'numberInput', value: number | null): void
-  (e: 'blur', value: number | null): void
+  (e: 'update:modelValue', value: number | undefined): void
+  (e: 'numberInput', value: number | undefined): void
+  (e: 'blur', value: number | undefined): void
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  modelValue: null,
-  value: null,
+  modelValue: undefined,
+  value: undefined,
   currencyOptions: undefined
 })
 
@@ -41,7 +41,7 @@ const emit = defineEmits<Emits>()
 // Refs
 const uiInputRef = ref()
 const formattedValue = ref<string>('')
-const internalCurrencyOptions = ref<CurrencyInputOptions | null>(null)
+const internalCurrencyOptions = ref<CurrencyInputOptions | undefined>(undefined)
 
 // Computed
 const inputElement = computed(() => {
@@ -58,10 +58,10 @@ const handleBlur = () => {
   emit('blur', numberValue)
 }
 
-const getNumberValue = (value: string): number | null => {
-  if (!inputElement.value) return null
+const getNumberValue = (value: string): number | undefined => {
+  if (!inputElement.value) return undefined
 
-  let numberValue: number | null = null
+  let numberValue: number | undefined = undefined
 
   try {
     // Пытаемся использовать vue-currency-input
@@ -70,11 +70,11 @@ const getNumberValue = (value: string): number | null => {
     } else {
       // Fallback парсинг
       const cleanValue = value.replace(/[^\d.-]/g, '')
-      numberValue = cleanValue ? parseFloat(cleanValue) : null
+      numberValue = cleanValue ? parseFloat(cleanValue) : undefined
     }
 
     // Применяем ограничения
-    if (numberValue !== null) {
+    if (numberValue !== undefined) {
       const options = props.currencyOptions || internalCurrencyOptions.value
       if (options?.valueRange) {
         const { min, max } = options.valueRange
@@ -84,13 +84,13 @@ const getNumberValue = (value: string): number | null => {
     }
   } catch (error) {
     console.warn('Error parsing currency value:', error)
-    numberValue = null
+    numberValue = undefined
   }
 
   return numberValue
 }
 
-const setFormattedValue = (value: number | null) => {
+const setFormattedValue = (value: number | undefined) => {
   if (!inputElement.value) return
 
   try {
@@ -110,7 +110,7 @@ const handleInput = (value: string) => {
   formattedValue.value = value
 
   if (value === '') {
-    emit('update:modelValue', null)
+    emit('update:modelValue', undefined)
     return
   }
 
