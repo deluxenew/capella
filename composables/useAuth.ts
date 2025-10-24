@@ -1,12 +1,9 @@
-// composables/useAuth.ts
 import type { LoginCredentials } from '~/types/auth'
-
+const { $api, $auth } = useNuxtApp()
 export const useAuth = () => {
-  const { $api, $auth } = useNuxtApp()
-
   const login = async (credentials: LoginCredentials): Promise<any> => {
     try {
-      const response = await $api.auth.login(credentials)
+      const response = await $api.user.login(credentials)
       return response.data
     } catch (error) {
       throw new Error('Login failed')
@@ -16,7 +13,7 @@ export const useAuth = () => {
   const redirectToAppropriatePage = () => {
     if (!$auth.loggedIn) {
       return navigateTo('/sign-in')
-    } else if ($auth.loggedIn && !$auth.$state?.user?.role) {
+    } else if ($auth.loggedIn && !$auth.user?.role) {
       return navigateTo('/registration-confirm')
     }
     return navigateTo('/cabinet/dashboard')

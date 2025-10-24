@@ -2,6 +2,7 @@
 import {defineNuxtConfig} from "nuxt/config";
 
 export default defineNuxtConfig({
+  ssr: false,
   $development: undefined,
   $env: undefined,
   $meta: undefined,
@@ -66,5 +67,8 @@ export default defineNuxtConfig({
   ],
   build: {
     transpile: ['vue-currency-input']
+  },
+  imports: {
+    autoImport: true
   }
 })

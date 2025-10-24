@@ -48,9 +48,10 @@ declare global {
 }
 const { t } = useI18n()
 // Composables
-const { $auth, $device, $store, $notify, $modal, $router, $route } = useNuxtApp()
+const { $auth, $device, $store, $notify, $modal, $router, $route, $api } = useNuxtApp()
 const route = useRoute()
 const router = useRouter()
+const store = useMetamaskStore()
 
 // Refs
 const loadingMetamask = ref(false)
@@ -61,15 +62,15 @@ const invite = ref(route.query.invite?.toString() || '')
 
 // Computed
 const passwordRegExp = computed(() => {
-  return new RegExp($store.state.system.regExp?.user?.password || '')
+  return new RegExp($api.system?.regExp?.user?.password || '')
 })
 
 const address = computed(() => {
-  return $store.getters['metamask/METAMASK_ADDRESS']
+  return store.METAMASK_ADDRESS
 })
 
 const isMetamaskConnected = computed(() => {
-  return $store.getters['metamask/IS_CONNECT']
+  return store.IS_CONNECT
 })
 
 // Methods

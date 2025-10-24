@@ -57,7 +57,7 @@ const { $filters } = useNuxtApp()
 const { t } = useI18n()
 
 // Store (замените на вашу реализацию)
-const store = useMetamaskStore() // Убедитесь что store типизирован
+const store = usePoolsStore() // Убедитесь что store типизирован
 
 // USD config (замените на вашу реализацию)
 const usdConfig = ref({
@@ -91,12 +91,12 @@ const pools = ref<Pool[]>([
 
 // Computed
 const interestsApy = computed((): number => {
-  const poolData = store?.pools?.[selectedPool.value] as PoolData | undefined
+  const poolData = pools.value.find(el => el.pool === selectedPool.value)as PoolData | undefined
   return poolData?.apy || 0
 })
 
 const poolAPY = computed(() => {
-  return store?.pools?.[selectedPool.value] as PoolData | undefined
+  return pools.value.find(el => el.pool === selectedPool.value) as PoolData | undefined
 })
 
 // Methods

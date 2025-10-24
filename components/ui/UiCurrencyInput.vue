@@ -19,8 +19,8 @@
 import type { CurrencyInputOptions } from 'vue-currency-input'
 
 interface Props {
-  modelValue?: number | string | undefined
-  value?: number | string | undefined
+  modelValue?: number | undefined
+  value?: number | undefined
   currencyOptions?: CurrencyInputOptions
 }
 
@@ -40,7 +40,7 @@ const emit = defineEmits<Emits>()
 
 // Refs
 const uiInputRef = ref()
-const formattedValue = ref<string>('')
+const formattedValue = ref<number>(0)
 const internalCurrencyOptions = ref<CurrencyInputOptions | undefined>(undefined)
 
 // Computed
@@ -50,15 +50,15 @@ const inputElement = computed(() => {
 
 // Methods
 const handleBlur = () => {
-  if (formattedValue.value === '') {
-    handleInput('0')
+  if (formattedValue.value === 0) {
+    handleInput(0)
   }
   const numberValue = getNumberValue(formattedValue.value)
   emit('numberInput', numberValue)
   emit('blur', numberValue)
 }
 
-const getNumberValue = (value: string): number | undefined => {
+const getNumberValue = (value: number): number | undefined => {
   if (!inputElement.value) return undefined
 
   let numberValue: number | undefined = undefined
@@ -69,7 +69,7 @@ const getNumberValue = (value: string): number | undefined => {
       numberValue = (window as any).$ci.getValue(inputElement.value)
     } else {
       // Fallback парсинг
-      const cleanValue = value.replace(/[^\d.-]/g, '')
+      const cleanValue = value.toString().replace(/[^\d.-]/g, '')
       numberValue = cleanValue ? parseFloat(cleanValue) : undefined
     }
 
@@ -98,18 +98,18 @@ const setFormattedValue = (value: number | undefined) => {
       (window as any).$ci.setValue(inputElement.value, value)
       formattedValue.value = inputElement.value.value
     } else {
-      formattedValue.value = value?.toString() || ''
+      formattedValue.value = value || 0
     }
   } catch (error) {
     console.warn('Error setting currency value:', error)
-    formattedValue.value = value?.toString() || ''
+    formattedValue.value = value || 0
   }
 }
 
-const handleInput = (value: string) => {
+const handleInput = (value: number) => {
   formattedValue.value = value
 
-  if (value === '') {
+  if (value === 0) {
     emit('update:modelValue', undefined)
     return
   }

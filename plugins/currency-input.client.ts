@@ -1,25 +1,20 @@
 import { defineNuxtPlugin } from '#app'
 import * as VueCurrencyInput from 'vue-currency-input'
-import {useCurrencyInput} from "vue-currency-input";
+import type { CurrencyInputOptions} from "vue-currency-input";
 
 
 // Конфигурация для плагина
-const pluginOptions = {
-  globalOptions: {
+const pluginOptions: CurrencyInputOptions = {
     locale: 'en',
-    currency: null,
-    valueAsInteger: false,
-    distractionFree: false,
-    allowNegative: false,
+    currency: 'USD',
     precision: 2,
-    autoDecimalMode: true,
     valueRange: {
       min: undefined,
       max: undefined
     }
-  }
+
 }
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.use(useCurrencyInput() || VueCurrencyInput, pluginOptions)
+
 })

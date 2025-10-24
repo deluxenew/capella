@@ -1,0 +1,97 @@
+<template>
+  <div class="dao">
+    <div class="page-title text-2xl font-semibold">{{ t('LeftSidebar.dao') }}</div>
+
+    <div class="px-5">
+      <DAOPrices class="mt-5" />
+    </div>
+
+    <div class="flex flex-col lg:flex-row px-5 mt-5 wrapper border-t border-border">
+      <div class="flex flex-col pt-5 left-column lg:border-r lg:border-border lg:pr-2.5 flex-[10_8_500px]">
+        <AppBalance />
+        <DailyRewards />
+        <DAOGovernance class="mt-5" />
+      </div>
+
+      <div class="pt-5 right-column lg:pl-2.5 flex-[8_10_360px]">
+        <!-- <Converter /> -->
+        <DAOPersonalInfo />
+        <DAOLiquidityPools class="mt-5" />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script setup lang="ts">
+// Устанавливаем layout
+definePageMeta({
+  layout: 'inner'
+})
+
+// Composable
+const { t } = useI18n()
+const { $utils } = useNuxtApp()
+
+// Head
+useHead({
+  title: computed(() =>
+    $utils?.hostToTitle?.(process.client ? window.location.host : '') || 'DAO'
+  )
+})
+</script>
+
+<style scoped>
+/* Базовые стили для десктопа */
+.dao .wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Мобильные стили */
+@media screen and (max-width: 1015px) {
+  .dao .wrapper .left-column {
+    padding-right: 0;
+    border-right: 0;
+    flex: 1 1 100%;
+  }
+
+  .dao .wrapper .right-column {
+    padding-left: 0;
+    flex: 1 1 100%;
+  }
+}
+
+/* Стили для expanded sidebar на десктопе */
+@media screen and (max-width: 1395px) {
+  .sidebar_expanded .dao .wrapper .left-column {
+    padding-right: 0;
+    border-right: 0;
+  }
+
+  .sidebar_expanded .dao .wrapper .right-column {
+    padding-left: 0;
+  }
+}
+
+/* Стили для AppBalance на мобильных */
+@media screen and (max-width: 660px) {
+  .dao :deep(.AppBalance) {
+    @apply flex-col;
+  }
+
+  .dao :deep(.AppBalance .right) {
+    @apply p-0 mt-4;
+  }
+}
+
+/* Стили для AppBalance с expanded sidebar */
+@media screen and (max-width: 980px) {
+  .sidebar_expanded .dao :deep(.AppBalance) {
+    @apply flex-col;
+  }
+
+  .sidebar_expanded .dao :deep(.AppBalance .right) {
+    @apply p-0 mt-4;
+  }
+}
+</style>

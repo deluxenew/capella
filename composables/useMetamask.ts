@@ -10,6 +10,7 @@ declare global {
 
 export const useMetamask = () => {
   const { $store } = useNuxtApp()
+  const store = useMetamaskStore()
 
   const connectMetamask = async (): Promise<void> => {
     const ethereum = window.ethereum
@@ -22,19 +23,19 @@ export const useMetamask = () => {
       const accounts = await ethereum.request({ method: 'eth_requestAccounts' })
       const address = accounts[0]
 
-      $store.commit('metamask/SET_ADDRESS', address)
-      $store.commit('metamask/SET_CONNECTED', true)
+      store.setAddress(address)
+      store.setIsConnect( true)
     } catch (error) {
       throw new Error('Metamask connection failed')
     }
   }
 
   const address = computed(() => {
-    return $store.getters['metamask/METAMASK_ADDRESS'] as string
+    return store.METAMASK_ADDRESS as string
   })
 
   const isConnected = computed(() => {
-    return $store.getters['metamask/IS_CONNECT'] as boolean
+    return store.IS_CONNECT as boolean
   })
 
   const hasMetamask = computed(() => {

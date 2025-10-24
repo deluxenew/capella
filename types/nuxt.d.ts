@@ -1,4 +1,5 @@
-import type {PromisifiedModal} from "~/plugins/modal/promisify-modal";
+import type {AuthPlugin} from "~/plugins/auth";
+import type {Api} from "~/types/api";
 interface EthereumProvider {
   request: (args: { method: string }) => Promise<string[]>
   on?: (event: string, callback: (...args: any[]) => void) => void
@@ -23,24 +24,10 @@ declare module '#app' {
         getRegistrationFee: () => Promise<any>
       }
     }
-    $auth: {
-      loggedIn: boolean
-      $state: {
-        user?: {
-          id: string
-          name?: string
-          login?: string
-          role?: string
-          address?: string
-          confirmRegistration?: boolean
-          addresses?: {
-            registrationFee: Record<string, string>
-          }
-        }
-      }
-      logout: () => Promise<void>
+    $utils: {
+      hostToTitle: (host: string) => string
+      replaceHostToTitle: (host: string, text: string) => string
     }
-    $utils: any
     $store: {
       state: {
         metamask: {
@@ -70,7 +57,12 @@ declare module '#app' {
     }
     $t: (key: string) => string
     $notify: (options: { title?: string; type: string; text: string }) => void
-    $modal: PromisifiedModal
+    $modal: {
+      show: (name: string) => void
+      hide: (name: string) => void
+      open: (name: string) => void
+      close: (name: string) => void
+    }
     $router: {
       replace: (path: string) => void
       push: (path: string) => void
@@ -89,10 +81,30 @@ declare module '@vue/runtime-core' {
     $device: NuxtApp['$device']
     $t: NuxtApp['$t']
     $notify: NuxtApp['$notify']
-    $modal:  PromisifiedModal
+    $modal: {  show: (name: string) => void
+      hide: (name: string) => void
+      open: (name: string) => void
+      close: (name: string) => void }
     $router: NuxtApp['$router']
     $utm: NuxtApp['$utm']
     $utils: NuxtApp['$utils']
+  }
+}
+
+declare module '#app' {
+  interface NuxtApp {
+    $api: Api
+  }
+}
+
+declare module '~/node_modules/nuxt/dist/app/nuxt' {
+  interface NuxtApp {
+    $device: {
+      isIos: boolean
+      isAndroid: boolean
+      isEdge: boolean
+      isMobile: boolean
+    }
   }
 }
 

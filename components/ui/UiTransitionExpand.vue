@@ -10,43 +10,44 @@
 </template>
 
 <script setup lang="ts">
-const afterEnter = (element: HTMLElement) => {
-  element.style.height = 'auto'
+const afterEnter = (element: Element) => {
+  const el = element as HTMLElement
+  el.style.height = 'auto'
 }
-
-const enter = (element: HTMLElement) => {
+const enter = (element: Element, done: () => void) => {
   const { width } = getComputedStyle(element)
-
-  element.style.width = width
-  element.style.position = 'absolute'
-  element.style.visibility = 'hidden'
-  element.style.height = 'auto'
+  const el = element as HTMLElement
+  el.style.width = width
+  el.style.position = 'absolute'
+  el.style.visibility = 'hidden'
+  el.style.height = 'auto'
 
   const { height } = getComputedStyle(element)
 
-  element.style.width = ''
-  element.style.position = ''
-  element.style.visibility = ''
-  element.style.height = '0'
+  el.style.width = ''
+  el.style.position = ''
+  el.style.visibility = ''
+  el.style.height = '0'
 
   // Force repaint to make sure the animation is triggered correctly.
   getComputedStyle(element).height
 
   requestAnimationFrame(() => {
-    element.style.height = height
+    el.style.height = height
   })
+  done()
 }
 
-const leave = (element: HTMLElement) => {
+const leave = (element: Element) => {
   const { height } = getComputedStyle(element)
-
-  element.style.height = height
+  const el = element as HTMLElement
+  el.style.height = height
 
   // Force repaint to make sure the animation is triggered correctly.
   getComputedStyle(element).height
 
   requestAnimationFrame(() => {
-    element.style.height = '0'
+    el.style.height = '0'
   })
 }
 </script>

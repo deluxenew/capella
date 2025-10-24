@@ -83,7 +83,7 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'update:modelValue', value: string | number): void
+  (e: 'update:modelValue', value: number): void
   (e: 'input', value: string | number): void
   (e: 'focus', event: Event): void
   (e: 'blur', event: Event): void
@@ -98,9 +98,9 @@ const props = withDefaults(defineProps<Props>(), {
   hint: '',
   disabled: false,
   type: 'text',
-  form: null,
-  min: null,
-  max: null,
+  form: undefined,
+  min: undefined,
+  max: undefined,
   name: '',
   rules: ''
 })
@@ -108,7 +108,7 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<Emits>()
 
 // VeeValidate field
-const { value: fieldValue, errorMessage, meta } = useField(
+const { value: fieldValue, errorMessage, meta , validate } = useField(
   () => props.name,
   props.rules,
   {
@@ -155,7 +155,7 @@ const onFocus = (event: Event) => {
 const onInput = (event: Event) => {
   const target = event.target as HTMLInputElement
   fieldValue.value = target.value
-  emit('update:modelValue', target.value)
+  emit('update:modelValue', parseFloat(target.value))
   emit('input', target.value)
 }
 
@@ -170,7 +170,7 @@ watch(() => props.modelValue, (newValue) => {
 defineExpose({
   focus: focusInput,
   blur: () => input.value?.blur(),
-  validate: () => meta.validate()
+  validate: () => validate()
 })
 </script>
 

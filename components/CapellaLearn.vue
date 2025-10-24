@@ -32,7 +32,7 @@
       <div class="content">
         <div class="header flex items-center">
           {{ modal.title }}
-          <UiButton class="ml-auto" theme="icon" @click="$modal.hide('FAQ')">
+          <UiButton class="ml-auto" theme="icon" @click="$modal.close('FAQ')">
             <UiSvgImage svg="close" />
           </UiButton>
         </div>
@@ -67,7 +67,7 @@ const { $api, $modal, $utils } = useNuxtApp()
 
 // Computed
 const wlTitle = computed(() =>
-  $utils.hostToTitle(process.client ? window.location.host : '')
+  $utils.hostToTitle?.( window?.location?.host)
 )
 
 // Data fetching
@@ -97,7 +97,7 @@ const showDescription = (item: FAQItem) => {
     title: item.title,
     description: item.description
   }
-  $modal.show('FAQ')
+  $modal.open('FAQ')
 }
 </script>
 

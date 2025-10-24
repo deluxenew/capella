@@ -112,7 +112,7 @@ const chartSvg = ref<SVGSVGElement>()
 const pointRefs = ref<SVGCircleElement[]>([])
 const myPoints = ref<ChartPoint[]>([])
 const activeElementKey = ref<number | null>(null)
-const myGradientPoints = ref<string[]>([])
+const myGradientPoints = ref<string>(' ')
 
 // Computed
 const pointStartDay = computed(() => {
@@ -122,7 +122,7 @@ const pointStartDay = computed(() => {
 const pointRadius = computed(() => 4)
 
 const linePoints = computed(() => {
-  return myPoints.value?.map((el) => `${el.cx} ${el.cy}`) || []
+  return (myPoints.value?.map((el) => `${el.cx} ${el.cy}`) || []).join(' ')
 })
 
 const offsetBetweenPoints = computed(() => {
@@ -209,11 +209,11 @@ const updatePoints = () => {
     const width = chartSvg.value.clientWidth
     const height = chartSvg.value.clientHeight
 
-    myGradientPoints.value = [
+    myGradientPoints.value = ([
       ...linePoints.value,
       `${width} ${height}`,
       `0 ${height}`,
-    ]
+    ]).join(' ')
   }
 }
 
@@ -227,11 +227,11 @@ watch(myPoints, () => {
     const width = chartSvg.value.clientWidth
     const height = chartSvg.value.clientHeight
 
-    myGradientPoints.value = [
+    myGradientPoints.value = ([
       ...linePoints.value,
       `${width} ${height}`,
       `0 ${height}`,
-    ]
+    ]).join(' ')
   }
 })
 

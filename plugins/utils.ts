@@ -1,4 +1,3 @@
-// plugins/utils.ts
 import utils from '~/utils/custom'
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -8,3 +7,22 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
   }
 })
+
+
+declare module '#app' {
+  interface NuxtApp {
+    $utils: utils
+  }
+}
+
+declare module '~/node_modules/nuxt/dist/app/nuxt' {
+  interface NuxtApp {
+    $utils: utils
+  }
+}
+
+declare module '@vue/runtime-core' {
+  interface ComponentCustomProperties {
+    $utils: utils
+  }
+}

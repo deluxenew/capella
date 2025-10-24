@@ -1,4 +1,3 @@
-// plugins/api.ts
 import type {
   Api,
   UserApi,

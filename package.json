@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@kyvg/vue3-notification": "^2.9.1",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/device": "3.2.4",
     "@nuxtjs/i18n": "10.1.1",
@@ -17,17 +18,16 @@
     "@sidebase/nuxt-auth": "^1.1.0",
     "@vueuse/core": "^13.9.0",
     "@vueuse/nuxt": "^13.9.0",
-    "izitoast": "^1.4.0",
     "nuxt": "^3.19.3",
-    "nuxt-toast": "^1.1.4",
     "pinia": "^3.0.3",
     "vee-validate": "4.11.8",
     "vue": "^3.5.22",
-    "vue-currency-input": "3.0.0",
+    "vue-currency-input": "^3.2.1",
     "vue-final-modal": "^4.5.5",
     "vue-metamask": "^3.0.6",
     "vue-router": "^4.5.1",
-    "@kyvg/vue3-notification": "^2.9.1"
+    "vue-the-mask": "^0.11.1",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@nuxt/types": "^2.18.1",

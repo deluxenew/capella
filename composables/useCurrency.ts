@@ -59,7 +59,7 @@ export const percentConfig: CurrencyConfig = {
 
 export const numberConfig: CurrencyConfig = {
   precision: 0,
-  currency: null,
+  currency: {  suffix: ' %'},
   valueRange: {
     min: '0',
   },

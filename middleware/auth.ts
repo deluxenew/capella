@@ -1,19 +1,9 @@
-import type { NuxtAppAuth } from '~/types/auth'
-
-declare module '#app' {
-  interface NuxtApp {
-    $auth: NuxtAppAuth
-  }
-}
-
 interface MiddlewareContext {
   to: any
   from: any
 }
-
+const { $auth } = useNuxtApp()
 export default defineNuxtRouteMiddleware((to: any, from: any) => {
-  const { $auth } = useNuxtApp()
-
   // Runtime проверки для TypeScript
   if (!$auth || typeof $auth.loggedIn === 'undefined') {
     console.warn('Auth plugin not properly initialized')
@@ -24,7 +14,7 @@ export default defineNuxtRouteMiddleware((to: any, from: any) => {
     return navigateTo('/sign-in')
   }
 
-  if (!$auth.$state?.user?.role) {
+  if (!$auth.user?.role) {
     return navigateTo('/registration-confirm')
   }
 

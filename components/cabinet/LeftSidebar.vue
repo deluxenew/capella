@@ -250,7 +250,7 @@ const emit = defineEmits<{
 const colorMode = useColorMode()
 const { $utils, $modal } = useNuxtApp()
 const route = useRoute()
-const store = useMetamaskStore()
+const userStore = useUserStore()
 const {t} = useI18n()
 // Reactive data
 const sidebarSocials = ref<SidebarSocial[]>([
@@ -324,7 +324,7 @@ const arrowIcon = computed(() =>
 )
 
 const wlTitle = computed(() =>
-  $utils.hostToTitle(window.location.host)
+  $utils.hostToTitle?.(window.location.host)
 )
 
 
@@ -337,7 +337,7 @@ const isMobile = computed(() => {
 })
 
 const userName = computed(() => {
-  const user = store.auth?.user || {}
+  const user = userStore.user || {}
   return user.name || user.email
 })
 

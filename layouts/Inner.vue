@@ -39,9 +39,9 @@
       </div>
     </div>
     <ClientOnly>
-      <Notivue v-slot="item">
-        <Notification :item="item" />
-      </Notivue>
+
+        <Notification />
+
     </ClientOnly>
     <MetamaskHolder ref="metamask" @onComplete="onComplete" />
     <ModalTermsConditions />
@@ -120,18 +120,7 @@
 <script setup lang="ts">
 // Types
 import LeftSidebar from "~/components/cabinet/LeftSidebar.vue";
-
-interface User {
-  id: string
-  name?: string
-  login?: string
-  address?: string
-  confirmRegistration?: boolean
-  addresses?: {
-    registrationFee: Record<string, string>
-  }
-}
-
+import type {User} from "~/stores/user";
 interface MetamaskData {
   address: string
 }
@@ -151,14 +140,14 @@ const metamask = ref(null)
 
 // Store (замените на вашу реализацию store)
 const store = useMetamaskStore() // Убедитесь что этот store существует
-
+const userStore = useUserStore()
 // Computed properties
 const addresses = computed(() => {
   return store?.address || null
 })
 
 const user = computed((): User | null => {
-  return store?.auth?.user || null
+  return userStore.user || null
 })
 
 const userName = computed(() => {

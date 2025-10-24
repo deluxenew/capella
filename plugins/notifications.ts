@@ -34,9 +34,8 @@ declare module '~/node_modules/nuxt/dist/app/nuxt' {
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
-    // @ts-ignore
     $notify: {
-      (args: NotificationsOptionsExtended | string): void
+      (args: NotificationsOptions | string): void
       close(id: unknown): void
     }
   }

@@ -11,17 +11,6 @@ export interface User {
   }
 }
 
-export interface AuthState {
-  user?: User
-  loggedIn: boolean
-}
-
-export interface NuxtAppAuth {
-  $state: AuthState
-  loggedIn: boolean
-  logout: () => Promise<void>
-}
-
 export interface LoginCredentials {
   login?: string
   password?: string

@@ -38,7 +38,7 @@
       </div>
       <div class="pt-5 right-column">
         <AppYieldCard />
-        <CabinetCapellaLearn class="w-full mt-2.5" />
+        <CapellaLearn class="w-full mt-2.5" />
       </div>
     </div>
   </div>

@@ -99,7 +99,7 @@ interface Web3Contract {
 }
 
 class ContractService {
-  private static readonly HOST_TITLES: Record<HostLocation, string> = {
+  readonly HOST_TITLES: Record<HostLocation, string> = {
     'defibank.online': 'Defibank Online',
     'app.defibank.online': 'Defibank Online',
     'berg.finance': 'Berg Finance',
@@ -108,11 +108,11 @@ class ContractService {
     'app.liquidnow.me': 'Liquid Now'
   };
 
-  static hostToTitle(location: string): string {
+  public hostToTitle(location: string): string {
     return this.HOST_TITLES[location as HostLocation] || 'Liquid Now';
   }
 
-  static replaceHostToTitle(location: string, str: string): string {
+  public replaceHostToTitle(location: string, str: string): string {
     const title = this.hostToTitle(location);
     return str.replace(/[c|C]apella[\.|\s][f|F]inance/gm, title);
   }

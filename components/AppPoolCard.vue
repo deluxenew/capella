@@ -103,7 +103,7 @@
                 <div class="column-wrapper flex flex-col gap-2.5 flex-[10_5_200px] min-w-[40%]">
                   <UiCurrencyInput
                     :config="balanceCurrencyConfig"
-                    :value="max > 0 ? balance.value : 'no balance'"
+                    :value="max > 0 ? balance.value : 0"
                     :label="`${t('balance')}: ${balanceMax}`"
                     :disabled="max <= 0"
                     class="z-10"
@@ -161,7 +161,7 @@
                 <div class="column-wrapper flex flex-col gap-2.5 flex-[10_5_200px] min-w-[40%]">
                   <UiCurrencyInput
                     :config="depositCurrencyConfig"
-                    :value="depositMax > 0 ? deposit.value : 'no balance'"
+                    :value="depositMax > 0 ? deposit.value : 0"
                     :disabled="depositMax <= 0 || !!userWithdrawRequestByPool"
                     :label="`${t('deposited')} : ${userCoinBalanceByPool - userWithdrawRequestByPool}`"
                     @numberInput="depositInput($event)"
@@ -238,6 +238,7 @@
 import { usdConfig } from '~/composables/useCurrency'
 
 import {type PoolName, usePoolsStore, type Coin } from "~/stores/pools";
+import {useUserStore} from "~/stores/user";
 
 interface Props {
   name?: string
@@ -255,21 +256,21 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const emit = defineEmits<{
-  deposit: [data: { pool: string; amount: string; currency: string; address: string }]
+  (e: 'deposit', value:{ pool: string; amount: number; currency: string; address: string }): void
 }>()
 
 // Reactive state
 const showliquidity = ref(props.isExpanded)
 const deposit = ref({ value: 0 })
 const balance = ref({ value: 0 })
-const coin = ref<string | undefined>(undefined)
+const coin = ref<string>('')
 const showInfoPool = ref(false)
 
 // Composable
 const { $api, $auth, $filters, $notify } = useNuxtApp()
 const store = usePoolsStore()
 const metamaskStore = useMetamaskStore()
-const userStore = $auth
+const userStore = useUserStore()
 const route = useRoute()
 
 // Data fetching
@@ -291,16 +292,16 @@ const balanceMax = computed(() =>
   metamaskStore?.BALANCE(coin.value)
 )
 
-const user = computed(() => userStore?.auth?.user)
+const user = computed(() => userStore?.user)
 
 const max = computed(() => balanceMax.value * 0.95)
 
 const userCoinBalanceByPool = computed(() =>
-  (+store?.auth?.user?.coinBalance?.[props.pool]).toFixed(4)
+  parseFloat(userStore.user?.coinBalance?.[props.pool].toFixed(4) || '0')
 )
 
 const userWithdrawRequestByPool = computed(() =>
-  +store?.auth?.user?.withdrawRequest?.[props.pool] || 0
+  parseInt(userStore.user?.withdrawRequest?.[props.pool] || '0')
 )
 
 const depositMax = computed(() => poolData.value?.balance || 0)
@@ -334,11 +335,11 @@ const chart = computed(() =>
 )
 
 const metamaskAddress = computed(() =>
-  store.getters['metamaskAccount']
+  metamaskStore.account
 )
 
 const currentCoin = computed(() =>
-  coins.value?.find((c: Coin) => c.label === coin.value) || {}
+  coins.value?.find((c: Coin) => c.label === coin.value)
 )
 
 const address = computed(() =>
@@ -357,21 +358,21 @@ watch(currentCoin, () => {
 })
 
 // Methods
-const balanceInput = (value?: number = 0) => {
-  value = +value
+const balanceInput = (value?: number) => {
+  value = +(value || 0)
   balance.value.value = value > max.value ? max.value : value
 }
 
-const depositInput = (value?: number = 0) => {
-  value = +value
+const depositInput = (value?: number) => {
+  value = +(value || 0)
   deposit.value.value = value > depositMax.value ? depositMax.value : value
 }
 
 const sendDeposit = () => {
   emit('deposit', {
     pool: props.pool,
-    amount: balance.value.value.toString(),
-    currency: currentCoin.value.label,
+    amount: balance.value.value,
+    currency: currentCoin.value?.label || '',
     address: address.value,
   })
 }
@@ -394,7 +395,7 @@ const withdraw = async () => {
     })
 
     const { data: userData } = await $api.user.getUser()
-    await $auth.setUser(userData)
+    userStore.setUser(userData)
 
     deposit.value.value = 0
 

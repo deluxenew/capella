@@ -99,6 +99,10 @@ export interface CurrenciesApi {
 
 export interface SystemApi {
   getRegExp(): Promise<any>
+  regExp?: { user: {
+      password: string
+      telegram: string
+    } }
 }
 
 export interface PoolApi {
