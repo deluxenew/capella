@@ -12,8 +12,8 @@
         :max="3"
       />
     </ClientOnly>
-    <LazyAuthFooter />
-    <LazyMetamaskBrowserModal />
+    <AuthFooter />
+    <MetamaskBrowserModal />
   </div>
 </template>
 

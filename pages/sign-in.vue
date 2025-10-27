@@ -100,19 +100,19 @@ const login = async (params: LoginParams): Promise<void> => {
 const connect = async (): Promise<void> => {
   loadingMetamask.value = true
 
-  if (!window.ethereum) {
-    if ($device.isIos || $device.isAndroid || $device.isEdge || $device.isMobile) {
-      $modal.open('openMetamaskBrowser')
-    } else {
-      $notify({
-        title: 'Error',
-        type: 'error',
-        text: 'Need install metamask extension or open page in metamask browser',
-      })
-    }
-    loadingMetamask.value = false
-    return
-  }
+  // if (!window.ethereum) {
+  //   if ($device.isIos || $device.isAndroid || $device.isEdge || $device.isMobile) {
+  //     $modal.open('openMetamaskBrowser')
+  //   } else {
+  //     $notify({
+  //       title: 'Error',
+  //       type: 'error',
+  //       text: 'Need install metamask extension or open page in metamask browser',
+  //     })
+  //   }
+  //   loadingMetamask.value = false
+  //   return
+  // }
 
   loadingMetamask.value = false
   await router.replace('/cabinet/dashboard')

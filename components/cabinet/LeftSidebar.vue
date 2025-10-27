@@ -215,6 +215,8 @@
 
 <script setup lang="ts">
 // Types
+import {navigateTo} from "#imports";
+
 interface NavigationItem {
   text: string
   svg: string
@@ -359,7 +361,7 @@ watch(() => route.path, () => {
 const expandSubMenu = (item: NavigationItem, itemInSubPage: boolean) => {
   if (!itemInSubPage && item.submenu) {
     item.expanded = !item.expanded
-  }
+  } else  navigateTo(item.to)
 
   if (!props.expandSidebar) {
     emit('handle-sidebar', !props.expandSidebar)
