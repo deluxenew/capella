@@ -239,6 +239,7 @@ import { usdConfig } from '~/composables/useCurrency'
 
 import {type PoolName, usePoolsStore, type Coin } from "~/stores/pools";
 import {useUserStore} from "~/stores/user";
+import {useMetamaskStore} from "~/stores/metamask";
 
 interface Props {
   name?: string

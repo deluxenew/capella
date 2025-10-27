@@ -3,7 +3,7 @@
     <div class="main-block">
       <div class="content">
         <h2 class="main-title to-auth">
-            {{ t('AuthHeader.sign_in') }}
+          {{ t('AuthHeader.sign_in') }}
         </h2>
         <div class="custom-wrapper wallet-connect">
           <h3 class="title">
@@ -20,14 +20,18 @@
         </div>
       </div>
     </div>
-    <MetamaskHolder ref="metamask" @onError="loadingMetamask = false" />
+    <MetamaskHolder ref="metamask" @onError="loadingMetamask = false"/>
   </div>
 </template>
 
 <script setup lang="ts">
+
+import {useMetamaskStore} from "~/stores/metamask";
+
 definePageMeta({
   layout: 'auth'
 })
+
 // Types
 interface LoginParams {
   login?: string
@@ -41,14 +45,9 @@ interface EthereumProvider {
   request: (args: { method: string }) => Promise<string[]>
 }
 
-declare global {
-  interface Window {
-    ethereum?: EthereumProvider
-  }
-}
-const { t } = useI18n()
+const {t} = useI18n()
 // Composables
-const { $auth, $device, $store, $notify, $modal, $router, $route, $api } = useNuxtApp()
+const {$auth, $device, $store, $notify, $modal, $router, $route, $api} = useNuxtApp()
 const route = useRoute()
 const router = useRouter()
 const store = useMetamaskStore()
@@ -99,7 +98,6 @@ const login = async (params: LoginParams): Promise<void> => {
 
 const connect = async (): Promise<void> => {
   loadingMetamask.value = true
-
   // if (!window.ethereum) {
   //   if ($device.isIos || $device.isAndroid || $device.isEdge || $device.isMobile) {
   //     $modal.open('openMetamaskBrowser')
@@ -116,7 +114,7 @@ const connect = async (): Promise<void> => {
 
   loadingMetamask.value = false
   await router.replace('/cabinet/dashboard')
-  if ( isMetamaskConnected.value) {
+  if (isMetamaskConnected.value) {
 
   } else if (isMetamaskConnected.value) {
     await login({

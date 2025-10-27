@@ -5,7 +5,6 @@
 <script setup lang="ts">
 import { computed, onMounted, onUnmounted } from 'vue'
 import { useNuxtApp } from '#app'
-import { useMetamaskStore } from '@/stores/metamask'
 
 // Store
 const metamaskStore = useMetamaskStore()

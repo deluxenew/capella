@@ -6,12 +6,6 @@ interface EthereumProvider {
   removeListener?: (event: string, callback: (...args: any[]) => void) => void
 }
 
-declare global {
-  interface Window {
-    ethereum?: EthereumProvider
-  }
-}
-
 declare module '#app' {
   interface NuxtApp {
     $api: {
