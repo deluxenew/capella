@@ -244,7 +244,7 @@ watch([() => props.price, () => props.daily], () => {
   }
 
   .table-row > div {
-    @apply py-1.5;
+    @apply py-1;
   }
 }
 
@@ -264,7 +264,7 @@ watch([() => props.price, () => props.daily], () => {
   @apply transition-all duration-200;
 
   &:hover {
-    @apply transform -translate-y-0.5 shadow-sm;
+    @apply transform -translate-y-1 shadow-sm;
   }
 
   &:last-child {

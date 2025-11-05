@@ -48,7 +48,7 @@
       <slot name="append" />
     </div>
 
-    <div v-if="hint" class="hintText mt-0.5 h-4 text-xs text-gray z-1">
+    <div v-if="hint" class="hintText mt-1 h-4 text-xs text-gray z-1">
       <transition name="slide-y">
         <div v-if="isFocus || hasError">{{ hint }}</div>
       </transition>

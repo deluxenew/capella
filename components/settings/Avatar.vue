@@ -105,10 +105,10 @@ const handleDelete = (): void => {
 /* Custom button styles */
 .Avatar {
   :deep(.UiButton) {
-    @apply rounded-xl p-2.5 border-border transition-all duration-300;
+    @apply rounded-xl p-2 border-border transition-all duration-300;
 
     &:hover {
-      @apply transform -translate-y-0.5 shadow-md;
+      @apply transform -translate-y-1 shadow-md;
     }
 
     svg {

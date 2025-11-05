@@ -10,7 +10,7 @@
         class="wallet-button group relative px-5 py-3 border-2 border-border rounded-xl transition-all duration-300 flex justify-between items-center gap-3"
         :class="{
           'success border-green-500 bg-green-50 dark:bg-green-900/20 hover:border-green-600': metaMaskAddress,
-          'hover:border-blue-500 hover:transform hover:-translate-y-0.5 hover:shadow-lg': !metaMaskAddress
+          'hover:border-blue-500 hover:transform hover:-translate-y-1 hover:shadow-lg': !metaMaskAddress
         }"
         theme="outline"
         @click="handleMetaMaskClick"

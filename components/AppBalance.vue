@@ -214,11 +214,11 @@ onUnmounted(() => {
 }
 
 .AppBalance > .left .header-buttons {
-  @apply pt-5 ml-auto relative right-2.5;
+  @apply pt-5 ml-auto relative right-2;
 }
 
 .AppBalance > .left .header-buttons > div {
-  @apply flex gap-2.5 flex-wrap;
+  @apply flex gap-2 flex-wrap;
 }
 
 .AppBalance > .left .header-buttons .second-row_buttons button:first-of-type {
@@ -226,7 +226,7 @@ onUnmounted(() => {
 }
 
 .AppBalance > .left .header-text {
-  @apply py-5 pl-5 mb-2.5;
+  @apply py-5 pl-5 mb-2;
 }
 
 .AppBalance > .left .header-text .name {
@@ -242,7 +242,7 @@ onUnmounted(() => {
 }
 
 .AppBalance .graph-data .graph-percent {
-  @apply bg-red-darken rounded p-1 px-1.5;
+  @apply bg-red-darken rounded p-1 px-1;
 }
 
 .AppBalance .chart-text {
@@ -262,7 +262,7 @@ onUnmounted(() => {
     }
 
     .AppBalance > .left {
-      @apply bg-bg-secondary py-2.5 rounded-lg flex-[5_10_100%];
+      @apply bg-bg-secondary py-2 rounded-lg flex-[5_10_100%];
     }
 
     .AppBalance > .left .header-buttons {
@@ -293,7 +293,7 @@ onUnmounted(() => {
   }
 
   .AppBalance > .left {
-    @apply bg-bg-secondary py-2.5 rounded-lg flex-[5_10_100%];
+    @apply bg-bg-secondary py-2 rounded-lg flex-[5_10_100%];
   }
 
   .AppBalance > .left .header-buttons {

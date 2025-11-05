@@ -2,9 +2,9 @@
   <AppCard :id="`AppPoolCard_${pool}`" class="AppPoolCard overflow-visible">
     <section class="content flex flex-col">
       <!-- Header -->
-      <div class="header flex items-center mb-3.5">
+      <div class="header flex items-center mb-3">
         <div
-          class="marker h-5 w-2.5 rounded mr-2.5"
+          class="marker h-5 w-2 rounded mr-2"
           :style="{ backgroundColor: markerColor }"
         />
         <div class="name text-2xl">{{ name }}</div>
@@ -26,7 +26,7 @@
           class="content-data flex flex-row flex-wrap gap-4.5"
         >
           <!-- Pool Stats -->
-          <div v-if="poolData" class="items w-full flex flex-row justify-between flex-wrap gap-3.5 py-3 border-t border-b border-border">
+          <div v-if="poolData" class="items w-full flex flex-row justify-between flex-wrap gap-3 py-3 border-t border-b border-border">
             <div class="flex flex-row flex-wrap">
               <span class="item-value text-lg leading-5.5 whitespace-nowrap w-full">
                 {{ $filters.toCurrency(poolData.price, { minimumFractionDigits: 4 }) }}
@@ -83,7 +83,7 @@
           <!-- Liquidity Button -->
           <UiButton
             theme="dark"
-            class="button-liquidity flex-[5_0_180px] px-3.5 py-3 flex justify-between text-color"
+            class="button-liquidity flex-[5_0_180px] px-3 py-3 flex justify-between text-color"
             inset
             fill="fill-white"
             @click="showliquidity = !showliquidity"
@@ -100,7 +100,7 @@
             <UiTransitionExpand name="heightLiqudityItems">
               <div v-if="showliquidity" class="liqudity-items row flex flex-wrap gap-4.5">
                 <!-- Balance Column -->
-                <div class="column-wrapper flex flex-col gap-2.5 flex-[10_5_200px] min-w-[40%]">
+                <div class="column-wrapper flex flex-col gap-2 flex-[10_5_200px] min-w-[40%]">
                   <UiCurrencyInput
                     :config="balanceCurrencyConfig"
                     :value="max > 0 ? balance.value : 0"
@@ -117,7 +117,7 @@
                           class="button-crypto"
                         />
                         <UiButton
-                          class="button_max h-7.5 px-2.5 py-1.5 text-xs text-gray mr-2.5"
+                          class="button_max h-7.5 px-2 py-1 text-xs text-gray mr-2"
                           theme="dark"
                           :disabled="balance.value === balanceMax"
                           @click="balanceInput(balanceMax)"
@@ -158,7 +158,7 @@
                 </div>
 
                 <!-- Deposit Column -->
-                <div class="column-wrapper flex flex-col gap-2.5 flex-[10_5_200px] min-w-[40%]">
+                <div class="column-wrapper flex flex-col gap-2 flex-[10_5_200px] min-w-[40%]">
                   <UiCurrencyInput
                     :config="depositCurrencyConfig"
                     :value="depositMax > 0 ? deposit.value : 0"
@@ -168,7 +168,7 @@
                   >
                     <template #append>
                       <UiButton
-                        class="button_max h-7.5 px-2.5 py-1.5 text-xs text-gray"
+                        class="button_max h-7.5 px-2 py-1 text-xs text-gray"
                         theme="dark"
                         :disabled="deposit.value === depositMax || !!userWithdrawRequestByPool"
                         @click="depositInput(depositMax)"
@@ -213,7 +213,7 @@
                       @click="withdraw"
                     >
                       {{ t('withdraw_request') }}
-                      <AppLoader class="loader ml-3.5 w-7.5 gap-1.25" color="gray" size="5px" />
+                      <AppLoader class="loader ml-3 w-7.5 gap-1.25" color="gray" size="5px" />
                     </UiButton>
                     <p class="hint-text text-gray text-xs mt-0.25">
                       {{ t('withdrawal_fee') }}: 0.01%

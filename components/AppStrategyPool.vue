@@ -10,7 +10,7 @@
         v-if="isShowStrategy && partner "
         size="sm"
         theme="outline"
-        class="flex items-center gap-2 transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-lg"
+        class="flex items-center gap-2 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg"
         @click="openLink(partner.url)"
       >
         {{ t('strategy_address') }}
@@ -22,7 +22,7 @@
         :key="vault.url"
         size="sm"
         theme="outline"
-        class="flex items-center gap-2 transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-lg"
+        class="flex items-center gap-2 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg"
         @click="openLink(vault.url)"
       >
         {{ t('vault_address') }} {{ vault.label }}

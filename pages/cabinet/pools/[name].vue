@@ -13,7 +13,7 @@
     </div>
 
     <div class="flex px-5 mt-5 wrapper border-t border-border">
-      <div class="flex flex-col pt-5 left-column flex-1 lg:flex-[10_8_470px] lg:border-r lg:border-border lg:pr-2.5">
+      <div class="flex flex-col pt-5 left-column flex-1 lg:flex-[10_8_470px] lg:border-r lg:border-border lg:pr-2">
         <AppStrategyPool v-bind="strategy" />
         <AssetCard
           v-for="asset in assets"
@@ -24,7 +24,7 @@
         />
       </div>
 
-      <div class="flex flex-col pt-5 right-column flex-1 lg:flex-[8_10_390px] lg:pl-2.5">
+      <div class="flex flex-col pt-5 right-column flex-1 lg:flex-[8_10_390px] lg:pl-2">
         <!-- <DepositCard /> -->
         <AppROICard
           :price="graphData?.price"

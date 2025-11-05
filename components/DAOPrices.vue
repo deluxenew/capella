@@ -1,6 +1,6 @@
 <template>
   <div class="DAOPrices">
-    <div class="flex flex-wrap justify-between gap-2.5">
+    <div class="flex flex-wrap justify-between gap-2">
       <AppCard
         v-for="(item, index) in items"
         :key="index"

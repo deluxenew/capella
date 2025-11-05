@@ -1,5 +1,5 @@
 <template>
-  <div class="AppLoader flex w-full gap-5 justify-center py-2.5">
+  <div class="AppLoader flex w-full gap-5 justify-center py-2">
     <span
       v-for="(item, index) in 4"
       :key="index"

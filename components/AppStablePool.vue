@@ -328,7 +328,7 @@ watch([currentPeriod, currentValue], () => {
 
 /* Hover effects for interactive elements */
 :deep(.UiButton):not(.active):hover {
-  @apply transform -translate-y-0.5 shadow-md;
+  @apply transform -translate-y-1 shadow-md;
 }
 
 /* Print styles */

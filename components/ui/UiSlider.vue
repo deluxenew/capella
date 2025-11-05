@@ -18,12 +18,12 @@
 
       <!-- Custom progress track -->
       <div
-        class="absolute top-1/2 left-0 h-0.5 bg-blue rounded-lg z-1 -translate-y-1/2 pointer-events-none"
+        class="absolute top-1/2 left-0 h-1 bg-blue rounded-lg z-1 -translate-y-1/2 pointer-events-none"
         :style="{ width: `${internalValue}%` }"
       ></div>
     </label>
 
-    <div class="UiSliderLabels relative h-2.5 ml-1 mt-0.5 flex">
+    <div class="UiSliderLabels relative h-2 ml-1 mt-1 flex">
       <button
         v-for="(item, index) in labels"
         :key="index"
@@ -142,7 +142,7 @@ defineExpose({
 <style scoped>
 /* Same slider thumb styles as above */
 .UiSlider_input::-webkit-slider-thumb {
-  @apply appearance-none w-2.5 h-2.5 bg-blue rounded-full border-0 cursor-pointer relative z-10;
+  @apply appearance-none w-2 h-2 bg-blue rounded-full border-0 cursor-pointer relative z-10;
   margin-top: -4px;
 }
 
@@ -151,7 +151,7 @@ defineExpose({
 }
 
 .UiSlider_input::-moz-range-thumb {
-  @apply appearance-none w-2.5 h-2.5 bg-blue rounded-full border-0 cursor-pointer relative z-10;
+  @apply appearance-none w-2 h-2 bg-blue rounded-full border-0 cursor-pointer relative z-10;
 }
 
 .UiSlider_input:disabled::-moz-range-thumb {
@@ -159,7 +159,7 @@ defineExpose({
 }
 
 .UiSlider_input::-ms-thumb {
-  @apply appearance-none w-2.5 h-2.5 bg-blue rounded-full border-0 cursor-pointer relative z-10;
+  @apply appearance-none w-2 h-2 bg-blue rounded-full border-0 cursor-pointer relative z-10;
 }
 
 .UiSlider_input:disabled::-ms-thumb {
@@ -168,16 +168,16 @@ defineExpose({
 
 /* Track styles */
 .UiSlider_input::-webkit-slider-runnable-track {
-  @apply w-full h-0.5 bg-transparent rounded-lg cursor-pointer;
+  @apply w-full h-1 bg-transparent rounded-lg cursor-pointer;
 }
 
 .UiSlider_input::-moz-range-track {
-  @apply w-full h-0.5 bg-transparent rounded-lg cursor-pointer;
+  @apply w-full h-1 bg-transparent rounded-lg cursor-pointer;
   border: none;
 }
 
 .UiSlider_input::-ms-track {
-  @apply w-full h-0.5 bg-transparent border-transparent cursor-pointer;
+  @apply w-full h-1 bg-transparent border-transparent cursor-pointer;
 }
 
 /* Label positioning */

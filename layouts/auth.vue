@@ -82,7 +82,7 @@
 .AuthLayout .sign-in .email-wrap,
 .AuthLayout .sign-up .email-wrap {
   border-color: var(--border-color);
-  @apply w-full border rounded-lg flex px-3 py-0.5 pl-3.5 items-center;
+  @apply w-full border rounded-lg flex px-3 py-1 pl-3 items-center;
 }
 
 .AuthLayout .sign-in input,

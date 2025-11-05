@@ -5,11 +5,11 @@
     </h3>
 
     <div class="content">
-      <div class="list overflow-y-auto overflow-x-hidden max-h-[140px] my-2.5 -mx-1.25 custom-scrollbar">
+      <div class="list overflow-y-auto overflow-x-hidden max-h-[140px] my-2 -mx-1.25 custom-scrollbar">
         <div
           v-for="(item, index) in items"
           :key="item.id || index"
-          class="list-item flex items-center gap-2.5 transition-colors duration-100 rounded-lg rounded-tr-none rounded-br-none p-1.25 cursor-pointer hover:bg-blue/20"
+          class="list-item flex items-center gap-2 transition-colors duration-100 rounded-lg rounded-tr-none rounded-br-none p-1.25 cursor-pointer hover:bg-blue/20"
           @click="showDescription(item)"
         >
           <img
@@ -21,7 +21,7 @@
 
           <div class="text leading-5 min-w-0 flex-1">
             <h4 class="list-item-title text-sm font-medium truncate">{{ item.title }}</h4>
-            <!-- <p v-if="item.timeToRead" class="subtitle text-xs text-gray mt-0.5">
+            <!-- <p v-if="item.timeToRead" class="subtitle text-xs text-gray mt-1">
               {{ t('CapellaLearn.timeToRead', { min: item.timeToRead }) }}
             </p> -->
           </div>

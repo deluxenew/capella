@@ -6,7 +6,7 @@
         <!-- TODO Включить переключатель языков-->
         <!-- <AppSelectLocale /> -->
         <div class="buttons ml-auto">
-          <div class="auth-buttons gap-4">
+          <div class="auth-buttons">
             <UiButton theme="outline" to="/sign-in">
               {{ t('AuthHeader.sign_in') }}
             </UiButton>
@@ -37,11 +37,11 @@ const availableLocales = computed(() => {
 
 <style scoped>
 .auth-header {
-  @apply border-b border-border-color h-20 px-5;
+  @apply border-b border-border-color h-15 px-5;
 }
 
 .auth-header .logo {
-  @apply font-semibold text-lg;
+  @apply font-semibold text-lg whitespace-nowrap;
 }
 
 .auth-header .wrapper {

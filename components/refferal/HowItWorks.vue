@@ -66,7 +66,7 @@
               <p class="node-title text-sm font-semibold text-color mb-1">
                 {{ t('level') }} {{ index + 1 }}
               </p>
-              <div class="level-stats flex flex-col gap-0.5">
+              <div class="level-stats flex flex-col gap-1">
                 <span class="commission-rate text-lg font-bold text-green">
                   {{ (level.percent * 100).toFixed(0) }}%
                 </span>
@@ -216,14 +216,14 @@ const getLevelColor = (level: number): string => {
     }
 
     .flow-item {
-      @apply flex-row items-center min-w-full p-3.5 bg-secondary rounded-lg border border-border;
+      @apply flex-row items-center min-w-full p-3 bg-secondary rounded-lg border border-border;
 
       .flow-connector {
         @apply hidden;
       }
 
       .flow-node {
-        @apply flex-row text-left w-full gap-3.5;
+        @apply flex-row text-left w-full gap-3;
 
         .node-avatar {
           @apply w-11 h-11 mb-0 flex-shrink-0;
@@ -310,7 +310,7 @@ const getLevelColor = (level: number): string => {
             }
 
             .members-badge {
-              @apply px-2.5 py-1.5;
+              @apply px-2 py-1;
 
               .members-count {
                 @apply text-xs;

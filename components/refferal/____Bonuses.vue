@@ -95,7 +95,7 @@
             </p>
             <div class="tier-progress" v-if="progress < tier.threshold">
               <div class="progress-mini flex items-center gap-4">
-                <div class="progress-mini-bar flex-1 h-1.5 bg-border rounded overflow-hidden">
+                <div class="progress-mini-bar flex-1 h-1 bg-border rounded overflow-hidden">
                   <div
                     class="progress-mini-fill h-full bg-blue rounded transition-all duration-300"
                     :style="{ width: Math.min(100, (progress / tier.threshold) * 100) + '%' }"
@@ -122,7 +122,7 @@
     <!-- Bonus Info -->
     <div class="bonus-info">
       <div class="info-card flex gap-4 p-6 bg-secondary rounded-xl border border-border">
-        <UiSvgImage svg="info" class="info-icon w-6 h-6 text-cyan flex-shrink-0 mt-0.5" />
+        <UiSvgImage svg="info" class="info-icon w-6 h-6 text-cyan flex-shrink-0 mt-1" />
         <div class="info-content">
           <h4 class="text-base font-semibold text-color mb-2">
             {{ t('how_bonuses_work') || 'How Bonuses Work' }}
@@ -293,7 +293,7 @@ const progress2 = computed((): string => {
           @apply flex-col gap-2;
 
           .progress-bar {
-            @apply h-1.5;
+            @apply h-1;
           }
 
           .progress-percentage {
@@ -320,7 +320,7 @@ const progress2 = computed((): string => {
             @apply w-9 h-9;
 
             .check-icon {
-              @apply w-3.5 h-3.5;
+              @apply w-3 h-3;
             }
 
             .tier-number {
@@ -378,7 +378,7 @@ const progress2 = computed((): string => {
             @apply text-sm mt-2;
 
             .achieved-icon {
-              @apply w-3.5 h-3.5;
+              @apply w-3 h-3;
             }
           }
         }

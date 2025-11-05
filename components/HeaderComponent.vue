@@ -13,7 +13,7 @@
         />
         <div class="buttons">
           <nuxt-link to="sign-in">
-            <ui-button class="sign-in-btn">Sign In</ui-button>
+            <ui-button class="sign-in-btn bg-transparent text-gray-700 hover:bg-gray-50 border border-gray-300">Sign In</ui-button>
           </nuxt-link>
           <nuxt-link to="sign-up">
             <ui-button @click="$emit('sign-up')" class="sign-up-btn">Sign Up</ui-button>
@@ -39,12 +39,14 @@ const onInput = (event) => {
 
 <style scoped>
 .header {
-  .logo {
-    @apply font-semibold text-lg;
-  }
+
 
   .wrapper {
     @apply flex items-baseline pt-6;
+
+    .logo {
+      @apply font-semibold text-lg whitespace-nowrap;
+    }
   }
 
   .right-block {

@@ -65,7 +65,7 @@
         <UiButton
           v-if="isDataChanged"
           size="sm"
-          class="py-3 px-6 rounded-xl font-semibold ml-auto flex-1 max-w-60 bg-blue-600 text-white border-blue-600 transition-all duration-300 hover:bg-blue-700 hover:border-blue-700 hover:transform hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          class="py-3 px-6 rounded-xl font-semibold ml-auto flex-1 max-w-60 bg-blue-600 text-white border-blue-600 transition-all duration-300 hover:bg-blue-700 hover:border-blue-700 hover:transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           :disabled="!meta.valid || loading"
           :loading="loading"
           type="submit"

@@ -12,7 +12,7 @@
       <div class="top-section">
         <div class="logo-block flex items-center min-h-[38px]">
           <UiButton
-            class="menu-btn min-w-6 min-h-6 ml-3.5"
+            class="menu-btn min-w-6 min-h-6 ml-3"
             theme="transparent"
             @click="handleSidebar"
           >
@@ -32,9 +32,9 @@
         <!-- Navigation -->
         <div class="middle-section mt-20 mb-20">
           <!-- Profile (Mobile only) -->
-          <div class="profile hidden mobile:block pb-2.5 border-b border-border mb-2.5">
+          <div class="profile hidden mobile:block pb-2 border-b border-border mb-2">
             <div class="user flex items-center">
-              <img class="avatar w-9 h-9 min-w-9 mr-2.5" src="~/assets/img/avatar.png" alt="avatar" />
+              <img class="avatar w-9 h-9 min-w-9 mr-2" src="~/assets/img/avatar.png" alt="avatar" />
               <h2 class="user-text whitespace-nowrap text-sm">
                 {{ t('AuthHeader.greeting') }}, {{ userName }}
               </h2>
@@ -59,7 +59,7 @@
               <div>
                 <component
                   :is="item.submenu ? 'div' : 'NuxtLink'"
-                  class="nav-item px-2.5 py-2.5 flex items-center transition-all duration-300 w-full cursor-pointer"
+                  class="nav-item px-2 py-2 flex items-center transition-all duration-300 w-full cursor-pointer"
                   :class="{
                     'nuxt-link-active': itemInSubPage,
                     'bg-secondary rounded-lg': itemInSubPage || item.expanded,
@@ -69,7 +69,7 @@
                   @click="expandSubMenu(item, itemInSubPage)"
                 >
                   <div
-                    class="nav-item-icon rounded-full bg-secondary w-7 h-7 p-1.5 flex justify-center items-center transition-all duration-300"
+                    class="nav-item-icon rounded-full bg-secondary w-7 h-7 p-1 flex justify-center items-center transition-all duration-300"
                     :class="{
                       'bg-[#ffe6b3]': itemInSubPage || item.expanded
                     }"
@@ -82,7 +82,7 @@
                     />
                   </div>
                   <div
-                    class="nav-item-title ml-2.5 font-medium text-base text-gray transition-all duration-300"
+                    class="nav-item-title ml-2 font-medium text-base text-gray transition-all duration-300"
                     :class="{
                       'opacity-100': expandSidebar,
                       'opacity-0': !expandSidebar,
@@ -106,12 +106,12 @@
                 <UiTransitionExpand>
                   <div
                     v-if="item.submenu && (item.expanded || itemInSubPage) && expandSidebar"
-                    class="submenu ml-10 pl-2.5 overflow-hidden transition-all duration-300"
+                    class="submenu ml-10 pl-2 overflow-hidden transition-all duration-300"
                   >
                     <NuxtLink
                       v-for="(menuItem, index) in item.submenu"
                       :key="index"
-                      class="submenu-item block font-medium text-base text-gray py-2.5 cursor-pointer whitespace-nowrap transition-colors duration-300"
+                      class="submenu-item block font-medium text-base text-gray py-2 cursor-pointer whitespace-nowrap transition-colors duration-300"
                       :class="{
                         'border-b border-border': index !== item.submenu.length - 1,
                         'text-color hover:text-color': true
@@ -196,7 +196,7 @@
 
           <!-- Copyright -->
           <div class="copyright border-t border-border pt-4.5 text-xs text-gray font-semibold whitespace-nowrap">
-            <p class="copyright-text mb-3.5">
+            <p class="copyright-text mb-3">
               2022 {{ t('LeftSidebar.all_rights_reserved') }}
             </p>
             <UiButton

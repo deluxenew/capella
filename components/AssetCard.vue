@@ -14,7 +14,7 @@
         v-if="website"
         size="sm"
         theme="outline"
-        class="flex items-center gap-2 transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-lg"
+        class="flex items-center gap-2 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg"
         @click="openLink(website)"
       >
         {{ t('website') }}
@@ -25,7 +25,7 @@
         v-if="contract"
         size="sm"
         theme="outline"
-        class="flex items-center gap-2 transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-lg"
+        class="flex items-center gap-2 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg"
         @click="openLink(contract)"
       >
         {{ t('token_contract') }}

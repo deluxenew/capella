@@ -6,13 +6,13 @@
 
     <div class="flex flex-col lg:flex-row gap-6 wrapper">
       <!-- Left Column -->
-      <div class="flex flex-col left-column flex-1 lg:flex-[10_8_370px] lg:border-r lg:border-border lg:pr-2.5">
+      <div class="flex flex-col left-column flex-1 lg:flex-[10_8_370px] lg:border-r lg:border-border lg:pr-2">
         <Avatar class="mt-5" />
         <PersonalInfo class="mt-5" />
       </div>
 
       <!-- Right Column -->
-      <div class="flex flex-col right-column flex-1 lg:flex-[8_10_290px] lg:pl-2.5">
+      <div class="flex flex-col right-column flex-1 lg:flex-[8_10_290px] lg:pl-2">
         <Wallets class="mt-5" />
       </div>
     </div>

@@ -38,7 +38,7 @@
       </div>
       <div class="pt-5 right-column">
         <AppYieldCard />
-        <CapellaLearn class="w-full mt-2.5" />
+        <CapellaLearn class="w-full mt-2" />
       </div>
     </div>
   </div>
@@ -175,7 +175,7 @@ definePageMeta({
 
 <style scoped>
 .dashboard {
-  @apply py-2.5 pr-2.5;
+  @apply py-2 pr-2;
 }
 
 .dashboard .wrapper {
@@ -183,12 +183,12 @@ definePageMeta({
 }
 
 .dashboard .wrapper .left-column {
-  @apply flex-1 min-w-0 border-r border-border-color pr-2.5;
+  @apply flex-1 min-w-0 border-r border-border-color pr-2;
   flex: 10 8 470px;
 }
 
 .dashboard .wrapper .right-column {
-  @apply flex-1 min-w-0 pl-2.5;
+  @apply flex-1 min-w-0 pl-2;
   flex: 8 10 390px;
 }
 
@@ -234,14 +234,14 @@ definePageMeta({
 :global(.cabinet:not(.cabinet_mobile)) {
   @media screen and (max-width: 600px) {
     :global(.AppBalance .right) {
-      @apply max-w-full mx-0 my-2.5 bg-bg-secondary py-2.5 rounded-lg;
+      @apply max-w-full mx-0 my-2 bg-bg-secondary py-2 rounded-lg;
     }
   }
 }
 
 :global(.cabinet_mobile) {
   :global(.AppBalance .right) {
-    @apply max-w-full mx-0 my-2.5 bg-bg-secondary py-2.5 rounded-lg;
+    @apply max-w-full mx-0 my-2 bg-bg-secondary py-2 rounded-lg;
   }
 }
 </style>

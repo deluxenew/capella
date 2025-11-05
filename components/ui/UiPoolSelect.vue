@@ -45,7 +45,7 @@
         <UiButton
           size="sm"
           theme="transparent"
-          class="custom-select-btn absolute right-2.5 p-1 flex items-center"
+          class="custom-select-btn absolute right-2 p-1 flex items-center"
           inset
           @click="toggleDropdown"
         >

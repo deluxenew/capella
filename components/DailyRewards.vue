@@ -1,6 +1,6 @@
 <template>
   <AppCard class="DailyRewards">
-    <h2 class="title text-lg font-semibold mb-7 pb-3.5 border-b border-border">
+    <h2 class="title text-lg font-semibold mb-7 pb-3 border-b border-border">
       {{ t('daily_rewards') }}
     </h2>
 
@@ -10,7 +10,7 @@
         <div>
           <p class="text-sm mb-4 text-gray">{{ t('stable_pool') }}</p>
           <div class="flex items-center">
-            <div class="marker w-2.5 h-5 rounded mr-2.5" style="background: #aaffcb"></div>
+            <div class="marker w-2 h-5 rounded mr-2" style="background: #aaffcb"></div>
             <span class="text-lg font-semibold text-color">
               {{ formatCurrency(stable.value) }}
             </span>
@@ -26,7 +26,7 @@
         <div>
           <p class="text-sm mb-4 text-gray">{{ t('coin_pool') }}</p>
           <div class="flex items-center">
-            <div class="marker w-2.5 h-5 rounded mr-2.5" style="background: #9fe0ff"></div>
+            <div class="marker w-2 h-5 rounded mr-2" style="background: #9fe0ff"></div>
             <span class="text-lg font-semibold text-color">
               {{ formatCurrency(coin.value) }}
             </span>
@@ -42,7 +42,7 @@
         <div>
           <p class="text-sm mb-4 text-gray">{{ t('dex_pool') }}</p>
           <div class="flex items-center">
-            <div class="marker w-2.5 h-5 rounded mr-2.5" style="background: #dd7c37"></div>
+            <div class="marker w-2 h-5 rounded mr-2" style="background: #dd7c37"></div>
             <span class="text-lg font-semibold text-color">
               {{ formatCurrency(dex.value) }}
             </span>

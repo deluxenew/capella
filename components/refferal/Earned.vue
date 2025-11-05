@@ -87,7 +87,7 @@
                 </div>
 
                 <UiButton
-                  class="withdraw-submit-btn w-full py-4 px-6 rounded-xl text-base font-bold flex items-center justify-center gap-2 border border-blue-600 bg-blue-600 text-white transition-all duration-300 hover:bg-blue-700 hover:border-blue-700 hover:transform hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none disabled:bg-gray-500 disabled:border-gray-500"
+                  class="withdraw-submit-btn w-full py-4 px-6 rounded-xl text-base font-bold flex items-center justify-center gap-2 border border-blue-600 bg-blue-600 text-white transition-all duration-300 hover:bg-blue-700 hover:border-blue-700 hover:transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none disabled:bg-gray-500 disabled:border-gray-500"
                   :disabled="!canAnyWithdraw"
                   :loading="loading"
                   size="lg"
@@ -411,7 +411,7 @@ watch(unifiedAmount, (newAmount) => {
   }
 
   .available-info {
-    @apply self-center px-3 py-1.5;
+    @apply self-center px-3 py-1;
   }
 
   .withdraw-form {

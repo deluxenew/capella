@@ -7,13 +7,13 @@
     </div>
 
     <div class="flex flex-col lg:flex-row px-5 mt-5 wrapper border-t border-border">
-      <div class="flex flex-col pt-5 left-column lg:border-r lg:border-border lg:pr-2.5 flex-[10_8_500px]">
+      <div class="flex flex-col pt-5 left-column lg:border-r lg:border-border lg:pr-2 flex-[10_8_500px]">
         <AppBalance />
         <DailyRewards />
         <DAOGovernance class="mt-5" />
       </div>
 
-      <div class="pt-5 right-column lg:pl-2.5 flex-[8_10_360px]">
+      <div class="pt-5 right-column lg:pl-2 flex-[8_10_360px]">
         <!-- <Converter /> -->
         <DAOPersonalInfo />
         <DAOLiquidityPools class="mt-5" />

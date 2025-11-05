@@ -21,7 +21,7 @@ export default defineNuxtConfig({
       type: 'authjs'
     },
     // originEnvKey: 'AUTH_ORIGIN',
-    // baseURL: 'http://localhost:3000/api/auth',
+    baseURL: 'https://stager.liquidnow.me',
     // sessionRefresh: {
     //   enablePeriodically: true,
     //   enableOnWindowFocus: true,

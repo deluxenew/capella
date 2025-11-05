@@ -134,7 +134,7 @@ onUpdated(() => {
 }
 
 .hint-table .hint_content {
-  @apply whitespace-nowrap bg-white text-lg p-1.5 px-3.5 text-dark rounded flex flex-col;
+  @apply whitespace-nowrap bg-white text-lg p-1 px-3 text-dark rounded flex flex-col;
   transform: translate(-10px, -68px);
   @apply transition-all duration-300 ease-in-out z-10 absolute;
 }

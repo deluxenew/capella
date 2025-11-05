@@ -32,7 +32,7 @@
 
       <!-- Save Button -->
       <UiButton
-        class="save-avatar mt-5 mx-auto w-40 py-3 rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-0.5 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        class="save-avatar mt-5 mx-auto w-40 py-3 rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         :disabled="!canSave"
         @click="handleSave"
       >

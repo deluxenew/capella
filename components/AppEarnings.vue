@@ -12,7 +12,7 @@
         viewBox="0 0 392 85"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        class="pb-2.5 overflow-visible relative z-2"
+        class="pb-2 overflow-visible relative z-2"
       >
         <path
           d="M1 82C88.6087 76.1382 283.018 63.2421 391 1"
