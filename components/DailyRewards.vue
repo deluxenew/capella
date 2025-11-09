@@ -116,7 +116,7 @@ const { data: rewardsData, pending } = await useAsyncData(
   'daily-rewards',
   async () => {
     try {
-      const { data } = await $api.dao.rewards()
+      const data = await $api.dao.rewards()
       return data as { stable: PoolData; coin: PoolData; dex: PoolData }
     } catch (error) {
       console.error('Error fetching daily rewards:', error)

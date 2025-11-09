@@ -15,17 +15,70 @@ export default defineNuxtConfig({
     '~/assets/css/fonts.css'
   ],
   auth: {
-    isEnabled: false,
-    disableServerSideAuth: true,
+    // Базовые настройки
+    enableGlobalAppMiddleware: true,
+    defaultProvider: 'local',
+
+    // Настройки провайдеров
     provider: {
-      type: 'authjs'
+      type: 'local',
+
+      // Настройки токенов
+      token: {
+        signInResponseTokenPointer: '/token',
+        headerName: 'Authorization',
+        type: 'Bearer',
+        maxAgeInSeconds: 1800,
+      },
+
+      // Настройки refresh токена
+      refreshToken: {
+        signInResponseRefreshTokenPointer: '/refreshToken',
+        maxAgeInSeconds: 60 * 60 * 24 * 30,
+      },
+
+      // Настройки пользователя
+      user: {
+        signInResponseUserPointer: false, // или укажите путь, например '/user'
+        // autoFetch: true - включено по умолчанию
+      },
+
+      // Эндпоинты
+      endpoints: {
+        signIn: {
+          path: '/api/v1/login-v2',
+          method: 'post'
+        },
+        signOut: {
+          path: '/api/v1/logout',
+          method: 'post'
+        },
+        refresh: {
+          path: '/api/v1/refresh',
+          method: 'post'
+        },
+        getSession: {
+          path: '/api/v1/profile',
+          method: 'get'
+        },
+      },
+
+      // Дополнительные провайдеры (OAuth)
+      // pages: {
+      //   login: '/auth/login'
+      // }
     },
-    // originEnvKey: 'AUTH_ORIGIN',
-    baseURL: 'https://stager.liquidnow.me',
-    // sessionRefresh: {
-    //   enablePeriodically: true,
-    //   enableOnWindowFocus: true,
-    // }
+
+    // OAuth провайдеры
+    globalAppMiddleware: {
+      // isEnabled: true
+    },
+
+    // Дополнительные настройки сессии
+    session: {
+      enableRefreshPeriodically: false,
+      enableRefreshOnWindowFocus: true,
+    }
   },
   i18n: {
     locales: [
@@ -62,13 +115,22 @@ export default defineNuxtConfig({
     strict: true
   },
   plugins: [
+    '~/plugins/1.api.ts',
+    '~/plugins/init.client.ts',
     '~/plugins/currency-input.client.ts',
-    '~/plugins/currency.global.ts'
+    '~/plugins/currency.global.ts',
+    '~/plugins/system.client.ts',
   ],
   build: {
     transpile: ['vue-currency-input']
   },
   imports: {
-    autoImport: true
-  }
+    autoImport: true,
+    dirs: ['stores', 'types/**/*.ts']
+  },
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.API_BASE_URL || 'http://localhost:3000'
+    }
+  },
 })

@@ -43,7 +43,7 @@
         <Notification />
 
     </ClientOnly>
-    <MetamaskHolder ref="metamask" @onComplete="onComplete" />
+    <MetamaskHolder :initConnect=" true" ref="metamask" @onComplete="onComplete" />
     <ModalTermsConditions />
     <LazyMetamaskBrowserModal />
     <UiModal name="account-activation" height="auto" classes="account-activation-modal" adaptive>
@@ -119,8 +119,8 @@
 
 <script setup lang="ts">
 // Types
+import MetamaskHolder from "~/components/MetamaskHolder.vue";
 import LeftSidebar from "~/components/cabinet/LeftSidebar.vue";
-import type {User} from "~/stores/user";
 interface MetamaskData {
   address: string
 }

@@ -1,15 +1,16 @@
 <template>
-  <div></div>
+  <div>
+
+  </div>
 </template>
 
 <script setup lang="ts">
-definePageMeta({
-  middleware: 'auth'
-})
+// Store автоматически инициализируется через plugin
+// но при необходимости можно вызвать инициализацию здесь
+const systemStore = useSystemStore()
 
-const { redirectToAppropriatePage } = useAuth()
-
-onMounted(() => {
-  redirectToAppropriatePage()
+onMounted(async () => {
+  // Дополнительная инициализация если нужно
+  await systemStore.initialize()
 })
 </script>

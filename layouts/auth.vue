@@ -1,7 +1,7 @@
 <template>
   <div class="AuthLayout">
     <AuthHeader />
-    <div class="container">
+    <div class="content">
       <slot />
     </div>
     <ClientOnly>
@@ -26,15 +26,16 @@
   @apply min-h-screen flex flex-col;
 }
 
-.AuthLayout .container {
-  @apply flex-grow flex flex-col;
+.AuthLayout .content {
+  max-height: calc(100dvh - 60px);
+  @apply flex-grow flex flex-col mx-auto;
 }
 </style>
 
 <style>
 .AuthLayout .sign-in,
 .AuthLayout .sign-up {
-  @apply w-full;
+  @apply w-85;
 }
 
 .AuthLayout .sign-in .main-block,
@@ -45,7 +46,7 @@
 /* Используем стандартные классы вместо w-85 */
 .AuthLayout .sign-in .content,
 .AuthLayout .sign-up .content {
-  @apply mt-14 w-full max-w-sm mx-auto px-4;
+  @apply mt-14 w-full max-w-sm mx-auto;
 }
 
 /* Используем CSS variables напрямую для кастомных цветов */
@@ -53,7 +54,7 @@
 .AuthLayout .sign-up .custom-wrapper {
   background-color: var(--bg-secondary);
   border-color: var(--border-color);
-  @apply rounded-lg p-5 mb-4 mt-4 border;
+  @apply rounded-lg p-5 mb-4 mt-4 border-0;
 }
 
 .AuthLayout .sign-in .custom-wrapper .title,
@@ -123,7 +124,7 @@
     @apply flex flex-col;
   }
 
-  .AuthLayout .container {
+  .AuthLayout .content {
     @apply flex-grow w-full max-w-none px-2;
   }
 

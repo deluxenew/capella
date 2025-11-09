@@ -101,7 +101,7 @@ const { data: poolsData, pending } = await useAsyncData(
   'dao-pools',
   async () => {
     try {
-      const { data } = await $api.dao.pools()
+      const data  = await $api.dao.pools()
       return data as PoolsData
     } catch (error) {
       console.error('Error fetching DAO pools data:', error)

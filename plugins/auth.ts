@@ -29,7 +29,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
   }
 
-  nuxtApp.provide('auth', auth)
+  // nuxtApp.provide('auth', auth)
 })
 
 declare module '#app' {

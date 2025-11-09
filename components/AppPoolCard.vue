@@ -395,8 +395,8 @@ const withdraw = async () => {
       currency: coin.value,
     })
 
-    const { data: userData } = await $api.user.getUser()
-    userStore.setUser(userData)
+    const userData  = await $api.user.getUser()
+    if (userData) userStore.setUser(userData)
 
     deposit.value.value = 0
 

@@ -181,8 +181,7 @@ const { data: harvestData, pending, refresh } = await useAsyncData(
   'user-harvest',
   async (): Promise<HarvestResponse | null> => {
     try {
-      const { data } = await $api.user.harvest() as { data: HarvestResponse }
-      return data
+      return await $api.user.harvest()
     } catch (error) {
       console.error('Error fetching harvest data:', error)
       showNotification({

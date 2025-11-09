@@ -29,6 +29,12 @@ export const useMetamaskStore = defineStore('metamask', {
   },
 
   actions: {
+    setMetaMaskStatus(payload: { metaMaskAddress: string; netID: number }) {
+      this.address = payload.metaMaskAddress
+      this.account = payload.metaMaskAddress
+      this.netId = payload.netID
+      this.isConnect = true
+    },
     setAccount(account: string) {
       this.account = account
     },

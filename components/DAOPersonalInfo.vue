@@ -115,7 +115,7 @@ const { data: personalData, pending } = await useAsyncData(
   'dao-personal',
   async () => {
     try {
-      const { data } = await $api.dao.personal()
+      const  data  = await $api.dao.personal()
       return data as PersonalData
     } catch (error) {
       console.error('Error fetching personal DAO data:', error)

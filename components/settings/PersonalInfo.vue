@@ -182,6 +182,7 @@ const isDataChanged = computed((): boolean => {
 const connectMetamask = (): void => {
   // Use alternative method to emit event
   const event = new CustomEvent('connectMetamask')
+  useNuxtApp().$modal.open('openMetamaskBrowser')
   window.dispatchEvent(event)
 }
 

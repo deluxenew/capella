@@ -183,7 +183,7 @@ const handleMetaMaskClick = (): void => {
     // Copy address to clipboard
     copyToClipboard(
       metaMaskAddress.value,
-      t('metamask_copied') || 'MetaMask address copied to clipboard'
+       'MetaMask address copied to clipboard'
     )
   } else {
     // Connect MetaMask
@@ -191,8 +191,8 @@ const handleMetaMaskClick = (): void => {
 
     // Show connection notification
     $notify({
-      title: t('connecting') || 'Connecting',
-      text: t('connecting_metamask') || 'Connecting to MetaMask...',
+      title: t('connect_wallet') || 'Connecting',
+      text: t('connect_wallet') || 'Connecting to MetaMask...',
       type: 'info',
       data: {
         icon: '🔗',

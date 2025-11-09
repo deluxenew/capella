@@ -25,8 +25,8 @@
 </template>
 
 <script setup>
-import UiButton from "~/components/ui/ui-button.global";
-import UiSelect from "~/components/ui/ui-select.global";
+import UiButton from "~/components/ui/UiButton.vue";
+import UiSelect from "~/components/ui/ui-select.global.vue";
 
 const emit = defineEmits(['sign-up']);
 

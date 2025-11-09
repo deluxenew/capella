@@ -1,37 +1,50 @@
-export interface User {
-  id: string
-  name?: string
-  login?: string
-  email?: string
-  role?: string
-  confirmRegistration?: boolean
-  address?: string
-  addresses?: {
-    registrationFee: Record<string, string>
-  }
-}
-
 export interface LoginCredentials {
   login?: string
   password?: string
-  address?: string
+  metaMaskAddress?: string
   source?: string
   invite?: string
 }
 
-export interface AuthResponse {
-  user: {
-    id: string
-    email: string
-    name: string
-    role?: string
-    address?: string
-  }
-  token: string
+export interface User {
+  name?: string
+  email?: string
+  login?: string
+  id?: string
+  coinBalance?: Record<string, number>
+  withdrawRequest?: Record<string, string>
+  address?: string
+  addresses?: Record<string, Record<string, string>>
+  role?: string
+  confirmRegistration?: boolean
+  referralCode?: boolean
 }
 
-export interface MetamaskState {
-  address: string | null
-  isConnected: boolean
-  balance: Record<string, number>
+export interface RegisterCredentials {
+  login: string
+  password: string
+  metaMaskAddress?: string
+  source?: string
+}
+
+export interface AuthResponse {
+  user: User
+  token: string
+  refreshToken: string
+}
+
+export interface AuthState {
+  user: User | null
+  token: string | null
+  refreshToken: string | null
+  loggedIn: boolean
+}
+
+export interface ApiError {
+  response?: {
+    data?: {
+      message: string
+    }
+  }
+  message: string
 }

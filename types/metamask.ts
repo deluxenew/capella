@@ -22,3 +22,11 @@ export interface ConnectResult {
   chainId?: string
   error?: string
 }
+
+
+// Декларация для глобального компонента, если он используется
+declare module '@vue/runtime-core' {
+  export interface GlobalComponents {
+    'vue-metamask': any
+  }
+}

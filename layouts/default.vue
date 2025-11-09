@@ -4,9 +4,9 @@
 
 <template>
   <div>
-    <div class="container">
-      <header-component />
 
+      <header-component />
+    <div class="container">
       <slot />
     </div>
   </div>

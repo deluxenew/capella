@@ -265,7 +265,7 @@ const shareVia = (platform: string): void => {
 // Fetch referral data
 const fetchReferralData = async (): Promise<void> => {
   try {
-    const { data } = await $api.user.referrals()
+    const data = await $api.user.referrals()
     totalReferrals.value = data?.totalCount || 0
   } catch (error) {
     console.error('Failed to fetch referral data:', error)

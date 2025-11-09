@@ -111,7 +111,7 @@ const { data: assetsData } = await useAsyncData(
   `pool-assets-${poolName.value}`,
   async () => {
     try {
-      const { data } = await $api.pool.assets(poolName.value)
+      const  data  = await $api.pool.assets(poolName.value)
       return data
     } catch (error) {
       console.error('Error fetching pool assets:', error)
@@ -124,7 +124,7 @@ const { data: strategyData } = await useAsyncData(
   `pool-strategy-${poolName.value}`,
   async () => {
     try {
-      const { data } = await $api.pool.strategy(poolName.value)
+      const  data  = await $api.pool.strategy(poolName.value)
       return data
     } catch (error) {
       console.error('Error fetching pool strategy:', error)
@@ -137,7 +137,7 @@ const { data: graphDataResponse } = await useAsyncData(
   `pool-graph-${poolName.value}`,
   async () => {
     try {
-      const { data } = await $api.pool.graph(poolName.value)
+      const  data = await $api.pool.graph(poolName.value)
       return data
     } catch (error) {
       console.error('Error fetching pool graph data:', error)

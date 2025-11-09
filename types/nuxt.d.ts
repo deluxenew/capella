@@ -8,16 +8,8 @@ interface EthereumProvider {
 
 declare module '#app' {
   interface NuxtApp {
-    $api: {
-      auth: {
-        login: (credentials: any) => Promise<any>
-      }
-      user: any
-      dashboard: {
-        deposit: (params: any) => Promise<any>
-        getRegistrationFee: () => Promise<any>
-      }
-    }
+    $auth: AuthPlugin,
+    $api: Api
     $utils: {
       hostToTitle: (host: string) => string
       replaceHostToTitle: (host: string, text: string) => string
@@ -70,7 +62,7 @@ declare module '#app' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     $api: NuxtApp['$api']
-    $auth: NuxtApp['$auth']
+    $auth: AuthPlugin
     $store: NuxtApp['$store']
     $device: NuxtApp['$device']
     $t: NuxtApp['$t']

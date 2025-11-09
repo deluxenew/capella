@@ -91,7 +91,8 @@
 
           <div class="tier-details">
             <p class="tier-requirement text-sm text-gray mb-3">
-              {{ t('requirement') || 'Requirement' }}: ${{ tier.threshold.toLocaleString() }} {{ t('in_referrals') || 'in referrals' }}
+              {{ t('requirement') || 'Requirement' }}: ${{ tier.threshold.toLocaleString() }}
+              {{ t('in_referrals') || 'in referrals' }}
             </p>
             <div class="tier-progress" v-if="progress < tier.threshold">
               <div class="progress-mini flex items-center gap-4">
@@ -102,7 +103,9 @@
                   ></div>
                 </div>
                 <span class="remaining-amount text-xs text-gray whitespace-nowrap">
-                  ${{ Math.max(0, tier.threshold - progress).toLocaleString() }} {{ t('remaining') || 'remaining' }}
+                  ${{
+                    Math.max(0, tier.threshold - progress).toLocaleString()
+                  }} {{ t('remaining') || 'remaining' }}
                 </span>
               </div>
             </div>
@@ -112,7 +115,7 @@
             v-if="progress >= tier.threshold"
             class="tier-achieved flex items-center gap-2 text-green font-semibold mt-3"
           >
-            <UiSvgImage svg="check" class="achieved-icon w-4 h-4" />
+            <UiSvgImage svg="check" class="achieved-icon w-4 h-4"/>
             <span>{{ t('achieved') || 'Achieved!' }}</span>
           </div>
         </div>
@@ -122,13 +125,15 @@
     <!-- Bonus Info -->
     <div class="bonus-info">
       <div class="info-card flex gap-4 p-6 bg-secondary rounded-xl border border-border">
-        <UiSvgImage svg="info" class="info-icon w-6 h-6 text-cyan flex-shrink-0 mt-1" />
+        <UiSvgImage svg="info" class="info-icon w-6 h-6 text-cyan flex-shrink-0 mt-1"/>
         <div class="info-content">
           <h4 class="text-base font-semibold text-color mb-2">
             {{ t('how_bonuses_work') || 'How Bonuses Work' }}
           </h4>
           <p class="text-sm text-gray leading-relaxed">
-            {{ t('bonus_explanation') || 'Bonuses are awarded automatically when you reach each tier threshold. The more people you refer, the higher your bonus rewards!' }}
+            {{
+              t('bonus_explanation') || 'Bonuses are awarded automatically when you reach each tier threshold. The more people you refer, the higher your bonus rewards!'
+            }}
           </p>
         </div>
       </div>
@@ -147,27 +152,25 @@ interface BonusTier {
 }
 
 interface ProgressResponse {
-  data: {
-    progress: number
-  }
+  progress: number
 }
 
 // Composable
-const { $api } = useNuxtApp()
-const { t } = useI18n()
+const {$api} = useNuxtApp()
+const {t} = useI18n()
 // Reactive data
 const progress = ref<number>(0)
 
 // Data fetching
-const { data: progressData, pending } = await useAsyncData(
+const {data: progressData, pending} = await useAsyncData(
   'user-progress',
   async () => {
     try {
-      const { data } = await $api.user.progress() as ProgressResponse
+      const data = await $api.user.progress() as ProgressResponse
       return data
     } catch (error) {
       console.error('Failed to fetch progress data:', error)
-      return { progress: 0 }
+      return {progress: 0}
     }
   }
 )
@@ -177,7 +180,7 @@ watch(progressData, (newData) => {
   if (newData) {
     progress.value = newData.progress || 0
   }
-}, { immediate: true })
+}, {immediate: true})
 
 // Computed
 const bonusTiers = computed((): BonusTier[] => {

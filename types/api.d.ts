@@ -8,7 +8,7 @@ declare module '@/api' {
     dashboard: DashboardAPI
   }
 }
-// types/api.ts
+// types/1.api.ts
 
 // User types
 export interface LoginCredentials {
@@ -67,7 +67,7 @@ export interface ReferralWithdrawParams {
 export interface UserApi {
   register(credentials: RegisterCredentials): Promise<any>
   logout(): Promise<any>
-  getUser(): Promise<{ data: User }>
+  getUser(): Promise< User>
   updateUser(user: Partial<User>): Promise<any>
   login(credentials: LoginCredentials): Promise<any>
   sendPasswordRecovery(params: { login: string }): Promise<any>

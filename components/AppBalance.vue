@@ -175,7 +175,7 @@ const setPools = (value: string): void => {
 const fetchBalance = async (): Promise<void> => {
   try {
     pending.value = true
-    const { data } = await $api.user.getBalance({
+    const data = await $api.user.getBalance({
       from: from.value,
       to: to.value,
       pool: pools.value

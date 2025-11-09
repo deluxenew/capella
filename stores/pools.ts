@@ -72,7 +72,7 @@ export const usePoolsStore = defineStore('pools', () => {
   const getPool = async ({ pool, currency }: { pool: PoolName; currency?: string }) => {
     try {
       const { $api } = useNuxtApp()
-      const { data } = await $api.dashboard.pool({ pool, currency })
+      const data  = await $api.dashboard.pool({ pool, currency })
       setPool({ pool, data })
       return data
     } catch (error) {

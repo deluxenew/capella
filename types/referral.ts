@@ -22,12 +22,3 @@ export interface SharingPlatform {
   };
 }
 
-export interface User {
-  referralCode?: string;
-  // other user properties
-}
-
-export interface AuthState {
-  user: User | null;
-  // other auth properties
-}

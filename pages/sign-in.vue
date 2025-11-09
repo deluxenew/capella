@@ -20,7 +20,7 @@
         </div>
       </div>
     </div>
-    <MetamaskHolder ref="metamask" @onError="loadingMetamask = false"/>
+    <MetamaskHolder :initConnect=" true" ref="metamask" @onError="loadingMetamask = false"/>
   </div>
 </template>
 
@@ -98,19 +98,19 @@ const login = async (params: LoginParams): Promise<void> => {
 
 const connect = async (): Promise<void> => {
   loadingMetamask.value = true
-  // if (!window.ethereum) {
-  //   if ($device.isIos || $device.isAndroid || $device.isEdge || $device.isMobile) {
-  //     $modal.open('openMetamaskBrowser')
-  //   } else {
-  //     $notify({
-  //       title: 'Error',
-  //       type: 'error',
-  //       text: 'Need install metamask extension or open page in metamask browser',
-  //     })
-  //   }
-  //   loadingMetamask.value = false
-  //   return
-  // }
+  if (!window.ethereum) {
+    if ($device.isIos || $device.isAndroid || $device.isEdge || $device.isMobile) {
+      $modal.open('openMetamaskBrowser')
+    } else {
+      $notify({
+        title: 'Error',
+        type: 'error',
+        text: 'Need install metamask extension or open page in metamask browser',
+      })
+    }
+    loadingMetamask.value = false
+    return
+  }
 
   loadingMetamask.value = false
   await router.replace('/cabinet/dashboard')
@@ -180,15 +180,15 @@ useHead({
 }
 
 .main-block {
-  @apply flex justify-center items-center min-h-screen;
+  @apply flex justify-center items-center;
 }
 
 .content {
-  @apply w-full max-w-sm p-6;
+  @apply w-full max-w-sm;
 }
 
 .main-title {
-  @apply text-center mb-8;
+  @apply text-center;
 }
 
 .to-auth {
@@ -196,11 +196,11 @@ useHead({
 }
 
 .custom-wrapper.wallet-connect {
-  @apply mb-6;
+
 }
 
 .title {
-  @apply text-lg font-medium mb-4 text-center;
+  @apply text-lg font-medium mb-4;
 }
 
 .wallet-btn {

@@ -45,7 +45,7 @@ const { data: daoData, pending } = await useAsyncData(
   'dao-values',
   async () => {
     try {
-      const { data } = await $api.dao.values()
+      const data  = await $api.dao.values()
       return data as DAOValues
     } catch (error) {
       console.error('Error fetching DAO values:', error)

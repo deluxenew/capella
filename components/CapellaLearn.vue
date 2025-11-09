@@ -75,7 +75,7 @@ const { data: faqData } = await useAsyncData(
   'faq-items',
   async () => {
     try {
-      const { data } = await $api.dashboard.getFaq()
+      const data  = await $api.dashboard.getFaq()
       return data
     } catch (error) {
       console.error('Error fetching FAQ data:', error)
