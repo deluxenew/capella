@@ -4,6 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* CSS Variables for themes */
 :root {
   --color: #ffffff;
@@ -18,7 +19,7 @@
   --bg-progress-bar: #343841;
 }
 
-.light-mode {
+.light {
   --color: #1c2027;
   --bg: #ffffff;
   --bg-reversed: 34, 37, 47;
@@ -29,7 +30,7 @@
   --bg-progress-bar: #f6f6f6;
 }
 
-.dark-mode {
+.dark {
   --color: #ffffff;
   --bg: #22252f;
   --bg-reversed: 255, 255, 255;

@@ -2003,7 +2003,7 @@
   resolved "https://registry.npmjs.org/@sec-ant/readable-stream/-/readable-stream-0.4.1.tgz"
   integrity sha512-831qok9r2t8AlxLko40y2ebgSDhenenCatLVeW/uBtnHPyhHOvG0C7TvfgecV+wHzIm5KUICgzmVpWS+IMEAeg==
 
-"@sidebase/nuxt-auth@^1.1.0":
+"@sidebase/nuxt-auth@^":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@sidebase/nuxt-auth/-/nuxt-auth-1.1.0.tgz#c5ad29d5703f8a75503761120f9817314eb3d807"
   integrity sha512-2Lj8dmlWE1tIA2CdGlekQsVUpgy2W56jaN9WDukJWxmuSDZRNK+CqxSXReYEHF+gb2tDRLMdhmyk0JUPfnRANg==
@@ -8373,7 +8373,7 @@ typed-array-length@^1.0.7:
 
 typescript@^5.9.2, typescript@^5.9.3:
   version "5.9.3"
-  resolved "https://registry.npmjs.org/typescript/-/typescript-5.9.3.tgz"
+  resolved "https://registry.npmjs.org/typescript/-/typescript-2.9.3.tgz"
   integrity sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==
 
 ufo@1.6.1, ufo@^1.1.2, ufo@^1.5.4, ufo@^1.6.1:

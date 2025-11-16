@@ -1,11 +1,11 @@
 <template>
-  <AppCard class="AppStrategyPool p-6">
+  <AppCard class="AppStrategyPool p-3">
     <h2 class="pool-title text-2xl font-bold text-color mb-2">
       {{ t('strategy') }}
     </h2>
 
     <!-- Strategy and Vault Buttons -->
-    <div class="buttons flex items-center gap-3 mt-7 flex-wrap">
+    <div class="buttons flex items-center gap-3 mt-3 flex-wrap">
       <UiButton
         v-if="isShowStrategy && partner "
         size="sm"
@@ -31,7 +31,7 @@
     </div>
 
     <!-- Strategy Description -->
-    <div class="text text-gray-500 mt-7 pb-8 leading-6">
+    <div class="text text-gray-500 mt-3 pb-8 leading-6">
       {{ strategyText }}
     </div>
 
@@ -51,7 +51,7 @@
     -->
 
     <!-- Audit Information -->
-    <div class="flex items-center gap-8 pt-5 flex-wrap">
+    <div class="flex items-center gap-8 pt-2 flex-wrap">
       <div class="flex items-center text-sm uppercase text-color font-medium">
         <UiSvgImage svg="shield" class="w-5 h-5 mr-3 text-green-500" />
         {{ t('audited') }}
@@ -190,7 +190,7 @@ const openLink = (url: string): void => {
 /* Custom breakpoints for APY section (if uncommented) */
 @media screen and (max-width: 767px) {
   .apy {
-    @apply flex-wrap py-8;
+    @apply flex-wrap py-4;
 
     & > p {
       @apply w-full mb-4 text-base;
@@ -215,7 +215,7 @@ const openLink = (url: string): void => {
   @media screen and (max-width: 767px) {
     .AppStrategyPool {
       .apy {
-        @apply flex-wrap py-8;
+        @apply flex-wrap py-4;
 
         & > p {
           @apply w-full mb-4;
@@ -229,7 +229,7 @@ const openLink = (url: string): void => {
   @media screen and (max-width: 450px) {
     .AppStrategyPool {
       .apy {
-        @apply flex-wrap py-8;
+        @apply flex-wrap py-4;
 
         & > p {
           @apply w-full mb-4;
@@ -242,7 +242,7 @@ const openLink = (url: string): void => {
 :global(.cabinet_mobile) {
   .AppStrategyPool {
     .apy {
-      @apply flex-wrap py-8;
+      @apply flex-wrap py-4;
 
       & > p {
         @apply w-full mb-4;
@@ -274,16 +274,7 @@ const openLink = (url: string): void => {
   @apply outline-none ring-2 ring-blue-500 ring-opacity-50;
 }
 
-/* Print styles */
-@media print {
-  .AppStrategyPool {
-    @apply shadow-none border border-gray-300;
 
-    .buttons {
-      @apply hidden;
-    }
-  }
-}
 
 /* Animation for card entry */
 .AppStrategyPool {

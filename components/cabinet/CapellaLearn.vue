@@ -27,14 +27,14 @@
           </div>
         </div>
 
-        <div v-if="!items?.length && !pending" class="text-center text-gray text-sm py-4">
+        <div v-if="!items?.length && !pending" class="text-center text-gray text-sm py-2">
           {{ t('CapellaLearn.noItems') }}
         </div>
       </div>
     </div>
 
     <UiModal name="FAQ" height="auto" adaptive clossable>
-      <div class="content p-4">
+      <div class="content p-2">
         <div class="header flex items-center mb-4">
           <h2 class="text-lg font-semibold flex-1">{{ modal.title }}</h2>
           <UiButton class="ml-auto" theme="icon" @click="hideModal">
@@ -112,7 +112,7 @@ const hideModal = () => {
 }
 
 const getImageSrc = (imgPath?: string): string => {
-  if (!imgPath) return '/img/file.png'
+  if (!imgPath) return '~/assets/img/file.png'
 
   // Если путь начинается с @/, преобразуем в абсолютный путь
   if (imgPath.startsWith('@/')) {
@@ -130,7 +130,7 @@ const handleImageError = (event: Event) => {
 
 <style scoped>
 .custom-scrollbar {
-  scrollbar-width: thin;
+
   scrollbar-color: theme('colors.gray.50') theme('colors.black');
 }
 
@@ -153,7 +153,7 @@ const handleImageError = (event: Event) => {
 
 /* Custom scrollbar for Firefox */
 .custom-scrollbar {
-  scrollbar-width: thin;
+
   scrollbar-color: theme('colors.gray.50') theme('colors.black');
 }
 </style>

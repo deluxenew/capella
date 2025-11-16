@@ -67,7 +67,7 @@ const loaderSize = computed(() => {
 })
 
 // Classes
-const baseClasses = 'inline-flex justify-center items-center transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2'
+const baseClasses = 'inline-flex justify-center items-center transition-all duration-300 '
 
 const themeClasses = computed(() => {
   const classes = {
@@ -84,11 +84,11 @@ const themeClasses = computed(() => {
 
 const sizeClasses = computed(() => {
   const classes = {
-    xs: 'px-3 py-1 text-xs font-medium rounded',
-    sm: 'px-4 py-2 text-sm font-medium rounded-md',
-    md: 'px-6 py-3 text-base font-medium rounded-lg',
-    lg: 'px-6 py-3 text-base font-medium rounded-lg',
-    xl: 'px-6 py-3 text-base font-medium rounded-lg',
+    xs: 'px-2 py-1 text-xs font-medium rounded',
+    sm: 'px-2 py-1 text-sm font-medium rounded-md',
+    md: 'px-3 py-2 text-base font-medium rounded-lg',
+    lg: 'px-3 py-2 text-base font-medium rounded-lg',
+    xl: 'px-3 py-2 text-base font-medium rounded-lg',
   }
   return classes[props.size] || classes.md
 })

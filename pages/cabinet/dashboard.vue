@@ -8,8 +8,8 @@
         </div> -->
       </AppBalance>
     </div>
-    <div class="flex mt-5 pl-5 wrapper">
-      <div class="flex pt-5 flex-col left-column">
+    <div class="flex mt-2 pl-4 wrapper">
+      <div class="flex pt-2 flex-col left-column">
         <AppPoolCard
           class="w-full mt-0"
           marker-color="#AAFFCB"
@@ -20,7 +20,7 @@
           @deposit="deposit"
         />
         <AppPoolCard
-          class="w-full mt-5"
+          class="w-full mt-2"
           marker-color="#9FE0FF"
           :name="t('coin_pool')"
           pool="coin"
@@ -30,13 +30,13 @@
         <AppPoolCard
           marker-color="#DD7C37"
           :name="t('dex_pool')"
-          class="w-full mt-5"
+          class="w-full mt-2"
           pool="dex"
           :currencies="currencies"
           @deposit="deposit"
         />
       </div>
-      <div class="pt-5 right-column">
+      <div class="pt-2 right-column">
         <AppYieldCard />
         <CapellaLearn class="w-full mt-2" />
       </div>
@@ -175,7 +175,7 @@ definePageMeta({
 
 <style scoped>
 .dashboard {
-  @apply py-2 pr-2;
+  @apply py-1 pr-2;
 }
 
 .dashboard .wrapper {
@@ -234,14 +234,14 @@ definePageMeta({
 :global(.cabinet:not(.cabinet_mobile)) {
   @media screen and (max-width: 600px) {
     :global(.AppBalance .right) {
-      @apply max-w-full mx-0 my-2 bg-bg-secondary py-2 rounded-lg;
+      @apply max-w-full mx-0 my-2 bg-secondary py-1 rounded-lg;
     }
   }
 }
 
 :global(.cabinet_mobile) {
   :global(.AppBalance .right) {
-    @apply max-w-full mx-0 my-2 bg-bg-secondary py-2 rounded-lg;
+    @apply max-w-full mx-0 my-2 bg-secondary py-1 rounded-lg;
   }
 }
 </style>

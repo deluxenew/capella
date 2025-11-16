@@ -58,7 +58,7 @@
           </div>
 
           <!-- File Status -->
-          <div v-if="file.status" class="UiDropzone__status absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+          <div v-if="file.status" class="UiDropzone__status absolute top-2 right-2 bg-black bg-opacity-70 text-white text-xs px-1 py-1 rounded-full flex items-center gap-1">
             {{ file.status }}
             <button
               v-if="file.description_status"
@@ -460,7 +460,7 @@ watch(() => props.modelValue, (newValue) => {
 }
 
 .UiDropzone__addFile {
-  @apply border-2 border-dashed border-gray-300 rounded-lg p-5 transition-colors duration-300 cursor-pointer;
+  @apply border-2 border-dashed border-gray-300 rounded-lg p-2 transition-colors duration-300 cursor-pointer;
 
   &:hover:not(.disabled) {
     @apply border-blue-500;

@@ -5,7 +5,7 @@
       <h2 class="section-title text-2xl font-bold text-color">
         {{ t('how_it_works') }}
       </h2>
-      <div class="total-members-card bg-secondary px-6 py-4 rounded-lg border border-border text-center">
+      <div class="total-members-card bg-secondary px-3 py-2 rounded-lg border border-border text-center">
         <p class="members-label text-sm text-gray uppercase tracking-wider mb-1">
           {{ t('total_members') }}
         </p>
@@ -16,7 +16,7 @@
     </div>
 
     <!-- Referral Flow Visualization -->
-    <div class="referral-flow flex items-start gap-0 mb-8 overflow-x-auto py-4">
+    <div class="referral-flow flex items-start gap-0 mb-8 overflow-x-auto py-2">
       <!-- You (Starting Point) -->
       <div class="flow-item flex flex-col items-center relative flex-1 min-w-[140px]">
         <div class="flow-connector absolute top-7.5 left-1/2 right-[-50%] h-1 z-1">
@@ -76,7 +76,7 @@
               </div>
             </div>
             <div
-              class="members-badge bg-secondary border border-border rounded-full px-3 py-2 transition-all duration-300"
+              class="members-badge bg-secondary border border-border rounded-full px-2 py-1 transition-all duration-300"
               :class="{ 'bg-green border-green': level.count > 0 }"
             >
               <span
@@ -148,6 +148,7 @@ const { data: referralsData, pending } = await useAsyncData(
 
 // Update reactive data when fetch completes
 watch(referralsData, (newData) => {
+  console.log(newData)
   if (newData) {
     user.value = newData.user
     const counts = newData.levels?.counts || []
@@ -200,7 +201,7 @@ const getLevelColor = (level: number): string => {
     }
 
     .total-members-card {
-      @apply px-4 py-3 self-center min-w-[120px];
+      @apply px-2 py-2 self-center min-w-[120px];
     }
 
     .members-label {
@@ -212,11 +213,11 @@ const getLevelColor = (level: number): string => {
     }
 
     .referral-flow {
-      @apply flex-col gap-3 mb-6 py-2;
+      @apply flex-col gap-3 mb-6 py-1;
     }
 
     .flow-item {
-      @apply flex-row items-center min-w-full p-3 bg-secondary rounded-lg border border-border;
+      @apply flex-row items-center min-w-full p-1 bg-secondary rounded-lg border border-border;
 
       .flow-connector {
         @apply hidden;
@@ -253,7 +254,7 @@ const getLevelColor = (level: number): string => {
           }
 
           .members-badge {
-            @apply flex-shrink-0 px-3 py-2 rounded-2xl;
+            @apply flex-shrink-0 px-2 py-1 rounded-2xl;
 
             .members-count {
               @apply text-sm;
@@ -277,7 +278,7 @@ const getLevelColor = (level: number): string => {
       }
 
       .total-members-card {
-        @apply px-3 py-2;
+        @apply px-2 py-1;
 
         .members-count {
           @apply text-lg;
@@ -287,7 +288,7 @@ const getLevelColor = (level: number): string => {
 
     .referral-flow {
       .flow-item {
-        @apply p-3;
+        @apply p-1;
 
         .flow-node {
           @apply gap-3;
@@ -310,7 +311,7 @@ const getLevelColor = (level: number): string => {
             }
 
             .members-badge {
-              @apply px-2 py-1;
+              @apply px-1 py-1;
 
               .members-count {
                 @apply text-xs;

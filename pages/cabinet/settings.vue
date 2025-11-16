@@ -7,18 +7,18 @@
     <div class="flex flex-col lg:flex-row gap-6 wrapper">
       <!-- Left Column -->
       <div class="flex flex-col left-column flex-1 lg:flex-[10_8_370px] lg:border-r lg:border-border lg:pr-2">
-        <Avatar class="mt-5" />
-        <PersonalInfo class="mt-5" />
+        <Avatar class="mt-2" />
+        <PersonalInfo class="mt-2" />
       </div>
 
       <!-- Right Column -->
       <div class="flex flex-col right-column flex-1 lg:flex-[8_10_290px] lg:pl-2">
-        <Wallets class="mt-5" />
+        <Wallets class="mt-2" />
       </div>
     </div>
 
     <UiButton
-      class="connect-link mt-7 ml-5 px-0 text-xs uppercase font-medium transition-all duration-300 hover:opacity-80"
+      class="connect-link mt-3 ml-5 px-0 text-xs uppercase font-medium transition-all duration-300 hover:opacity-80"
       size="sm"
       theme="transparent"
       @click="logout"
@@ -165,7 +165,7 @@ const logout = async (): Promise<void> => {
   }
 
   .connect-link {
-    @apply ml-2 mt-4;
+    @apply ml-2 mt-2;
   }
 }
 

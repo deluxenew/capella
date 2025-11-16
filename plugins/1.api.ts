@@ -14,7 +14,7 @@ import type {
   ReferralWithdrawParams
 } from '~/types/api'
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin(async () => {
   const config = useRuntimeConfig()
 
   // Функция для получения headers с авторизацией
@@ -28,6 +28,8 @@ export default defineNuxtPlugin(() => {
 
     return headers
   }
+
+
 
   const user = (): UserApi => {
     return {
@@ -115,7 +117,7 @@ export default defineNuxtPlugin(() => {
       getBalance({from, to, pool}: BalanceParams) {
         return $fetch('/api/v1/balance', {
           baseURL: config.public.apiBase,
-          params: {from, to, pool: pool?.join(',')},
+          params: {from, to, pool},
           headers: getAuthHeaders()
         })
       },

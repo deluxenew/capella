@@ -1,11 +1,11 @@
 <template>
-  <AppCard class="AppROICard p-6">
+  <AppCard class="AppROICard p-3">
     <h2 class="text-2xl font-bold text-color mb-2">
       {{ t('roi_estimation') }}
     </h2>
 
     <!-- ROI Table -->
-    <div class="table mt-8">
+    <div class="table mt-4">
       <!-- Table Header -->
       <div class="heading">
         <div class="flex w-full pb-3 justify-between">
@@ -28,7 +28,7 @@
         :key="index"
         class="table-row group hover:bg-gray-50 dark:hover:bg-onyx transition-colors duration-200 rounded"
       >
-        <div class="flex w-full py-3 justify-between items-center">
+        <div class="flex w-full py-2 justify-between items-center">
           <span class="item text-color font-medium">
             {{ item.title }}
           </span>
@@ -56,7 +56,7 @@
     </div>
 
     <!-- Description Text -->
-    <div class="text-gray-500 mt-6 text-sm leading-5">
+    <div class="text-gray-500 mt-3 text-sm leading-5">
       {{ t('roi_text') }}
     </div>
   </AppCard>
@@ -235,7 +235,7 @@ watch([() => props.price, () => props.daily], () => {
 /* Small mobile devices */
 @media screen and (max-width: 380px) {
   .AppROICard {
-    @apply p-2;
+    @apply p-1;
   }
 
   .heading .item,
@@ -282,16 +282,7 @@ watch([() => props.price, () => props.daily], () => {
   color: var(--color-error, #dc2626);
 }
 
-/* Print styles */
-@media print {
-  .AppROICard {
-    @apply shadow-none border border-gray-300;
 
-    .table-row:hover {
-      @apply bg-transparent transform-none shadow-none;
-    }
-  }
-}
 
 /* Animation for card entry */
 .AppROICard {

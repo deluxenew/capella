@@ -1,5 +1,5 @@
 <template>
-  <AppCard class="flex flex-col h-full p-6">
+  <AppCard class="flex flex-col h-full p-3">
     <!-- Header Section -->
     <div class="text-center mb-8">
       <h2 class="text-2xl font-bold text-color mb-2">
@@ -18,11 +18,11 @@
           readonly
           disabled
           class="flex-1"
-          input-class="px-4 py-3 text-sm bg-bg-secondary border-border rounded-lg text-color"
+          input-class="px-2 py-2 text-sm bg-secondary border-border rounded-lg text-color"
         />
         <UiButton
           :class="[
-            'flex items-center gap-2 px-4 py-3 rounded-lg transition-all duration-300 text-sm font-medium',
+            'flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-300 text-sm font-medium',
             copySuccess
               ? 'bg-green-600 text-white border-green-600'
               : 'bg-blue-600 text-white border-blue-600 hover:bg-blue-700 hover:border-blue-700'
@@ -73,7 +73,7 @@
       </div>
 
       <!-- Referral Code Display -->
-      <div class="bg-bg-secondary border border-border rounded-lg p-4 text-center">
+      <div class="bg-secondary border border-border rounded-lg p-2 text-center">
         <span class="block text-xl font-bold text-blue-600 mb-1">
           {{ userReferralCode || '---' }}
         </span>
@@ -105,7 +105,7 @@
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
           >
-            <component :is="platform.icon" />
+            <component :is="platform.icon" v-bind="platform.pathProps" />
           </svg>
         </button>
 

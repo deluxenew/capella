@@ -4,11 +4,11 @@
       {{ t('LeftSidebar.refferal') }}
     </div>
 
-    <div class="px-5 mt-5">
+    <div class="px-2 mt-2">
       <Earned />
     </div>
 
-    <div class="flex px-5 mt-5 wrapper">
+    <div class="flex px-2 mt-2 wrapper">
       <div class="flex flex-col pb-5 w-full">
         <how-it-works />
       </div>
@@ -97,7 +97,7 @@ useHead({
 /* Small mobile devices */
 @media screen and (max-width: 480px) {
   .refferal {
-    .px-5 {
+    .px-2 {
       @apply px-1;
     }
 
@@ -137,16 +137,4 @@ useHead({
   }
 }
 
-/* Print styles */
-@media print {
-  .refferal {
-    .px-5 {
-      @apply px-0;
-    }
-
-    .mt-5 {
-      @apply mt-2;
-    }
-  }
-}
 </style>

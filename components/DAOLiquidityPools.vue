@@ -26,7 +26,7 @@
       <hr class="border-border">
 
       <!-- Coin Pool -->
-      <div class="pool pb-10 mt-8">
+      <div class="pool pb-10 mt-4">
         <p class="text-base font-medium mb-4">{{ t('coin_pool') }}</p>
         <div class="wrapper__progress flex gap-2 justify-between">
           <div class="progress-bar flex-2 bg-charade rounded h-7.5 overflow-hidden">
@@ -48,7 +48,7 @@
       <hr class="border-border">
 
       <!-- DEX Pool -->
-      <div class="pool mt-8">
+      <div class="pool mt-4">
         <p class="text-base font-medium mb-4">{{ t('dex_pool') }}</p>
         <div class="wrapper__progress flex gap-2 justify-between">
           <div class="progress-bar flex-2 bg-charade rounded h-7.5 overflow-hidden">

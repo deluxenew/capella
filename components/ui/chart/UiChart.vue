@@ -7,6 +7,23 @@
       @mouseleave="activeElementKey = null"
       @mousemove="setActivePoint($event)"
     >
+      <!-- Добавляем фон для градиента -->
+      <defs>
+        <linearGradient id="chartGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+          <stop offset="0%" :stop-color="color" stop-opacity="0.3" />
+          <stop offset="100%" stop-color="var(--bg-secondary)" stop-opacity="0" />
+        </linearGradient>
+      </defs>
+
+      <!-- Градиентная заливка -->
+      <path
+        v-if="gradient"
+        :d="gradientPath"
+        fill="url(#chartGradient)"
+        class="UiChart__gradient-area"
+      />
+
+      <!-- Линия графика -->
       <polyline
         key="polyline"
         fill="none"
@@ -14,6 +31,7 @@
         stroke-width="2"
         :points="linePoints"
       />
+
       <g class="lineSeparator">
         <line
           v-if="pointStartDay"
@@ -27,6 +45,7 @@
           {{ t('startDay') }}
         </text>
       </g>
+
       <g fill="transparent">
         <circle
           v-for="(item, index) in myPoints"
@@ -45,19 +64,7 @@
         />
       </g>
     </svg>
-    <svg v-if="gradient" class="UiChart__gradient">
-      <polyline
-        :points="myGradientPoints"
-        fill="url(#Gradient2)"
-        fill-opacity="0.3"
-      />
-      <defs>
-        <linearGradient id="Gradient2" x1="10%" y1="40%" x2="30%" y2="100%">
-          <stop offset="10%" :stop-color="color" />
-          <stop offset="80%" class="gradient_stop" />
-        </linearGradient>
-      </defs>
-    </svg>
+
     <slot />
     <UiChartHint
       v-if="activePoint"
@@ -112,7 +119,6 @@ const chartSvg = ref<SVGSVGElement>()
 const pointRefs = ref<SVGCircleElement[]>([])
 const myPoints = ref<ChartPoint[]>([])
 const activeElementKey = ref<number | null>(null)
-const myGradientPoints = ref<string>(' ')
 
 // Computed
 const pointStartDay = computed(() => {
@@ -123,6 +129,30 @@ const pointRadius = computed(() => 4)
 
 const linePoints = computed(() => {
   return (myPoints.value?.map((el) => `${el.cx} ${el.cy}`) || []).join(' ')
+})
+
+const gradientPath = computed(() => {
+  if (!myPoints.value.length || !chartSvg.value) return ''
+
+  const points = myPoints.value
+  const height = chartSvg.value.clientHeight
+  const firstPoint = points[0]
+  const lastPoint = points[points.length - 1]
+
+  if (!firstPoint || !lastPoint) return ''
+
+  // Создаем path для градиентной заливки
+  let path = `M ${firstPoint.cx} ${firstPoint.cy}`
+
+  // Добавляем точки линии
+  for (let i = 1; i < points.length; i++) {
+    path += ` L ${points[i].cx} ${points[i].cy}`
+  }
+
+  // Замыкаем path до нижнего правого угла и нижнего левого угла
+  path += ` L ${lastPoint.cx} ${height} L ${firstPoint.cx} ${height} Z`
+
+  return path
 })
 
 const offsetBetweenPoints = computed(() => {
@@ -168,7 +198,7 @@ const getPoints = (): ChartPoint[] => {
   })
 
   const width = chartSvg.value.clientWidth
-  const height = chartSvg.value.clientHeight - (props.gradient ? 44 : 0)
+  const height = chartSvg.value.clientHeight
   const arrayLength = Math.max(props.items.length - 1, 1)
 
   return props.items.map((element, i) => {
@@ -179,7 +209,11 @@ const getPoints = (): ChartPoint[] => {
       ? (element[props.valueKey] - minPoint) / valueRange
       : 0.5
 
-    let cy = height - (normalizedValue * height) + 2
+    let cy = height - (normalizedValue * height)
+
+    // Добавляем небольшой отступ сверху и снизу для лучшего отображения
+    const padding = 4
+    cy = Math.max(padding, Math.min(cy, height - padding))
 
     cx = Math.floor(cx)
     cy = Math.floor(cy)
@@ -204,36 +238,12 @@ const setActivePoint = (event: MouseEvent) => {
 
 const updatePoints = () => {
   myPoints.value = getPoints()
-
-  if (props.gradient && chartSvg.value) {
-    const width = chartSvg.value.clientWidth
-    const height = chartSvg.value.clientHeight
-
-    myGradientPoints.value = ([
-      ...linePoints.value,
-      `${width} ${height}`,
-      `0 ${height}`,
-    ]).join(' ')
-  }
 }
 
 // Watchers
 watch(() => props.items, () => {
   updatePoints()
 }, { deep: true })
-
-watch(myPoints, () => {
-  if (props.gradient && chartSvg.value) {
-    const width = chartSvg.value.clientWidth
-    const height = chartSvg.value.clientHeight
-
-    myGradientPoints.value = ([
-      ...linePoints.value,
-      `${width} ${height}`,
-      `0 ${height}`,
-    ]).join(' ')
-  }
-})
 
 // Lifecycle
 onMounted(() => {
@@ -263,20 +273,12 @@ onMounted(() => {
   @apply relative max-h-full h-full pointer-events-auto overflow-visible;
 }
 
-.UiChart.UiChart_gradient {
-  @apply -mb-7;
-}
-
-.UiChart__gradient {
-  @apply absolute h-full w-full pointer-events-none overflow-hidden rounded-b-lg;
-}
-
-.UiChart__gradient .gradient_stop {
-  stop-color: var(--bg-secondary);
+.UiChart__gradient-area {
+  @apply pointer-events-none;
 }
 
 .UiChart svg {
-  @apply w-full overflow-visible block float-left;
+  @apply w-full overflow-visible block;
 }
 
 .UiChart svg .lineSeparator {

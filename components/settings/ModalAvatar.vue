@@ -5,7 +5,7 @@
     classes="modal-avatar"
     adaptive
   >
-    <div class="modal-content flex flex-col h-full p-5">
+    <div class="modal-content flex flex-col h-full p-2">
       <!-- Modal Header -->
       <div class="modal-title flex justify-between items-center mb-4">
         <h2 class="text-lg font-semibold text-color">
@@ -13,7 +13,7 @@
         </h2>
         <UiButton
           theme="icon"
-          class="p-2 hover:bg-bg-secondary rounded-lg transition-colors duration-200"
+          class="p-1 hover:bg-secondary rounded-lg transition-colors duration-200"
           @click="$modal.close('avatar')"
         >
           <UiSvgImage
@@ -32,7 +32,7 @@
 
       <!-- Save Button -->
       <UiButton
-        class="save-avatar mt-5 mx-auto w-40 py-3 rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+        class="save-avatar mt-2 mx-auto w-40 py-2 rounded-xl font-semibold transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
         :disabled="!canSave"
         @click="handleSave"
       >

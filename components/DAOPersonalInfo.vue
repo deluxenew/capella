@@ -11,7 +11,7 @@
     </div>
 
     <!-- Content -->
-    <div class="mt-14">
+    <div class="mt-7">
       <!-- Stable Pool -->
       <div class="flex pb-9 justify-between items-center">
         <p class="text-base font-medium">{{ t('stable_pool') }}</p>
@@ -22,7 +22,7 @@
       <hr class="border-border">
 
       <!-- Coin Pool -->
-      <div class="flex pb-9 mt-8 justify-between items-center">
+      <div class="flex pb-9 mt-4 justify-between items-center">
         <p class="text-base font-medium">{{ t('coin_pool') }}</p>
         <p class="text-base font-medium">
           {{ formatCurrency(balance?.coin || 0) }}
@@ -31,7 +31,7 @@
       <hr class="border-border">
 
       <!-- DEX Pool -->
-      <div class="flex pb-9 mt-8 justify-between items-center">
+      <div class="flex pb-9 mt-4 justify-between items-center">
         <p class="text-base font-medium">{{ t('dex_pool') }}</p>
         <p class="text-base font-medium">
           {{ formatCurrency(balance?.dex || 0) }}
@@ -40,7 +40,7 @@
       <hr class="border-border">
 
       <!-- CAPE Rewards -->
-      <div class="mt-8 pb-9">
+      <div class="mt-4 pb-9">
         <div class="flex pb-2 justify-between items-center">
           <p class="text-base font-medium">{{ t('cape_rewards') }}</p>
           <p class="text-base font-medium">
@@ -69,7 +69,7 @@
       <hr class="border-border">
 
       <!-- Bonus Reward -->
-      <div class="flex pb-9 mt-8 justify-between items-center">
+      <div class="flex pb-9 mt-4 justify-between items-center">
         <p class="text-base font-medium">{{ t('bonus_reward') }}</p>
         <p class="text-base font-medium">
           {{ formatCurrency(refBonus) }}
@@ -78,7 +78,7 @@
     </div>
 
     <!-- Total Reward -->
-    <div class="total-reward p-10 bg-charade rounded">
+    <div class="total-reward p-5 bg-charade rounded">
       <div class="flex justify-between items-center">
         <p class="text-base font-medium">{{ t('total_reward') }}</p>
         <p class="text-base font-medium">

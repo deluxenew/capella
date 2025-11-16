@@ -1,5 +1,5 @@
 <template>
-  <AppCard class="Avatar p-6">
+  <AppCard class="Avatar p-3">
     <div class="wrapper flex items-center justify-between gap-5">
       <h2 class="text-lg font-semibold text-color">
         {{ t('avatar') }}
@@ -105,7 +105,7 @@ const handleDelete = (): void => {
 /* Custom button styles */
 .Avatar {
   :deep(.UiButton) {
-    @apply rounded-xl p-2 border-border transition-all duration-300;
+    @apply rounded-xl p-1 border-border transition-all duration-300;
 
     &:hover {
       @apply transform -translate-y-1 shadow-md;

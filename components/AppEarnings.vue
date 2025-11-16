@@ -1,5 +1,5 @@
 <template>
-  <div class="AppEarnings mt-4.5">
+  <div class="AppEarnings mt-2.5">
     <div class="AppEarnings__earn text-gray">
       {{ t('AppYieldCard.will_have', { interval: selectedInterval }) }}
       <div class="AppEarnings__value mt-1 text-lg text-color font-semibold">
@@ -41,7 +41,7 @@
       </transition>
     </div>
 
-    <div class="buttons flex justify-between mt-5">
+    <div class="buttons flex justify-between mt-2">
       <UiButton
         v-for="item in points"
         :key="`button_${item.value}`"

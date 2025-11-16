@@ -9,17 +9,17 @@
         <div
           v-for="(item, index) in items"
           :key="index"
-          class="list-item flex items-center gap-2 transition-colors duration-100 rounded-lg rounded-tr-none rounded-br-none p-1.25 cursor-pointer hover:bg-blue/20"
+          class="p-1 flex items-center gap-2 transition-colors duration-100 rounded-lg rounded-tr-none rounded-br-none p-1.25 cursor-pointer hover:bg-blue/20"
           @click="showDescription(item)"
         >
           <img
-            class="list-item_img w-10 h-10 rounded"
-            :src="item.img || '/assets/img/file.png'"
+            class="w-10 h-10 rounded"
+            src="~/assets/img/file.png"
             :alt="item.title"
           />
 
           <div class="text leading-5">
-            <h4 class="list-item-title text-sm">{{ item.title }}</h4>
+            <h4 class="text-sm">{{ item.title }}</h4>
             <!-- <p class="subtitle text-xs text-gray">
               {{ $t('CapellaLearn.timeToRead', { min: item.timeToRead }) }}
             </p> -->
@@ -28,7 +28,7 @@
       </div>
     </div>
 
-    <UiModal name="FAQ" height="auto" adaptive clossable>
+    <UiModal modal-id="FAQ" height="auto" adaptive clossable>
       <div class="content">
         <div class="header flex items-center">
           {{ modal.title }}
@@ -102,11 +102,6 @@ const showDescription = (item: FAQItem) => {
 </script>
 
 <style scoped>
-.list {
-  scrollbar-width: thin;
-  scrollbar-color: theme('colors.gray.DEFAULT') theme('colors.border-color');
-}
-
 .list::-webkit-scrollbar {
   width: 12px;
   background-color: theme('colors.border-color');
@@ -122,11 +117,5 @@ const showDescription = (item: FAQItem) => {
 .list::-webkit-scrollbar-track {
   background-color: theme('colors.border-color');
   border-radius: 10px;
-}
-
-/* Custom scrollbar for Firefox */
-.list {
-  scrollbar-width: thin;
-  scrollbar-color: theme('colors.gray.DEFAULT') theme('colors.border-color');
 }
 </style>

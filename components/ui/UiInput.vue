@@ -37,7 +37,7 @@
           :type="type"
           :min="min"
           :max="max"
-          class="h-full w-full text-inherit bg-transparent px-5 py-0.75 outline-none"
+          class="h-full w-full text-inherit bg-transparent px-2 py-0.75 outline-none"
           v-bind="filteredAttrs"
           @input="onInput"
           @focus="onFocus"

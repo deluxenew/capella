@@ -1,7 +1,7 @@
 <template>
   <div class="referral">
     <!-- Header Section -->
-    <div class="referral-header text-center mb-8 py-8">
+    <div class="referral-header text-center mb-8 py-4">
       <h1 class="page-title text-4xl font-bold mb-2 text-color">
         {{ t('LeftSidebar.refferal') }}
       </h1>
@@ -49,17 +49,17 @@ useHead({
 
 <style scoped>
 .referral {
-  @apply px-5 max-w-7xl mx-auto;
+  @apply px-2 max-w-7xl mx-auto;
 }
 
 /* Tablet responsive design */
 @media screen and (max-width: 1024px) {
   .referral {
-    @apply px-4;
+    @apply px-2;
   }
 
   .referral-header {
-    @apply py-6;
+    @apply py-3;
   }
 
   .referral-header .page-title {
@@ -74,11 +74,11 @@ useHead({
 /* Mobile responsive design */
 @media screen and (max-width: 768px) {
   .referral {
-    @apply px-2;
+    @apply px-1;
   }
 
   .referral-header {
-    @apply py-3 mb-4;
+    @apply py-2 mb-4;
   }
 
   .referral-header .page-title {
@@ -105,7 +105,7 @@ useHead({
   }
 
   .referral-header {
-    @apply py-2;
+    @apply py-1;
   }
 
   .referral-header .page-title {

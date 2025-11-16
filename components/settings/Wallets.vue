@@ -1,5 +1,5 @@
 <template>
-  <AppCard class="settingsWallets p-6 pb-15">
+  <AppCard class="settingsWallets p-3 pb-15">
     <h2 class="text-lg font-semibold text-color mb-8">
       {{ t('connect_wallet') }}
     </h2>
@@ -7,7 +7,7 @@
     <div class="wallets flex flex-col gap-3">
       <!-- MetaMask Wallet -->
       <UiButton
-        class="wallet-button group relative px-5 py-3 border-2 border-border rounded-xl transition-all duration-300 flex justify-between items-center gap-3"
+        class="wallet-button group relative px-2 py-2 border-2 border-border rounded-xl transition-all duration-300 flex justify-between items-center gap-3"
         :class="{
           'success border-green-500 bg-green-50 dark:bg-green-900/20 hover:border-green-600': metaMaskAddress,
           'hover:border-blue-500 hover:transform hover:-translate-y-1 hover:shadow-lg': !metaMaskAddress
@@ -51,7 +51,7 @@
         class="WIP"
       >
         <UiButton
-          class="wallet-button group relative px-5 py-3 border-2 border-border rounded-xl transition-all duration-300 flex justify-between items-center gap-3 opacity-60 cursor-not-allowed"
+          class="wallet-button group relative px-2 py-2 border-2 border-border rounded-xl transition-all duration-300 flex justify-between items-center gap-3 opacity-60 cursor-not-allowed"
           theme="outline"
           disabled
         >
@@ -71,7 +71,7 @@
           />
 
           <!-- Coming Soon Badge -->
-          <div class="coming-soon-badge absolute -top-2 -right-2 px-2 py-1 bg-gray-500 rounded-full">
+          <div class="coming-soon-badge absolute -top-2 -right-2 px-1 py-1 bg-gray-500 rounded-full">
             <span class="text-xs text-white font-medium">
               Soon
             </span>

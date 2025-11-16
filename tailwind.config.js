@@ -85,7 +85,7 @@ module.exports = {
         purple: '#6f6ffb',
 
         // Добавляем кастомные цвета для CSS variables
-        'bg-secondary': 'var(--bg-secondary)',
+        secondary: 'var(--bg-secondary)',
         'border-color': 'var(--border-color)',
         'color': 'var(--color)',
         'color-svg': 'var(--color_svg)',
@@ -131,4 +131,5 @@ module.exports = {
     },
   },
   plugins: [],
+
 }

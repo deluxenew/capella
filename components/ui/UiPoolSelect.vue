@@ -12,7 +12,7 @@
           :title="selectedPool.title"
           :color="selectedPool.color"
           :pool="selectedPool.pool"
-          class="flex-1 px-3"
+          class="flex-1 px-2"
           @click="isOpen = true"
         />
 

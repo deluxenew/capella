@@ -1,5 +1,5 @@
 <template>
-  <AppCard class="SettingsPersonalInfo p-6">
+  <AppCard class="SettingsPersonalInfo p-3">
     <h2 class="text-lg font-semibold text-color mb-4">
       {{ t('personal_info') }}
     </h2>
@@ -50,7 +50,7 @@
       </Field>
 
       <!-- Buttons -->
-      <div class="buttons flex justify-between items-center flex-wrap gap-5 mt-5 min-h-10">
+      <div class="buttons flex justify-between items-center flex-wrap gap-5 mt-2 min-h-10">
         <UiButton
           v-if="!isMetamaskConnected"
           class="connect-link px-0 text-sm font-medium transition-all duration-300 hover:opacity-80"
@@ -65,7 +65,7 @@
         <UiButton
           v-if="isDataChanged"
           size="sm"
-          class="py-3 px-6 rounded-xl font-semibold ml-auto flex-1 max-w-60 bg-blue-600 text-white border-blue-600 transition-all duration-300 hover:bg-blue-700 hover:border-blue-700 hover:transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
+          class="py-2 px-3 rounded-xl font-semibold ml-auto flex-1 max-w-60 bg-blue-600 text-white border-blue-600 transition-all duration-300 hover:bg-blue-700 hover:border-blue-700 hover:transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           :disabled="!meta.valid || loading"
           :loading="loading"
           type="submit"

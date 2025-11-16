@@ -4,27 +4,27 @@
       {{ t(`${poolName}_pool`) }}
     </div>
 
-    <div class="px-5">
+    <div class="px-2">
       <AppStablePool
-        class="mt-5"
+        class="mt-2"
         :graph-data="graphData"
         :pool="poolName"
       />
     </div>
 
-    <div class="flex px-5 mt-5 wrapper border-t border-border">
-      <div class="flex flex-col pt-5 left-column flex-1 lg:flex-[10_8_470px] lg:border-r lg:border-border lg:pr-2">
+    <div class="flex px-2 mt-2 wrapper border-t border-border">
+      <div class="flex flex-col pt-2 left-column flex-1 lg:flex-[10_8_470px] lg:border-r lg:border-border lg:pr-2">
         <AppStrategyPool v-bind="strategy" />
         <AssetCard
           v-for="asset in assets"
           :key="asset.id"
           v-bind="asset"
           :description="asset.description"
-          class="w-full mt-5"
+          class="w-full mt-2"
         />
       </div>
 
-      <div class="flex flex-col pt-5 right-column flex-1 lg:flex-[8_10_390px] lg:pl-2">
+      <div class="flex flex-col pt-2 right-column flex-1 lg:flex-[8_10_390px] lg:pl-2">
         <!-- <DepositCard /> -->
         <AppROICard
           :price="graphData?.price"
@@ -255,7 +255,7 @@ onErrorCaptured((error) => {
 /* Small mobile devices */
 @media screen and (max-width: 480px) {
   .pools {
-    .px-5 {
+    .px-2 {
       @apply px-1;
     }
 
@@ -291,23 +291,6 @@ onErrorCaptured((error) => {
 
     .wrapper {
       @apply border-charade;
-    }
-  }
-}
-
-/* Print styles */
-@media print {
-  .pools {
-    .px-5 {
-      @apply px-0;
-    }
-
-    .mt-5 {
-      @apply mt-2;
-    }
-
-    .pt-5 {
-      @apply pt-2;
     }
   }
 }

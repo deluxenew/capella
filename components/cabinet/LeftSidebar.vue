@@ -30,7 +30,7 @@
         </div>
 
         <!-- Navigation -->
-        <div class="middle-section mt-20 mb-20">
+        <div class="middle-section mt-10 mb-10">
           <!-- Profile (Mobile only) -->
           <div class="profile hidden mobile:block pb-2 border-b border-border mb-2">
             <div class="user flex items-center">
@@ -59,7 +59,7 @@
               <div>
                 <component
                   :is="item.submenu ? 'div' : 'NuxtLink'"
-                  class="nav-item px-2 py-2 flex items-center transition-all duration-300 w-full cursor-pointer"
+                  class="nav-item px-1 py-1 flex items-center transition-all duration-300 w-full cursor-pointer"
                   :class="{
                     'nuxt-link-active': itemInSubPage,
                     'bg-secondary rounded-lg': itemInSubPage || item.expanded,
@@ -69,9 +69,10 @@
                   @click="expandSubMenu(item, itemInSubPage)"
                 >
                   <div
-                    class="nav-item-icon rounded-full bg-secondary w-7 h-7 p-1 flex justify-center items-center transition-all duration-300"
+                    class="nav-item-icon rounded-full w-7 h-7 p-1 flex justify-center items-center transition-all duration-300"
                     :class="{
-                      'bg-[#ffe6b3]': itemInSubPage || item.expanded
+                      'bg-[#ffe6b3]': itemInSubPage || item.expanded,
+                      'bg-secondary': !item.expanded
                     }"
                   >
                     <UiSvgImage
@@ -93,7 +94,7 @@
                   </div>
                   <div
                     v-if="item.submenu"
-                    class="text-gray text-xs transition-transform duration-300"
+                    class="text-gray text-xs transition-transform duration-300 ml-auto"
                     :class="{
                       'rotate-90': item.expanded,
                       '-rotate-90': !item.expanded
@@ -111,7 +112,7 @@
                     <NuxtLink
                       v-for="(menuItem, index) in item.submenu"
                       :key="index"
-                      class="submenu-item block font-medium text-base text-gray py-2 cursor-pointer whitespace-nowrap transition-colors duration-300"
+                      class="submenu-item block font-medium text-base text-gray py-1 cursor-pointer whitespace-nowrap transition-colors duration-300"
                       :class="{
                         'border-b border-border': index !== item.submenu.length - 1,
                         'text-color hover:text-color': true
@@ -162,7 +163,7 @@
             />
 
             <UiButton
-              class="light flex items-center py-3 px-6 z-10 capitalize transition-colors duration-300"
+              class="light flex items-center py-2 px-3 z-10 capitalize transition-colors duration-300"
               :class="[
                 colorMode === 'light' ? 'text-color' : 'text-gray',
                 isMobile ? 'w-1/2' : 'w-[calc(50%-8px)]'
@@ -178,7 +179,7 @@
             </UiButton>
 
             <UiButton
-              class="dark flex items-center py-3 px-6 z-10 capitalize transition-colors duration-300"
+              class="dark flex items-center py-2 px-3 z-10 capitalize transition-colors duration-300"
               :class="[
                 colorMode === 'dark' ? 'text-color' : 'text-gray',
                 isMobile ? 'w-1/2' : 'w-[calc(50%-8px)]'
@@ -383,6 +384,15 @@ const setColorMode = (mode: 'light' | 'dark') => {
 </script>
 
 <style scoped>
+.nav-item {
+  position: relative;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+  width: 100%;
+  cursor: pointer;
+}
 .LeftSidebar {
   height: 100vh;
   z-index: 100;
@@ -457,12 +467,19 @@ const setColorMode = (mode: 'light' | 'dark') => {
   opacity: 0;
 }
 
-/* Custom CSS variables for compatibility */
-.LeftSidebar {
-  --bg-secondary: theme('colors.bg-secondary');
-  --border-color: theme('colors.border-color');
-  --color: theme('colors.color');
-  --color_svg: theme('colors.color-svg');
-  --bg: theme('colors.dark');
+.switch-toggle {
+  position: relative;
+  background: var(--bg-secondary);
+  border-radius: 25px;
+  display: flex;
+  position: relative;
+  width: 250px;
+  margin: 30px auto 19px auto;
+  font-size: $size_font_md;
+  min-height: 50px;
+}
+
+.nav-item-icon {
+  @apply shrink-0
 }
 </style>

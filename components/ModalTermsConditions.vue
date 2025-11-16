@@ -1,28 +1,35 @@
 <template>
-  <UiModal modal-id="terms" classes="modal-terms" height="80%" width="80%">
+  <UiModal modal-id="terms" classes="modal-terms" height="80%" width="80%" clossable>
+
+
     <div class="modal-content" v-html="terms" />
   </UiModal>
 </template>
 
 <script setup lang="ts">
-import { VueFinalModal } from 'vue-final-modal'
 // Composables
 const { $utils } = useNuxtApp()
 const { t } = useI18n()
 
 // Computed
 const terms = computed(() => {
-  return $utils.replaceHostToTitle?.(window?.location?.host, t('ModalTermsConditions'))
+
+  return t('ModalTermsConditions')
 })
 </script>
 
 <style scoped>
+.modal-content {
+  padding: 20px;
+  height: 100%;
+  overflow: auto;
+}
 .modal-terms.vm--modal {
   @apply text-black;
 }
 
 .modal-terms.vm--modal .modal-content {
-  @apply p-5 h-full overflow-auto;
+  @apply p-2 h-full overflow-auto;
 }
 </style>
 

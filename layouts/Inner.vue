@@ -10,7 +10,7 @@
         <div class="right-wrapper" :class="{ 'sidebar-expanded': expandSidebar }">
           <header class="header">
             <div class="user flex items-center">
-              <UiButton class="menu-btn px-5" theme="transparent" fill="fill-white"
+              <UiButton class="menu-btn px-2" theme="transparent" fill="fill-white"
                         @click="expandSidebar = !expandSidebar">
                 <UiSvgImage :svg="expandSidebar ? 'arrow-left' : 'menu'" />
               </UiButton>
@@ -310,12 +310,12 @@ const useToast = () => {
 }
 
 .required-registration .container {
-  @apply py-8 flex justify-between items-center px-4;
+  @apply py-4 flex justify-between items-center px-2;
 }
 
 @media (max-width: 768px) {
   .required-registration .container {
-    @apply flex-col text-center gap-3 py-4;
+    @apply flex-col text-center gap-3 py-2;
   }
 
   .required-registration {
@@ -341,7 +341,7 @@ const useToast = () => {
 }
 
 .cabinet .right .header {
-  @apply p-2 border-b border-border-color flex items-center justify-between;
+  @apply p-1 border-b border-border-color flex items-center justify-between;
 }
 
 .cabinet .right .user {
@@ -373,12 +373,12 @@ const useToast = () => {
 
 /* Activation modal styles */
 .activation-modal {
-  @apply p-6;
+  @apply p-3;
 }
 
 @media (max-width: 768px) {
   .activation-modal {
-    @apply p-4;
+    @apply p-2;
   }
 }
 
@@ -415,11 +415,11 @@ const useToast = () => {
 }
 
 .activation-modal .modal-body .error-message {
-  @apply bg-red-50 border border-red-200 rounded p-3 text-red-600 text-sm;
+  @apply bg-red-50 border border-red-200 rounded p-1 text-red-600 text-sm;
 }
 
 .activation-modal .modal-body .payment-info {
-  @apply bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4;
+  @apply bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-2;
 }
 
 .activation-modal .modal-body .payment-info p {

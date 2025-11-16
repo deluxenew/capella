@@ -27,7 +27,7 @@
         :deposit="deposit"
         class="AppYieldCard__power-function"
       />
-      <hr class="mt-10 mb-8 border-border-color" />
+      <hr class="mt-5 mb-8 border-border-color" />
       <p class="AppYieldCard__description text-base text-gray leading-relaxed">
         {{ t('AppYieldCard.description') }}
       </p>

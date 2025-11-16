@@ -26,7 +26,7 @@
           class="content-data flex flex-row flex-wrap gap-4.5"
         >
           <!-- Pool Stats -->
-          <div v-if="poolData" class="items w-full flex flex-row justify-between flex-wrap gap-3 py-3 border-t border-b border-border">
+          <div v-if="poolData" class="items w-full flex flex-row justify-between flex-wrap gap-3 py-2 border-t border-b border-border">
             <div class="flex flex-row flex-wrap">
               <span class="item-value text-lg leading-5.5 whitespace-nowrap w-full">
                 {{ $filters.toCurrency(poolData.price, { minimumFractionDigits: 4 }) }}
@@ -83,7 +83,7 @@
           <!-- Liquidity Button -->
           <UiButton
             theme="dark"
-            class="button-liquidity flex-[5_0_180px] px-3 py-3 flex justify-between text-color"
+            class="button-liquidity flex-[5_0_180px] px-2 py-2 flex justify-between text-color"
             inset
             fill="fill-white"
             @click="showliquidity = !showliquidity"
@@ -117,7 +117,7 @@
                           class="button-crypto"
                         />
                         <UiButton
-                          class="button_max h-7.5 px-2 py-1 text-xs text-gray mr-2"
+                          class="button_max h-7.5 px-1 py-1 text-xs text-gray mr-2"
                           theme="dark"
                           :disabled="balance.value === balanceMax"
                           @click="balanceInput(balanceMax)"
@@ -168,7 +168,7 @@
                   >
                     <template #append>
                       <UiButton
-                        class="button_max h-7.5 px-2 py-1 text-xs text-gray"
+                        class="button_max h-7.5 px-1 py-1 text-xs text-gray"
                         theme="dark"
                         :disabled="deposit.value === depositMax || !!userWithdrawRequestByPool"
                         @click="depositInput(depositMax)"

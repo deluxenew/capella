@@ -12,7 +12,7 @@
 
     <!-- Progress Section -->
     <div class="bonus-progress-section mb-10">
-      <div class="current-progress bg-secondary p-6 rounded-xl border border-border">
+      <div class="current-progress bg-secondary p-3 rounded-xl border border-border">
         <div class="progress-info flex justify-between items-center mb-4">
           <span class="progress-label text-sm text-gray uppercase tracking-wider">
             {{ t('current_progress') || 'Current Progress' }}
@@ -40,7 +40,7 @@
       <div
         v-for="(tier, index) in bonusTiers"
         :key="index"
-        class="bonus-tier flex items-start gap-4 p-6 bg-secondary rounded-xl border border-border transition-all duration-300"
+        class="bonus-tier flex items-start gap-4 p-3 bg-secondary rounded-xl border border-border transition-all duration-300"
         :class="{
           'active bg-gradient-to-br from-green/10 to-green/5 border-green': progress >= tier.threshold,
           'next bg-gradient-to-br from-blue/10 to-blue/5 border-blue scale-[1.02]': !tier.achieved && tier.isNext
@@ -124,7 +124,7 @@
 
     <!-- Bonus Info -->
     <div class="bonus-info">
-      <div class="info-card flex gap-4 p-6 bg-secondary rounded-xl border border-border">
+      <div class="info-card flex gap-4 p-3 bg-secondary rounded-xl border border-border">
         <UiSvgImage svg="info" class="info-icon w-6 h-6 text-cyan flex-shrink-0 mt-1"/>
         <div class="info-content">
           <h4 class="text-base font-semibold text-color mb-2">
@@ -278,7 +278,7 @@ const progress2 = computed((): string => {
       @apply mb-8;
 
       .current-progress {
-        @apply p-4 rounded-lg;
+        @apply p-2 rounded-lg;
 
         .progress-info {
           @apply flex-col text-center gap-2 mb-3;
@@ -310,7 +310,7 @@ const progress2 = computed((): string => {
       @apply gap-4 mb-6;
 
       .bonus-tier {
-        @apply p-4 rounded-lg flex-col gap-3;
+        @apply p-2 rounded-lg flex-col gap-3;
 
         &.next {
           @apply scale-100;
@@ -390,7 +390,7 @@ const progress2 = computed((): string => {
 
     .bonus-info {
       .info-card {
-        @apply p-4 rounded-lg flex-col gap-3;
+        @apply p-2 rounded-lg flex-col gap-3;
 
         .info-icon {
           @apply w-5 h-5 mt-0;
@@ -424,7 +424,7 @@ const progress2 = computed((): string => {
 
     .bonus-progress-section {
       .current-progress {
-        @apply p-3;
+        @apply p-1;
 
         .progress-info {
           .progress-amount {
@@ -438,7 +438,7 @@ const progress2 = computed((): string => {
       @apply gap-3;
 
       .bonus-tier {
-        @apply p-3;
+        @apply p-1;
 
         .tier-indicator {
           .tier-icon {

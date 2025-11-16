@@ -37,7 +37,7 @@ const availableLocales = computed(() => {
 
 <style scoped>
 .auth-header {
-  @apply border-b border-border-color h-15 px-5;
+  @apply border-b border-border-color h-15 px-2;
 }
 
 .auth-header .logo {
@@ -61,7 +61,7 @@ const availableLocales = computed(() => {
 }
 
 .auth-header .right-block .buttons .auth-buttons .UiButton {
-  @apply rounded py-3 px-4;
+  @apply rounded py-2 px-2;
 }
 
 .auth-header .right-block .buttons .auth-buttons .UiButton:first-of-type {

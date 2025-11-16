@@ -1,5 +1,5 @@
 <template>
-  <AppCard class="AssetCard p-6">
+  <AppCard class="AssetCard p-3">
     <!-- Header -->
     <h3 class="pool-subtitle mb-2 uppercase text-gray-500 text-xs font-medium tracking-wide">
       {{ t('asset_details') }}
@@ -9,7 +9,7 @@
     </h2>
 
     <!-- Action Buttons -->
-    <div class="buttons flex items-center gap-3 mt-7 flex-wrap">
+    <div class="buttons flex items-center gap-3 mt-3 flex-wrap">
       <UiButton
         v-if="website"
         size="sm"
@@ -34,7 +34,7 @@
     </div>
 
     <!-- Description -->
-    <div class="text text-gray-500 mt-7 pb-2 leading-6">
+    <div class="text text-gray-500 mt-3 pb-2 leading-6">
       {{ assetDescription }}
     </div>
   </AppCard>
@@ -113,7 +113,7 @@ const openLink = (url: string): void => {
 /* Small mobile devices */
 @media screen and (max-width: 380px) {
   .AssetCard {
-    @apply p-2;
+    @apply p-1;
   }
 
   .pool-title {
@@ -135,17 +135,6 @@ const openLink = (url: string): void => {
 /* Focus states for accessibility */
 .AssetCard :deep(.UiButton):focus {
   @apply outline-none ring-2 ring-blue-500 ring-opacity-50;
-}
-
-/* Print styles */
-@media print {
-  .AssetCard {
-    @apply shadow-none border border-gray-300;
-
-    .buttons {
-      @apply hidden;
-    }
-  }
 }
 
 /* Animation for card entry */

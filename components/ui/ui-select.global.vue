@@ -56,7 +56,7 @@ onMounted(() => {
 }
 
 .custom-select .selected {
-  @apply bg-transparent text-inherit cursor-pointer select-none pr-10 py-2 transition duration-300 relative;
+  @apply bg-transparent text-inherit cursor-pointer select-none pr-10 py-1 transition duration-300 relative;
 }
 
 .custom-select .selected:after {
@@ -69,7 +69,7 @@ onMounted(() => {
 }
 
 .custom-select .items .option-item {
-  @apply text-inherit cursor-pointer select-none pr-10 py-2;
+  @apply text-inherit cursor-pointer select-none pr-10 py-1;
 }
 
 .custom-select .items .option-item:hover {

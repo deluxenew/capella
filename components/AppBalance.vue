@@ -4,12 +4,12 @@
       <transition name="fade" mode="out-in">
         <div v-if="!pending" class="header-text">
           <div class="name">{{ t('balance') }}</div>
-          <div class="price mt-5">
+          <div class="price mt-2">
             {{ formatCurrency(balance?.balance) }}
           </div>
           <div
             v-if="balance?.daily > 0"
-            class="graph-data mt-5 flex items-center"
+            class="graph-data mt-2 flex items-center"
           >
             <UiSvgImage
               v-if="balance.daily > 0 || balance.daily < 0"
@@ -47,7 +47,7 @@
             {{ period.text }}
           </UiButton>
         </div>
-        <div class="second-row_buttons mt-5 flex gap-3">
+        <div class="second-row_buttons mt-2 flex gap-3">
           <Variable
             v-for="pool in ['stable', 'coin', 'dex']"
             :key="`button_${pool}`"
@@ -67,7 +67,7 @@
         </div>
       </div>
       <transition name="fade" mode="out-in">
-        <div v-if="!pending" class="chart mt-15 relative">
+        <div v-if="!pending" class="chart mt-7 relative">
           <UiChart
             v-if="balance?.balance > 0"
             :items="balance?.chart"
@@ -82,7 +82,7 @@
           </UiChart>
           <div v-else class="text-center">
             <h3>{{ t('no_balance') }}</h3>
-            <UiButton class="mt-5" @click="replenishBalance()">
+            <UiButton class="mt-2" @click="replenishBalance()">
               {{ t('no_balance') }}
             </UiButton>
           </div>
@@ -214,7 +214,7 @@ onUnmounted(() => {
 }
 
 .AppBalance > .left .header-buttons {
-  @apply pt-5 ml-auto relative right-2;
+  @apply pt-2 ml-auto relative right-2;
 }
 
 .AppBalance > .left .header-buttons > div {
@@ -226,7 +226,7 @@ onUnmounted(() => {
 }
 
 .AppBalance > .left .header-text {
-  @apply py-5 pl-5 mb-2;
+  @apply py-2 pl-2 mb-2;
 }
 
 .AppBalance > .left .header-text .name {
@@ -262,7 +262,7 @@ onUnmounted(() => {
     }
 
     .AppBalance > .left {
-      @apply bg-bg-secondary py-2 rounded-lg flex-[5_10_100%];
+      @apply bg-secondary py-1 rounded-lg flex-[5_10_100%];
     }
 
     .AppBalance > .left .header-buttons {
@@ -282,7 +282,7 @@ onUnmounted(() => {
     }
 
     .AppBalance > .left .chart-text {
-      @apply order-4 mt-4;
+      @apply order-4 mt-2;
     }
   }
 }
@@ -293,7 +293,7 @@ onUnmounted(() => {
   }
 
   .AppBalance > .left {
-    @apply bg-bg-secondary py-2 rounded-lg flex-[5_10_100%];
+    @apply bg-secondary py-1 rounded-lg flex-[5_10_100%];
   }
 
   .AppBalance > .left .header-buttons {
@@ -313,7 +313,7 @@ onUnmounted(() => {
   }
 
   .AppBalance > .left .chart-text {
-    @apply order-4 mt-4;
+    @apply order-4 mt-2;
   }
 }
 
@@ -324,7 +324,7 @@ onUnmounted(() => {
   }
 
   .AppBalance > .left .header-buttons > div button {
-    @apply p-2;
+    @apply p-1;
   }
 }
 

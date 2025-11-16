@@ -2,21 +2,21 @@
   <div class="dao">
     <div class="page-title text-2xl font-semibold">{{ t('LeftSidebar.dao') }}</div>
 
-    <div class="px-5">
-      <DAOPrices class="mt-5" />
+    <div class="px-2">
+      <DAOPrices class="mt-2" />
     </div>
 
-    <div class="flex flex-col lg:flex-row px-5 mt-5 wrapper border-t border-border">
-      <div class="flex flex-col pt-5 left-column lg:border-r lg:border-border lg:pr-2 flex-[10_8_500px]">
+    <div class="flex flex-col lg:flex-row px-2 mt-2 wrapper border-t border-border">
+      <div class="flex flex-col pt-2 left-column lg:border-r lg:border-border lg:pr-2 flex-[10_8_500px]">
         <AppBalance />
         <DailyRewards />
-        <DAOGovernance class="mt-5" />
+        <DAOGovernance class="mt-2" />
       </div>
 
-      <div class="pt-5 right-column lg:pl-2 flex-[8_10_360px]">
+      <div class="pt-2 right-column lg:pl-2 flex-[8_10_360px]">
         <!-- <Converter /> -->
         <DAOPersonalInfo />
-        <DAOLiquidityPools class="mt-5" />
+        <DAOLiquidityPools class="mt-2" />
       </div>
     </div>
   </div>
@@ -80,7 +80,7 @@ useHead({
   }
 
   .dao :deep(.AppBalance .right) {
-    @apply p-0 mt-4;
+    @apply p-0 mt-2;
   }
 }
 
@@ -91,7 +91,7 @@ useHead({
   }
 
   .sidebar_expanded .dao :deep(.AppBalance .right) {
-    @apply p-0 mt-4;
+    @apply p-0 mt-2;
   }
 }
 </style>

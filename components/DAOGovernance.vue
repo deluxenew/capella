@@ -1,5 +1,5 @@
 <template>
-  <AppCard class="governance text-center p-8">
+  <AppCard class="governance text-center p-4">
     <p class="text-base font-medium mb-2">{{ t('governance') }}</p>
     <p class="text-gray text-sm">{{ t('coming_soon') }}</p>
   </AppCard>

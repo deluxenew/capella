@@ -15,7 +15,7 @@
         {{ t('switch_metamask_description') }}
       </p>
 
-      <UiButton class="w-100 mt-10" @click="openMetamaskBrowser()">
+      <UiButton class="w-100 mt-5" @click="openMetamaskBrowser()">
         {{ t('switch_metamask') }}
       </UiButton>
     </div>
@@ -35,7 +35,7 @@ const openMetamaskBrowser = (): void => {
 
 <style scoped>
 .content {
-  @apply p-6;
+  @apply p-3;
 }
 
 .header {

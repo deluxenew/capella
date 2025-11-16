@@ -1,25 +1,25 @@
 <template>
-  <AppCard class="AppStablePool p-3">
+  <AppCard class="AppStablePool p-1">
     <div class="left relative flex flex-col lg:flex-row lg:flex-wrap w-full">
       <!-- Header Text -->
-      <div class="header-text px-5 pt-5 lg:order-1 lg:mb-3">
+      <div class="header-text px-2 pt-2 lg:order-1 lg:mb-3">
         <div class="name text-lg font-semibold text-color">
           {{ title }}
         </div>
         <div class="price text-3xl font-bold text-color mt-2">
           {{ currentIndex }} $
         </div>
-        <div class="graph-data mt-5 flex items-center text-green-600 text-sm">
+        <div class="graph-data mt-2 flex items-center text-green-600 text-sm">
           <UiSvgImage svg="arrow-right-up" class="w-4 h-4" />
           <p class="graph-value ml-3">{{ currentDaily }} $</p>
-          <div class="graph-percent ml-3 bg-green-200 dark:bg-green-900 rounded px-2 py-1">
+          <div class="graph-percent ml-3 bg-green-200 dark:bg-green-900 rounded px-1 py-1">
             <span>{{ currentDailyPercent }} %</span>
           </div>
         </div>
       </div>
 
       <!-- Header Buttons -->
-      <div class="header-buttons px-5 pt-5 lg:order-2 lg:ml-auto lg:z-10">
+      <div class="header-buttons px-2 pt-2 lg:order-2 lg:ml-auto lg:z-10">
         <!-- Period Buttons -->
         <div class="flex gap-2 flex-wrap">
           <UiButton
@@ -56,7 +56,7 @@
       </div>
 
       <!-- Chart -->
-      <div class="chart mt-5 lg:order-4 w-full px-2">
+      <div class="chart mt-2 lg:order-4 w-full px-1">
         <UiChart
           :items="chartItems"
           color="#CEC6FB"
@@ -67,13 +67,13 @@
       </div>
 
       <!-- Chart Dates -->
-      <div class="chart-text px-5 mt-3 lg:order-5 text-gray-500 text-sm w-full">
+      <div class="chart-text px-2 mt-3 lg:order-5 text-gray-500 text-sm w-full">
         {{ dates }}
       </div>
 
       <!-- Footer Stats -->
-      <div class="footer mt-7 lg:order-6 w-full border-t border-border">
-        <div class="pt-6 footerItems px-5">
+      <div class="footer mt-3 lg:order-6 w-full border-t border-border">
+        <div class="pt-6 footerItems px-2">
           <div
             v-for="(item, index) in footerItems"
             :key="index"
@@ -288,8 +288,15 @@ watch([currentPeriod, currentValue], () => {
   }
 
   .chart-text {
-    @apply order-6 mt-3 px-3;
+    @apply order-6 mt-3 px-2;
   }
+}
+
+.footerItems {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 600px) {
@@ -331,16 +338,7 @@ watch([currentPeriod, currentValue], () => {
   @apply transform -translate-y-1 shadow-md;
 }
 
-/* Print styles */
-@media print {
-  .AppStablePool {
-    @apply shadow-none border border-gray-300;
-  }
 
-  .header-buttons {
-    @apply hidden;
-  }
-}
 
 /* Ensure chart has proper dimensions */
 .chart {

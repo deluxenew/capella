@@ -128,14 +128,14 @@ onUpdated(() => {
 })
 </script>
 
-<style scoped>
+<style>
 .hint-table {
   @apply pointer-events-none;
 }
 
-.hint-table .hint_content {
-  @apply whitespace-nowrap bg-white text-lg p-1 px-3 text-dark rounded flex flex-col;
-  transform: translate(-10px, -68px);
+.hint_content {
+  @apply whitespace-nowrap bg-white text-lg p-1 px-2 text-dark rounded flex flex-col;
+  transform: translate(-8px, -95px);
   @apply transition-all duration-300 ease-in-out z-10 absolute;
 }
 
@@ -151,7 +151,7 @@ onUpdated(() => {
   @apply bg-red;
 }
 
-.hint-table .hint-table_tail {
+.hint-table_tail {
   @apply transition-all duration-300 ease-in-out overflow-hidden absolute;
   transform: translate(-50%, calc(-50% - 3px));
   @apply w-5 h-6 rounded-b-lg z-10;

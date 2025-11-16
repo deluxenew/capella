@@ -5,7 +5,7 @@
     <div class="refferal-earned xl:col-span-2">
       <AppCard class="Earned">
         <!-- Main Earnings Header -->
-        <div class="earnings-header text-center mb-8 py-4">
+        <div class="earnings-header text-center mb-8 py-2">
           <div class="earnings-main">
             <h2 class="earnings-title text-3xl font-bold mb-2 text-color">
               {{ t('rewards') || 'Affiliate Rewards' }}
@@ -20,11 +20,11 @@
         <div class="content-grid grid grid-cols-1 lg:grid-cols-3 gap-6">
           <!-- Withdraw Section (col-span-2) -->
           <div class="withdraw-section lg:col-span-2">
-            <div class="withdraw-header flex justify-between items-center mb-6 px-6 pt-6">
+            <div class="withdraw-header flex justify-between items-center mb-6 px-3 pt-6">
               <h3 class="withdraw-title text-xl font-bold text-color">
                 {{ t('withdraw_funds') || 'Withdraw Funds' }}
               </h3>
-              <div class="available-info flex items-center gap-2 px-4 py-2 bg-bg-secondary border border-border rounded-full">
+              <div class="available-info flex items-center gap-2 px-2 py-1 bg-secondary border border-border rounded-full">
                 <span class="available-label text-sm text-gray font-medium">
                   {{ t('available') || 'Available' }}:
                 </span>
@@ -34,7 +34,7 @@
               </div>
             </div>
 
-            <div class="withdraw-form px-6 pb-6">
+            <div class="withdraw-form px-3 pb-6">
               <div class="amount-input-section mb-6">
                 <div class="input-wrapper relative mb-4">
                   <div class="currency-prefix absolute left-4 top-1/2 transform -translate-y-1/2 text-xl font-bold text-gray z-10">
@@ -46,7 +46,7 @@
                     :min="0"
                     :max="availableTotal"
                     :placeholder="'0.00'"
-                    class="amount-input pl-12 pr-4 py-4 text-xl font-semibold border-2 border-border rounded-xl focus:border-blue-600 transition-colors duration-300 bg-transparent"
+                    class="amount-input pl-12 pr-4 py-2 text-xl font-semibold border-2 border-border rounded-xl focus:border-blue-600 transition-colors duration-300 bg-transparent"
                     :class="{ 'border-red-500': unifiedAmount > availableTotal }"
                   />
                 </div>
@@ -64,7 +64,7 @@
               </div>
 
               <div class="withdraw-footer">
-                <div class="withdraw-info bg-bg-secondary p-4 rounded-lg mb-4">
+                <div class="withdraw-info bg-secondary p-2 rounded-lg mb-4">
                   <div class="info-item flex justify-between items-center mb-2 last:mb-0">
                     <span class="info-label text-sm text-gray">
                       {{ t('amount_to_withdraw') || 'Amount to withdraw' }}:
@@ -87,7 +87,7 @@
                 </div>
 
                 <UiButton
-                  class="withdraw-submit-btn w-full py-4 px-6 rounded-xl text-base font-bold flex items-center justify-center gap-2 border border-blue-600 bg-blue-600 text-white transition-all duration-300 hover:bg-blue-700 hover:border-blue-700 hover:transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none disabled:bg-gray-500 disabled:border-gray-500"
+                  class="withdraw-submit-btn w-full py-2 px-3 rounded-xl text-base font-bold flex items-center justify-center gap-2 border border-blue-600 bg-blue-600 text-white transition-all duration-300 hover:bg-blue-700 hover:border-blue-700 hover:transform hover:-translate-y-1 hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none disabled:shadow-none disabled:bg-gray-500 disabled:border-gray-500"
                   :disabled="!canAnyWithdraw"
                   :loading="loading"
                   size="lg"
@@ -107,7 +107,7 @@
             <div
               v-for="(card, index) in summaryCards"
               :key="index"
-              class="summary-card p-6 border border-border rounded-lg transition-all duration-200 hover:transform hover:-translate-y-1 hover:shadow-md flex-1 bg-bg-secondary"
+              class="summary-card p-3 border border-border rounded-lg transition-all duration-200 hover:transform hover:-translate-y-1 hover:shadow-md flex-1 bg-secondary"
             >
               <div class="summary-card-content text-center">
                 <p class="summary-label text-sm text-gray uppercase tracking-wider mb-2">
@@ -390,7 +390,7 @@ watch(unifiedAmount, (newAmount) => {
 
 @media screen and (max-width: 768px) {
   .earnings-header {
-    @apply py-2 mb-6;
+    @apply py-1 mb-6;
   }
 
   .earnings-title {
@@ -402,7 +402,7 @@ watch(unifiedAmount, (newAmount) => {
   }
 
   .withdraw-header {
-    @apply flex-col items-stretch gap-4 px-4 pt-4;
+    @apply flex-col items-stretch gap-4 px-2 pt-4;
   }
 
   .withdraw-title {
@@ -410,11 +410,11 @@ watch(unifiedAmount, (newAmount) => {
   }
 
   .available-info {
-    @apply self-center px-3 py-1;
+    @apply self-center px-2 py-1;
   }
 
   .withdraw-form {
-    @apply px-4 pb-4;
+    @apply px-2 pb-4;
   }
 
   .amount-input-section {
@@ -430,11 +430,11 @@ watch(unifiedAmount, (newAmount) => {
   }
 
   .amount-input {
-    @apply pl-10 pr-3 py-3 text-lg;
+    @apply pl-10 pr-3 py-2 text-lg;
   }
 
   .withdraw-info {
-    @apply p-3 mb-3;
+    @apply p-1 mb-3;
   }
 
   .info-label,
@@ -443,7 +443,7 @@ watch(unifiedAmount, (newAmount) => {
   }
 
   .withdraw-submit-btn {
-    @apply py-3 text-sm;
+    @apply py-2 text-sm;
   }
 
   .withdraw-icon {
@@ -455,7 +455,7 @@ watch(unifiedAmount, (newAmount) => {
   }
 
   .summary-card {
-    @apply p-4;
+    @apply p-2;
   }
 
   .summary-value {
@@ -473,7 +473,7 @@ watch(unifiedAmount, (newAmount) => {
   }
 
   .summary-card {
-    @apply p-3;
+    @apply p-1;
   }
 
   .summary-label {

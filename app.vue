@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import {ModalsContainer} from 'vue-final-modal'
 
+const {getSession} = useAuth()
+await getSession({force: true})
 </script>
 
 <template>
@@ -14,6 +16,8 @@ import {ModalsContainer} from 'vue-final-modal'
   </Html>
 </template>
 
-<style scoped>
-
+<style >
+body::-webkit-scrollbar, html::-webkit-scrollbar {
+  width: 0px;
+}
 </style>
