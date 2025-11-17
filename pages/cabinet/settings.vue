@@ -1,8 +1,5 @@
 <template>
   <div class="settings pl-5 pr-5">
-    <div class="page-title text-2xl font-bold text-color mb-6">
-      {{ t('LeftSidebar.settings') }}
-    </div>
 
     <div class="flex flex-col lg:flex-row gap-6 wrapper">
       <!-- Left Column -->

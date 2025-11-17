@@ -1,7 +1,10 @@
-import utils from '~/utils/custom'
+import ContractService from '~/utils/custom'
 
 export default defineNuxtPlugin((nuxtApp) => {
+  const utils = new ContractService()
+
   return {
+
     provide: {
       utils
     }
@@ -11,18 +14,18 @@ export default defineNuxtPlugin((nuxtApp) => {
 
 declare module '#app' {
   interface NuxtApp {
-    $utils: utils
+    $utils: ContractService
   }
 }
 
 declare module '~/node_modules/nuxt/dist/app/nuxt' {
   interface NuxtApp {
-    $utils: utils
+    $utils: ContractService
   }
 }
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
-    $utils: utils
+    $utils: ContractService
   }
 }

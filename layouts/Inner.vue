@@ -14,7 +14,7 @@
                         @click="expandSidebar = !expandSidebar">
                 <UiSvgImage :svg="expandSidebar ? 'arrow-left' : 'menu'" />
               </UiButton>
-              <img src="~/assets/img/avatar.png" alt="" class="w-8 h-8" />
+              <img src="~/assets/img/avatar.png" alt="" class="w-9 h-9" />
               <h2 class="user-text">
                 {{ t('AuthHeader.greeting') }}, {{ userName }}
               </h2>
@@ -329,6 +329,7 @@ const useToast = () => {
 
 .cabinet .inner-layout {
   @apply max-w-[1240px] mx-auto;
+
 }
 
 .cabinet .right {
@@ -341,7 +342,7 @@ const useToast = () => {
 }
 
 .cabinet .right .header {
-  @apply p-1 border-b border-border-color flex items-center justify-between;
+  @apply p-2 pl-3 border-b border-border-color flex items-center justify-between;
 }
 
 .cabinet .right .user {

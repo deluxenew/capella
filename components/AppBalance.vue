@@ -141,7 +141,7 @@ function getFormatedDate(date: Date): string {
 }
 
 const formatCurrency = (value: number | undefined): string => {
-  if (!value) return '0'
+  if (value === undefined) return '0'
   return $filters.toCurrency?.(value) || value.toString()
 }
 
@@ -226,7 +226,7 @@ onUnmounted(() => {
 }
 
 .AppBalance > .left .header-text {
-  @apply py-2 pl-2 mb-2;
+  @apply pt-5 pl-5 mb-2;
 }
 
 .AppBalance > .left .header-text .name {

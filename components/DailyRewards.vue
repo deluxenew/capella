@@ -4,7 +4,7 @@
       {{ t('daily_rewards') }}
     </h2>
 
-    <div class="wrapper_spool flex flex-wrap justify-between my-4.5">
+    <div class="wrapper_spool flex flex-wrap justify-between my-4">
       <!-- Stable Pool -->
       <div class="pool-item">
         <div>

@@ -442,7 +442,7 @@ const progress2 = computed((): string => {
 
         .tier-indicator {
           .tier-icon {
-            @apply w-8 h-8;
+            @apply w-9 h-9;
 
             .tier-number {
               @apply text-xs;

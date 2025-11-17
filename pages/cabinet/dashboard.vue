@@ -1,14 +1,13 @@
 <template>
   <div class="dashboard">
-    <div class="page-title">{{ t('LeftSidebar.dashboard') }}</div>
-    <div class="pl-5">
+    <div class="pl-3">
       <AppBalance class="w-full">
         <!-- <div class="right">
           <AppWallet />
         </div> -->
       </AppBalance>
     </div>
-    <div class="flex mt-2 pl-4 wrapper">
+    <div class="flex mt-2 pl-3 wrapper">
       <div class="flex pt-2 flex-col left-column">
         <AppPoolCard
           class="w-full mt-0"
@@ -64,7 +63,7 @@ interface DepositParams {
 const { $store, $notify, $utils } = useNuxtApp()
 const { t } = useI18n()
 
-// Constants (замените на ваши реальные константы)
+// Constants
 const METAMASK_IS_CONNECT = 'metamask/IS_CONNECT'
 const METAMASK_NET_ID = 'metamask/NET_ID'
 
@@ -164,18 +163,17 @@ useHead({
   title: $utils.hostToTitle?.(window?.location?.host) || 'Dashboard'
 })
 
-// Define page meta
 definePageMeta({
   layout: 'inner'
 })
 
 // Fetch on server side
-// await fetchData() // Uncomment when needed
+// await fetchData()
 </script>
 
 <style scoped>
 .dashboard {
-  @apply py-1 pr-2;
+  @apply py-2 pr-2;
 }
 
 .dashboard .wrapper {

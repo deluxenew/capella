@@ -5,11 +5,11 @@
     </h3>
 
     <div class="content">
-      <div class="list overflow-y-auto overflow-x-hidden max-h-[140px] my-2 -mx-1.25">
+      <div class="list overflow-y-auto overflow-x-hidden max-h-[140px] my-2">
         <div
           v-for="(item, index) in items"
           :key="index"
-          class="p-1 flex items-center gap-2 transition-colors duration-100 rounded-lg rounded-tr-none rounded-br-none p-1.25 cursor-pointer hover:bg-blue/20"
+          class="p-1 flex items-center gap-2 transition-colors duration-100 rounded-lg rounded-tr-none rounded-br-none p-1 cursor-pointer hover:bg-blue/20"
           @click="showDescription(item)"
         >
           <img

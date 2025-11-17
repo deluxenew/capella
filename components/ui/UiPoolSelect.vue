@@ -1,11 +1,11 @@
 <template>
-  <div ref="containerRef" class="pool-select flex flex-col mb-4.5">
+  <div ref="containerRef" class="pool-select flex flex-col mb-4">
     <div class="select-wrap">
       <span class="label text-xs text-gray leading-3.75">
         Choose Pool
       </span>
 
-      <div class="select w-full border border-border rounded mt-1.75 flex items-center relative h-12.5 bg-bg">
+      <div class="select w-full border border-border rounded mt-2 flex items-center relative h-12 bg-bg">
         <!-- Selected Item -->
         <UiPoolSelectItem
           v-if="!isOpen"
@@ -13,7 +13,7 @@
           :color="selectedPool.color"
           :pool="selectedPool.pool"
           class="flex-1 px-2"
-          @click="isOpen = true"
+          @click.stop="isOpen = true"
         />
 
         <!-- Dropdown -->
@@ -27,7 +27,7 @@
         >
           <div
             v-if="isOpen"
-            class="dropdown z-99 bg-bg rounded border border-border absolute top-full left-0 right-0 mt-1 shadow-lg max-h-60 overflow-y-auto"
+            class="dropdown z-[99] bg-bg rounded border border-border absolute top-full left-0 right-0 mt-1 shadow-lg max-h-60 overflow-y-auto"
           >
             <UiPoolSelectItem
               v-for="pool in pools"
@@ -43,9 +43,9 @@
 
         <!-- Toggle Button -->
         <UiButton
-          size="sm"
+          size="xs"
           theme="transparent"
-          class="custom-select-btn absolute right-2 p-1 flex items-center"
+          class="custom-select-btn absolute right-2 p-2 flex items-center"
           inset
           @click="toggleDropdown"
         >
@@ -169,6 +169,14 @@ defineExpose({
 .dropdown {
   scrollbar-width: thin;
   scrollbar-color: theme('colors.gray.DEFAULT') theme('colors.border-color');
+  background-color: var(--bg);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  left: -1px;
+  position: absolute;
+  right: -1px;
+  top: -1px;
+  z-index: 99;
 }
 
 .dropdown::-webkit-scrollbar {

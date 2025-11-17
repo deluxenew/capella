@@ -7,7 +7,7 @@
       <div class="pool pb-10">
         <p class="text-base font-medium mb-4">{{ t('stable_pool') }}</p>
         <div class="wrapper__progress flex gap-2 justify-between">
-          <div class="progress-bar flex-2 bg-charade rounded h-7.5 overflow-hidden">
+          <div class="progress-bar flex-2 bg-charade rounded h-7 overflow-hidden">
             <div
               class="progress stable h-full rounded bg-[#aaffcb] transition-all duration-500"
               :style="{ width: stableProgress }"
@@ -29,7 +29,7 @@
       <div class="pool pb-10 mt-4">
         <p class="text-base font-medium mb-4">{{ t('coin_pool') }}</p>
         <div class="wrapper__progress flex gap-2 justify-between">
-          <div class="progress-bar flex-2 bg-charade rounded h-7.5 overflow-hidden">
+          <div class="progress-bar flex-2 bg-charade rounded h-7 overflow-hidden">
             <div
               class="progress coin h-full rounded bg-[#9fe0ff] transition-all duration-500"
               :style="{ width: coinProgress }"
@@ -51,7 +51,7 @@
       <div class="pool mt-4">
         <p class="text-base font-medium mb-4">{{ t('dex_pool') }}</p>
         <div class="wrapper__progress flex gap-2 justify-between">
-          <div class="progress-bar flex-2 bg-charade rounded h-7.5 overflow-hidden">
+          <div class="progress-bar flex-2 bg-charade rounded h-7 overflow-hidden">
             <div
               class="progress dex h-full rounded bg-[#dd7c37] transition-all duration-500"
               :style="{ width: dexProgress }"

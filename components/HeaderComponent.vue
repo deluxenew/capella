@@ -26,7 +26,7 @@
 
 <script setup>
 import UiButton from "~/components/ui/UiButton.vue";
-import UiSelect from "~/components/ui/ui-select.global.vue";
+import UiSelect from "~/components/ui/ui-select.vue";
 
 const emit = defineEmits(['sign-up']);
 
@@ -39,8 +39,6 @@ const onInput = (event) => {
 
 <style scoped>
 .header {
-
-
   .wrapper {
     @apply flex items-baseline pt-6;
 

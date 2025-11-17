@@ -16,8 +16,8 @@ await getSession({force: true})
   </Html>
 </template>
 
-<style >
+<style>
 body::-webkit-scrollbar, html::-webkit-scrollbar {
-  width: 0px;
+  width: 0;
 }
 </style>

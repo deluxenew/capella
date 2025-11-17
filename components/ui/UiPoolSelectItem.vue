@@ -55,10 +55,10 @@ const indicatorStyle = computed(() => ({
 
 const computedClasses = computed(() => [
   'flex flex-row flex-1 items-center cursor-pointer transition-all duration-200',
-  'px-2 py-0.75', // default padding
+  'px-2 py-1', // default padding
   {
     'h-10': props.size === 'sm',
-    'h-12.5': props.size === 'md',
+    'h-12': props.size === 'md',
     'h-15': props.size === 'lg',
     'opacity-50 cursor-not-allowed': props.disabled,
     'bg-secondary': props.selected,

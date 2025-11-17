@@ -19,7 +19,7 @@
     <div class="referral-flow flex items-start gap-0 mb-8 overflow-x-auto py-2">
       <!-- You (Starting Point) -->
       <div class="flow-item flex flex-col items-center relative flex-1 min-w-[140px]">
-        <div class="flow-connector absolute top-7.5 left-1/2 right-[-50%] h-1 z-1">
+        <div class="flow-connector absolute top-7 left-1/2 right-[-50%] h-1 z-1">
           <div
             class="connector-line w-full h-full bg-border rounded transition-colors duration-300"
             :class="{ 'bg-gradient-to-r from-blue to-green': baseProgress === '100%' }"
@@ -46,7 +46,7 @@
         :key="index"
         class="flow-item level-item flex flex-col items-center relative flex-1 min-w-[140px]"
       >
-        <div class="flow-connector absolute top-7.5 left-1/2 right-[-50%] h-1 z-1">
+        <div class="flow-connector absolute top-7 left-1/2 right-[-50%] h-1 z-1">
           <div
             class="connector-line w-full h-full bg-border rounded transition-colors duration-300"
             :class="{ 'bg-gradient-to-r from-blue to-green': level.count > 0 }"

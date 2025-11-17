@@ -23,7 +23,7 @@
         <div
           v-if="!showInfoPool && !pending"
           key="contentSlot"
-          class="content-data flex flex-row flex-wrap gap-4.5"
+          class="content-data flex flex-row flex-wrap gap-4"
         >
           <!-- Pool Stats -->
           <div v-if="poolData" class="items w-full flex flex-row justify-between flex-wrap gap-3 py-2 border-t border-b border-border">
@@ -98,7 +98,7 @@
           <!-- Liquidity Items -->
           <div class="liqudity-items_wrapper w-full">
             <UiTransitionExpand name="heightLiqudityItems">
-              <div v-if="showliquidity" class="liqudity-items row flex flex-wrap gap-4.5">
+              <div v-if="showliquidity" class="liqudity-items row flex flex-wrap gap-4">
                 <!-- Balance Column -->
                 <div class="column-wrapper flex flex-col gap-2 flex-[10_5_200px] min-w-[40%]">
                   <UiCurrencyInput
@@ -117,7 +117,7 @@
                           class="button-crypto"
                         />
                         <UiButton
-                          class="button_max h-7.5 px-1 py-1 text-xs text-gray mr-2"
+                          class="button_max h-7 px-1 py-1 text-xs text-gray mr-2"
                           theme="dark"
                           :disabled="balance.value === balanceMax"
                           @click="balanceInput(balanceMax)"
@@ -141,7 +141,7 @@
                     {{ t('no_balance_by_coin', { coin }) }}
                   </div>
 
-                  <div class="footer-items mt-auto flex flex-col gap-1.25">
+                  <div class="footer-items mt-auto flex flex-col gap-1">
                     <UiButton
                       theme="outline"
                       outline
@@ -168,7 +168,7 @@
                   >
                     <template #append>
                       <UiButton
-                        class="button_max h-7.5 px-1 py-1 text-xs text-gray"
+                        class="button_max h-7 px-1 py-1 text-xs text-gray"
                         theme="dark"
                         :disabled="deposit.value === depositMax || !!userWithdrawRequestByPool"
                         @click="depositInput(depositMax)"
@@ -192,7 +192,7 @@
                     {{ t('no_balance_by_pool', { coin }) }}
                   </div>
 
-                  <div class="footer-items mt-auto flex flex-col gap-1.25">
+                  <div class="footer-items mt-auto flex flex-col gap-1">
                     <UiButton
                       v-if="!userWithdrawRequestByPool"
                       theme="outline"
@@ -213,7 +213,7 @@
                       @click="withdraw"
                     >
                       {{ t('withdraw_request') }}
-                      <AppLoader class="loader ml-3 w-7.5 gap-1.25" color="gray" size="5px" />
+                      <AppLoader class="loader ml-3 w-7 gap-1" color="gray" size="5px" />
                     </UiButton>
                     <p class="hint-text text-gray text-xs mt-0.25">
                       {{ t('withdrawal_fee') }}: 0.01%

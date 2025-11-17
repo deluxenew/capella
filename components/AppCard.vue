@@ -6,6 +6,6 @@
 
 <style scoped>
 .AppCard {
-  @apply p-2 rounded-lg bg-secondary overflow-hidden;
+  @apply p-5 rounded-lg bg-secondary overflow-hidden;
 }
 </style>

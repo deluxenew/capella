@@ -12,7 +12,7 @@
       <div class="top-section">
         <div class="logo-block flex items-center min-h-[38px]">
           <UiButton
-            class="menu-btn min-w-6 min-h-6 ml-3"
+            class="shrink-0 menu-btn min-w-9 min-h-9 ml-3"
             theme="transparent"
             @click="handleSidebar"
           >
@@ -61,15 +61,13 @@
                   :is="item.submenu ? 'div' : 'NuxtLink'"
                   class="nav-item px-1 py-1 flex items-center transition-all duration-300 w-full cursor-pointer"
                   :class="{
-                    'nuxt-link-active': itemInSubPage,
-                    'bg-secondary rounded-lg': itemInSubPage || item.expanded,
-                    'pointer-events-none opacity-50': item.WIP
+                    'router-link-active': itemInSubPage,
                   }"
                   :to="item.to"
                   @click="expandSubMenu(item, itemInSubPage)"
                 >
                   <div
-                    class="nav-item-icon rounded-full w-7 h-7 p-1 flex justify-center items-center transition-all duration-300"
+                    class="nav-item-icon rounded-full w-9 h-9 p-2 flex justify-center items-center transition-all duration-300"
                     :class="{
                       'bg-[#ffe6b3]': itemInSubPage || item.expanded,
                       'bg-secondary': !item.expanded
@@ -196,7 +194,7 @@
           </div>
 
           <!-- Copyright -->
-          <div class="copyright border-t border-border pt-4.5 text-xs text-gray font-semibold whitespace-nowrap">
+          <div class="copyright border-t border-border pt-4 text-xs text-gray font-semibold whitespace-nowrap">
             <p class="copyright-text mb-3">
               2022 {{ t('LeftSidebar.all_rights_reserved') }}
             </p>
@@ -253,7 +251,7 @@ const emit = defineEmits<{
 const colorMode = useColorMode()
 const { $utils, $modal } = useNuxtApp()
 const route = useRoute()
-const userStore = useUserStore()
+const userStore = useAuthStore()
 const {t} = useI18n()
 // Reactive data
 const sidebarSocials = ref<SidebarSocial[]>([
@@ -326,8 +324,9 @@ const arrowIcon = computed(() =>
   colorMode.value === 'light' ? 'arrow-left-dark' : 'arrow-left'
 )
 
-const wlTitle = computed(() =>
-  $utils.hostToTitle?.(window.location.host)
+const wlTitle = computed(() => {
+    return $utils.hostToTitle?.(window?.location?.host)
+  }
 )
 
 
@@ -340,6 +339,7 @@ const isMobile = computed(() => {
 })
 
 const userName = computed(() => {
+  console.log(userStore.user)
   const user = userStore.user || {}
   return user.name || user.email
 })

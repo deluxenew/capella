@@ -80,6 +80,7 @@ const availableCurrencies: Currency[] = ['USDT', 'USDC', 'WAVES', 'BUSD', 'SOL',
 import ERC20ABI from '~/assets/abis.json';
 
 type HostLocation =
+  | 'localhost'
   | 'defibank.online'
   | 'app.defibank.online'
   | 'berg.finance'
@@ -99,7 +100,10 @@ interface Web3Contract {
 }
 
 class ContractService {
+  constructor() {
+  }
   readonly HOST_TITLES: Record<HostLocation, string> = {
+    'localhost': 'Liquid Now',
     'defibank.online': 'Defibank Online',
     'app.defibank.online': 'Defibank Online',
     'berg.finance': 'Berg Finance',

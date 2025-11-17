@@ -3,6 +3,7 @@
     class="info-button"
     v-bind="filteredAttrs"
     v-on="filteredListeners"
+    @click="emit('click',$event)"
   >
     <UiSvgImage svg="info" />
   </button>
