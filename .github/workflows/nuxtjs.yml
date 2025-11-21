@@ -19,8 +19,11 @@ jobs:
           node-version: "20"
           cache: 'yarn'
 
+      - name: Clear yarn cache
+        run: yarn cache clean
+
       - name: Install dependencies with Yarn
-        run: yarn install # Без --frozen-lockfile
+        run: yarn install --ignore-engines
 
       - name: Build with Nuxt
         run: npx nuxt build --preset github_pages
