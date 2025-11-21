@@ -26,7 +26,7 @@
 
 <script setup>
 import UiButton from "~/components/ui/UiButton.vue";
-import UiSelect from "~/components/ui/ui-select.vue";
+import UiSelect from "~/components/ui/UiSelect.vue";
 
 const emit = defineEmits(['sign-up']);
 
