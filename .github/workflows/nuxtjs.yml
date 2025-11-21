@@ -1,45 +1,45 @@
 name: Deploy to GitHub Pages
 
 on:
-  workflow_dispatch: # Позволяет запускать workflow вручную через Actions tab
+  workflow_dispatch:
   push:
-    branches: [ main ] # Запускает автоматическую сборку при пуше в ветку main
+    branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4 # Клонирует ваш репозиторий
-
+      - uses: actions/checkout@v4
+      
       - name: Enable Corepack
         run: corepack enable
 
       - uses: actions/setup-node@v4
         with:
-          node-version: "20" # Указывает версию Node.js
+          node-version: "20"
+          cache: 'yarn'
 
-      - name: Install dependencies
-        run: npm install # Устанавливает зависимости проекта
+      - name: Install dependencies with Yarn
+        run: yarn install # Без --frozen-lockfile
 
       - name: Build with Nuxt
-        run: npx nuxt build --preset github_pages # Собирает проект с preset для GitHub Pages
+        run: npx nuxt build --preset github_pages
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./.output/public # Артефакт для деплоя - собранные статические файлы
+          path: ./.output/public
 
   deploy:
-    needs: build # Ждет завершения job `build`
+    needs: build
     permissions:
-      pages: write # Дает разрешение на запись в Pages
+      pages: write
       id-token: write
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4 # Развертывает артефакт на GitHub Pages
+        uses: actions/deploy-pages@v4
