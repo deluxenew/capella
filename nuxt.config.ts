@@ -146,7 +146,7 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       baseURL: process.env.API_BASE_URL,
-      apiBase: process.env.API_BASE_URL || 'http://localhost:3000'
+      apiBase: process.env.API_BASE_URL || 'https://deluxenew.github.io/capella'
     }
   },
 })
