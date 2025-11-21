@@ -17,9 +17,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20" # Указывает версию Node.js
+          cache: 'yarn' # Кэширование зависимостей Yarn для ускорения сборки
 
-      - name: Install dependencies
-        run: npm install # Устанавливает зависимости проекта
+      - name: Install dependencies with Yarn
+        run: yarn install --frozen-lockfile # Устанавливает зависимости проекта используя Yarn
 
       - name: Build with Nuxt
         run: npx nuxt build --preset github_pages # Собирает проект с preset для GitHub Pages
