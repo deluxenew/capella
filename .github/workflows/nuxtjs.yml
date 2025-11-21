@@ -17,13 +17,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: 'yarn'
-
-      - name: Clear yarn cache
-        run: yarn cache clean
+          # Убрана строка cache: 'yarn'
 
       - name: Install dependencies with Yarn
-        run: yarn install --ignore-engines
+        run: yarn install
 
       - name: Build with Nuxt
         run: npx nuxt build --preset github_pages
