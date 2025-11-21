@@ -15,6 +15,10 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/fonts.css'
   ],
+  app: {
+    baseURL: '/capella/', // Замените на имя вашего репозитория
+    buildAssetsDir: 'assets'
+  },
   auth: {
     // Включаем глобальный middleware для обработки аутентификации
     enableGlobalAppMiddleware: true,
