@@ -172,7 +172,7 @@
               <UiSvgImage
                 svg="light"
               />
-              <span class="ml-3">{{ t('LeftSidebar.light') }}</span>
+              <span class="ml-3 text-xs">{{ t('LeftSidebar.light') }}</span>
             </UiButton>
 
             <UiButton
@@ -187,7 +187,7 @@
               <UiSvgImage
                 svg="dark"
               />
-              <span class="ml-3">{{ t('LeftSidebar.dark') }}</span>
+              <span class="ml-3 text-xs">{{ t('LeftSidebar.dark') }}</span>
             </UiButton>
           </div>
 
@@ -474,9 +474,9 @@ const setColorMode = (mode: 'light' | 'dark') => {
   border-radius: 25px;
   display: flex;
   position: relative;
+  padding: 4px;
   width: 250px;
   margin: 30px auto 19px auto;
-  font-size: $size_font_md;
   min-height: 50px;
 }
 
