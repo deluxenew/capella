@@ -30,7 +30,6 @@ export const promisifyModal = (vfm: Vfm) => {
     },
 
     open(id: string, options: any): ReturnType<PromisifiedModal['open']> {
-      console.log(123)
       if (!id) {
         return
       }

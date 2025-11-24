@@ -22,7 +22,9 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-
+defineOptions({
+  name: 'CustomSelect',
+})
 const props = defineProps({
   options: {
     type: Array,

@@ -111,7 +111,7 @@
                   >
                     <template #append>
                       <div class="append-input flex gap-3 items-center">
-                        <UiSelect
+                        <UiSelectCustom
                           v-model="coin"
                           :options="coins?.map((c) => c.label)"
                           class="button-crypto"

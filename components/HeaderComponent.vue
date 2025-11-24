@@ -5,7 +5,7 @@
         Capella Finance
       </a>
       <div class="right-block">
-        <ui-select
+        <ui-select-custom
           :options="options"
           :default="'ENG'"
           class="select select-lang"
@@ -26,7 +26,7 @@
 
 <script setup>
 import UiButton from "~/components/ui/UiButton.vue";
-import UiSelect from "~/components/ui/UiSelect.vue";
+import UiSelectCustom from "~/components/ui/UiSelectCustom.vue";
 
 const emit = defineEmits(['sign-up']);
 

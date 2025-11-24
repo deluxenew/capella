@@ -145,8 +145,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      baseURL: process.env.API_BASE_URL || 'https://app.liquidnow.me',
-      apiBase: process.env.API_BASE_URL || 'https://app.liquidnow.me' ||'https://deluxenew.github.io/capella'
+      baseURL: process.env.API_DEV_URL || 'https://app.liquidnow.me',
+      apiBase: process.env.API_BASE_URL || 'https://app.liquidnow.me' || 'https://deluxenew.github.io/capella'
     }
   },
 })

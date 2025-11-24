@@ -18,7 +18,6 @@ const { t } = useI18n()
 // Methods
 const showModal = (): void => {
   $modal.open('terms')
-  console.log($modal)
 }
 
 const hideModal = (): void => {
