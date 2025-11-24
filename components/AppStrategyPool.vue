@@ -31,7 +31,7 @@
     </div>
 
     <!-- Strategy Description -->
-    <div class="text text-gray-500 mt-3 pb-8 leading-6">
+    <div class="text text-gray-500 mt-3 pb-8 leading-5">
       {{ strategyText }}
     </div>
 
@@ -295,6 +295,7 @@ const openLink = (url: string): void => {
 /* Ensure text has proper contrast */
 .text {
   color: var(--text-secondary);
+  line-height: 20px;
 }
 
 /* Loading state styles */

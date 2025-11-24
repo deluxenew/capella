@@ -34,7 +34,7 @@
     </div>
 
     <!-- Description -->
-    <div class="text text-gray-500 mt-3 pb-2 leading-6">
+    <div class="text text-gray-500 mt-3 pr-2 pb-2 leading-5">
       {{ assetDescription }}
     </div>
   </AppCard>

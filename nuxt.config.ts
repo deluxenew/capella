@@ -10,14 +10,24 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     '@nuxtjs/device',
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    '@nuxtjs/color-mode'
   ],
+  colorMode: {
+    preference: 'system', // default value of $colorMode.preference
+    fallback: 'light', // fallback value if not system preference found
+    globalName: '__NUXT_COLOR_MODE__',
+    componentName: 'ColorScheme',
+    classPrefix: '',
+    classSuffix: '',
+    storage: 'localStorage', // or 'sessionStorage' or 'cookie'
+    storageKey: 'nuxt-color-mode'
+  },
   css: [
     '~/assets/css/fonts.css'
   ],
   app: {
     baseURL: '/capella/', // Замените на имя вашего репозитория
-    buildAssetsDir: 'assets'
   },
   auth: {
     // Включаем глобальный middleware для обработки аутентификации
@@ -132,6 +142,7 @@ export default defineNuxtConfig({
     '~/plugins/currency-input.client.ts',
     '~/plugins/currency.global.ts',
     '~/plugins/system.client.ts',
+    '~/plugins/wallet.client.ts',
   ],
 
   build: {

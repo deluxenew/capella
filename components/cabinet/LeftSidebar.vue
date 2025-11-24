@@ -150,20 +150,20 @@
             class="switch-toggle relative bg-secondary rounded-[25px] flex relative text-md min-h-[50px] mx-auto my-0 transition-all duration-300"
             :class="[
               isMobile ? 'w-full justify-around' : 'w-85 justify-between',
-              { 'isLight': colorMode === 'light' }
+              { 'isLight': colorMode.preference === 'light' }
             ]"
           >
             <div
               class="background absolute top-1 h-[42px] bg-bg pointer-events-none rounded-[25px] transition-all duration-300 z-0"
               :class="[
-                colorMode === 'light' ? 'left-1 w-[calc(50%-8px)]' : 'left-[calc(100%-50%+4px)] w-[calc(50%-8px)]'
+                colorMode.preference === 'light' ? 'left-1 w-[calc(50%-8px)]' : 'left-[calc(100%-50%+4px)] w-[calc(50%-8px)]'
               ]"
             />
 
             <UiButton
-              class="light flex items-center py-2 px-3 z-10 capitalize transition-colors duration-300"
+              class="light flex items-center py-2 px-3 z-10 capitalize transition-colors duration-300 !rounded-[25px]"
               :class="[
-                colorMode === 'light' ? 'text-color' : 'text-gray',
+                colorMode.preference === 'light' ? 'text-color' : 'text-gray',
                 isMobile ? 'w-1/2' : 'w-[calc(50%-8px)]'
               ]"
               theme="transparent"
@@ -171,15 +171,15 @@
             >
               <UiSvgImage
                 svg="light"
-                :class="colorMode === 'light' ? '[&>path]:fill-color' : '[&>path]:fill-gray'"
+                :class="colorMode.preference === 'light' ? '[&>path]:fill-color' : '[&>path]:fill-gray'"
               />
               <span class="ml-3">{{ t('LeftSidebar.light') }}</span>
             </UiButton>
 
             <UiButton
-              class="dark flex items-center py-2 px-3 z-10 capitalize transition-colors duration-300"
+              class="dark flex items-center py-2 px-3 z-10 capitalize transition-colors duration-300 !rounded-[25px]"
               :class="[
-                colorMode === 'dark' ? 'text-color' : 'text-gray',
+                colorMode.preference === 'dark' ? 'text-color' : 'text-gray',
                 isMobile ? 'w-1/2' : 'w-[calc(50%-8px)]'
               ]"
               theme="transparent"
@@ -187,7 +187,7 @@
             >
               <UiSvgImage
                 svg="dark"
-                :class="colorMode === 'dark' ? '[&>path]:fill-color' : '[&>path]:fill-gray'"
+                :class="colorMode.preference === 'dark' ? '[&>path]:fill-color' : '[&>path]:fill-gray'"
               />
               <span class="ml-3">{{ t('LeftSidebar.dark') }}</span>
             </UiButton>
@@ -379,7 +379,7 @@ const inSubPage = (item: NavigationItem): boolean => {
 }
 
 const setColorMode = (mode: 'light' | 'dark') => {
-  colorMode.value = mode
+  colorMode.preference = mode
 }
 </script>
 
