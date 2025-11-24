@@ -1,6 +1,6 @@
 <template>
   <client-only>
-    <img
+    <nuxt-img
       :src="`/icons/${svg}.svg`"
       :alt="svg"
       class="svg-image"

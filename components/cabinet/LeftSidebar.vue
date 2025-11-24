@@ -171,7 +171,6 @@
             >
               <UiSvgImage
                 svg="light"
-                :class="colorMode.preference === 'light' ? '[&>path]:fill-color' : '[&>path]:fill-gray'"
               />
               <span class="ml-3">{{ t('LeftSidebar.light') }}</span>
             </UiButton>
@@ -187,7 +186,6 @@
             >
               <UiSvgImage
                 svg="dark"
-                :class="colorMode.preference === 'dark' ? '[&>path]:fill-color' : '[&>path]:fill-gray'"
               />
               <span class="ml-3">{{ t('LeftSidebar.dark') }}</span>
             </UiButton>
@@ -384,6 +382,9 @@ const setColorMode = (mode: 'light' | 'dark') => {
 </script>
 
 <style scoped>
+.dark {
+  color: #ffffff !important;
+}
 .nav-item {
   position: relative;
   padding: 10px;

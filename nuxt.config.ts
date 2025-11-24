@@ -11,7 +11,8 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxtjs/device',
     '@nuxtjs/i18n',
-    '@nuxtjs/color-mode'
+    '@nuxtjs/color-mode',
+    '@nuxt/image'
   ],
   colorMode: {
     preference: 'system', // default value of $colorMode.preference
