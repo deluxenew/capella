@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     '~/assets/css/fonts.css'
   ],
   app: {
-    baseURL: '/capella/', // Замените на имя вашего репозитория
+    baseURL: '/capella/',
   },
   auth: {
     // Включаем глобальный middleware для обработки аутентификации
@@ -45,7 +45,7 @@ export default defineNuxtConfig({
         sameSiteAttribute: 'lax',
         cookieDomain: 'app.liquidnow.me',
         cookieName: 'auth._token_short.local',
-        type: 'Bearer', // ← именно так
+        type: 'Bearer',
         secureCookieAttribute: false,
         httpOnlyCookieAttribute: false,
       },
