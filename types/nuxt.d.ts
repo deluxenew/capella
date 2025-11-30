@@ -1,4 +1,4 @@
-import type {AuthPlugin} from "~/plugins/auth";
+import type {AuthPlugin} from "~/plugins/3.auth";
 import type {Api} from "~/types/api";
 interface EthereumProvider {
   request: (args: { method: string }) => Promise<string[]>

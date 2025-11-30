@@ -135,7 +135,7 @@ onUpdated(() => {
 
 .hint_content {
   @apply whitespace-nowrap bg-white text-lg p-1 px-2 text-dark rounded flex flex-col;
-  transform: translate(-8px, -95px);
+  transform: translate(-9px, -91px);
   @apply transition-all duration-300 ease-in-out z-10 absolute;
 }
 

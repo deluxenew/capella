@@ -93,7 +93,7 @@
           v-for="platform in sharingPlatforms"
           :key="platform.name"
           :class="[
-            'w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-lg',
+            'w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-light-blue',
             platform.bgColor
           ]"
           :title="platform.title"
@@ -111,7 +111,7 @@
 
         <!-- Copy Link Button -->
         <button
-          class="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-gray-500 to-gray-600 transition-all duration-300 hover:scale-105 hover:shadow-lg"
+          class="w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br from-gray-500 to-gray-600 transition-all duration-300 hover:scale-105 hover:light-blue"
           :title="t('copy_link') || 'Copy Link'"
           @click="handleCopy"
         >

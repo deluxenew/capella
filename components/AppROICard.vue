@@ -1,6 +1,6 @@
 <template>
   <AppCard class="AppROICard p-3">
-    <h2 class="text-2xl font-bold text-color mb-2">
+    <h2 class="text-2xl text-color mb-2">
       {{ t('roi_estimation') }}
     </h2>
 

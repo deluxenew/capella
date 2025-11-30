@@ -11,6 +11,6 @@ const systemStore = useSystemStore()
 
 onMounted(async () => {
   // Дополнительная инициализация если нужно
-  await systemStore.initialize()
+  // await systemStore.initialize()
 })
 </script>

@@ -270,7 +270,8 @@ onMounted(() => {
 
 <style scoped>
 .UiChart {
-  @apply relative max-h-full h-full pointer-events-auto overflow-visible;
+  height: 100px;
+  @apply relative max-h-full pointer-events-auto overflow-visible;
 }
 
 .UiChart__gradient-area {

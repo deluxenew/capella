@@ -32,72 +32,67 @@ export default defineNuxtConfig({
   },
   auth: {
     // Включаем глобальный middleware для обработки аутентификации
-    enableGlobalAppMiddleware: true,
+    // enableGlobalAppMiddleware: true,
     baseURL: process.env.API_BASE_URL,
     provider: {
       type: 'local',
-
-      // Настройки токена
+      refresh: {
+        isEnabled: true,
+        endpoint: { path: '/api/v1/refresh', method: 'post' },
+        refreshOnlyToken: true,
+        token: {
+          // signInResponseRefreshTokenPointer: '/refresh', // Проверьте, что в ответе на signIn поле refresh
+          refreshResponseTokenPointer: '/refreshToken', // Проверьте, что в ответе на refresh поле refreshToken
+          // refreshRequestTokenPointer: 'refreshToken', // Проверьте, как refresh токен отправляется в запросе
+          cookieName: 'auth._refresh_token.local',
+          maxAgeInSeconds: 1800,
+          sameSiteAttribute: 'lax',
+          secureCookieAttribute: false, // Установите в true, если используете HTTPS!
+          cookieDomain: 'app.liquidnow.me', // УБЕРИТЕ ЭТУ СТРОКУ или измените на текущий домен фронтенда!
+          httpOnlyCookieAttribute: false, // Установите в true для большей безопасности, если не нужно читать из JS
+        }
+      },
       token: {
-        signInResponseTokenPointer: '/token',
+        signInResponseTokenPointer: '/token', // Проверьте, что в ответе на signIn поле token
         maxAgeInSeconds: 1800, // 30 минут
         headerName: 'Authorization',
         sameSiteAttribute: 'lax',
-        cookieDomain: 'app.liquidnow.me',
-        cookieName: 'auth._token_short.local',
-        type: 'Bearer',
-        secureCookieAttribute: false,
-        httpOnlyCookieAttribute: false,
+        cookieDomain: 'app.liquidnow.me', // УБЕРИТЕ ЭТУ СТРОКУ или измените на текущий домен фронтенда!
+        cookieName: 'auth._token.local',
+        // type: 'Bearer',
+        prefix: '',
+        secureCookieAttribute: false, // Установите в true, если используете HTTPS!
+        httpOnlyCookieAttribute: false, // Установите в true для большей безопасности, если не нужно читать из JS
       },
-
-      // Настройки refresh токена
       refreshToken: {
-        signInResponseRefreshTokenPointer: '/refreshToken',
+        signInResponseRefreshTokenPointer: '/refreshToken', // Проверьте, что в ответе на signIn поле refreshToken
         maxAgeInSeconds: 60 * 60 * 24 * 30 // 30 дней
       },
-
-      // Настройки пользователя
       user: {
-        signInResponseUserPointer: false // Загружаем отдельно через getSession
+        signInResponseUserPointer: false // Оставляем как есть, если используете getSession
+        // Или укажите путь к пользователю в ответе signIn, например '/user'
       },
-
-      // Эндпоинты
       endpoints: {
         signIn: { path: '/api/v1/login-v2', method: 'post' },
         signOut: { path: '/api/v1/logout', method: 'post' },
         refresh: { path: '/api/v1/refresh', method: 'post' },
-        getSession: { path: '/api/v1/profile', method: 'get' }
+        getSession: { path: '/api/v1/profile', method: 'get' } // Убедитесь, что этот эндпоинт требует токен
       },
-
-      // Дополнительные настройки для refresh токена
-      addDefaultCallbackUrl: true,
-      refreshTokenCookieName: 'auth._refresh_token.local',
+      // addDefaultCallbackUrl: true, // Уберите, если дублируется
     },
-
-    // Настройки обновления сессии
     session: {
-      // Время жизни сессии
       maxAge: 1800,
-      // Обновлять токен перед истечением
-      updateAge: 300, // 5 минут до истечения
+      updateAge: 300,
     },
-
-    // Настройки refresh сессии
     sessionRefresh: {
-      enableOnWindowFocus: true,
-      // Интервал периодического обновления (в ms)
-      // Обновлять при фокусе окна
+      // enableOnWindowFocus: true,
+      // enablePeriodically: 60000 // Опционально: обновлять каждую минуту
     },
-
-    // Кастомизация глобального middleware
     globalAppMiddleware: {
-      // Отключаем автоматический редирект на логин
-      // isEnabled: true,
-      // // Кастомное поведение при 401
-      // allow404WithoutAuth: true,
-      // // Добавляем свою логику обработки ошибок
-      // addDefaultCallbackUrl: false,
+      // isEnabled: true, // Используем новый стиль
+      // allow404WithoutAuth: true, // Опционально
     },
+    // Удаляем refreshTokenCookieName, если уже задан в refresh.token.cookieName
   },
 
   i18n: {
@@ -154,7 +149,6 @@ export default defineNuxtConfig({
     autoImport: true,
     dirs: ['stores', 'types/**/*.ts']
   },
-
   runtimeConfig: {
     public: {
       baseURL: process.env.API_DEV_URL || 'https://app.liquidnow.me',

@@ -16,19 +16,6 @@ export interface AuthPlugin {
 }
 
 export default defineNuxtPlugin((nuxtApp) => {
-  const auth: AuthPlugin = {
-    loggedIn: false,
-    user: null,
-    async setUser(user: User) {
-      this.user = user
-      this.loggedIn = true
-    },
-    logout() {
-      this.user = null
-      this.loggedIn = false
-    }
-  }
-
   // nuxtApp.provide('auth', auth)
 })
 

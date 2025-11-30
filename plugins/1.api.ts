@@ -23,7 +23,7 @@ export default defineNuxtPlugin(async () => {
     const headers: HeadersInit = {}
 
     if (authStore.token) {
-      headers.Authorization = `${authStore.token}`
+      headers.Authorization = 'Bearer ' + `${authStore.token}`
     }
 
     return headers

@@ -1,9 +1,5 @@
 <template>
   <div class="refferal">
-    <div class="page-title text-2xl font-bold text-color mb-2">
-      {{ t('LeftSidebar.refferal') }}
-    </div>
-
     <div class="px-2 mt-2">
       <Earned />
     </div>

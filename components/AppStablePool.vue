@@ -3,10 +3,10 @@
     <div class="left relative flex flex-col lg:flex-row lg:flex-wrap w-full">
       <!-- Header Text -->
       <div class="header-text px-2 pt-2 lg:order-1 lg:mb-3">
-        <div class="name text-lg font-semibold text-color">
+        <div class="name text-lg text-color">
           {{ title }}
         </div>
-        <div class="price text-3xl font-bold text-color mt-2">
+        <div class="price text-3xl text-color mt-2">
           {{ currentIndex }} $
         </div>
         <div class="graph-data mt-2 flex items-center text-green-600 text-sm">

@@ -71,7 +71,7 @@ const baseClasses = 'inline-flex justify-center items-center transition-all dura
 
 const themeClasses = computed(() => {
   const classes = {
-    primary: 'bg-blue text-white hover:bg-blue-darken focus:ring-blue shadow-lg hover:shadow-blue disabled:bg-gray-lighten disabled:text-gray disabled:cursor-not-allowed',
+    primary: 'bg-blue text-white hover:bg-blue-darken focus:ring-blue hover:shadow-light-blue disabled:bg-gray-lighten disabled:text-gray disabled:cursor-not-allowed',
     dark: 'bg-dark text-gray hover:text-blue hover:bg-blue/20 focus:ring-blue disabled:transparent disabled:text-gray-semi-lighten',
     outline: 'bg-transparent border border-border-color text-color hover:border-gray focus:ring-gray disabled:border-gray-lighten disabled:text-gray',
     transparent: 'bg-transparent text-color hover:bg-white/10 focus:ring-blue disabled:text-gray',

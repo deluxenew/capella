@@ -1,8 +1,5 @@
 <template>
   <div class="pools">
-    <div class="page-title text-2xl font-bold text-color">
-      {{ t(`${poolName}_pool`) }}
-    </div>
 
     <div class="px-2">
       <AppStablePool

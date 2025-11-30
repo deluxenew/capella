@@ -5,7 +5,7 @@
       <h2 class="section-title text-2xl font-bold text-color">
         {{ t('how_it_works') }}
       </h2>
-      <div class="total-members-card bg-secondary px-3 py-2 rounded-lg border border-border text-center">
+      <div class="total-members-card bg-secondary px-4 py-4 rounded-lg border border-border text-center">
         <p class="members-label text-sm text-gray uppercase tracking-wider mb-1">
           {{ t('total_members') }}
         </p>
@@ -54,7 +54,7 @@
         </div>
         <div class="flow-node flex flex-col items-center text-center relative z-2">
           <div
-            class="node-avatar level-avatar w-15 h-15 rounded-full flex items-center justify-center mb-4 border-3 bg-secondary"
+            class="node-avatar level-avatar w-15 border-4 h-15 rounded-full flex items-center justify-center mb-4 border-3 bg-secondary"
             :class="`border-${getLevelColor(index + 1)}`"
           >
             <span class="level-number text-lg font-bold text-gray">
@@ -126,18 +126,19 @@ const user = ref<UserData | null>(null)
 const levels = ref<Level[]>([])
 
 // Data fetching
-const { data: referralsData, pending } = await useAsyncData(
+const { data: referralsData, pending } = await useLazyAsyncData(
   'referral-how-it-works',
   async () => {
     try {
       const [refRes, lvlRes] = await Promise.all([
-        $api.user.referrals() as Promise<ReferralsResponse>,
-        $api.user.levels() as Promise<{ data: LevelsResponse }>,
+        $api.user.referrals() as Promise<UserData>,
+        $api.user.levels() as Promise<LevelsResponse>,
       ])
 
+      console.log(refRes)
       return {
-        user: refRes.data,
-        levels: lvlRes.data
+        user: refRes,
+        levels: lvlRes
       }
     } catch (error) {
       console.error('Error fetching referral data:', error)
@@ -148,7 +149,6 @@ const { data: referralsData, pending } = await useAsyncData(
 
 // Update reactive data when fetch completes
 watch(referralsData, (newData) => {
-  console.log(newData)
   if (newData) {
     user.value = newData.user
     const counts = newData.levels?.counts || []
@@ -158,7 +158,7 @@ watch(referralsData, (newData) => {
       count: counts?.[i] || 0
     }))
   }
-}, { immediate: true })
+})
 
 // Computed
 const baseProgress = computed((): string => {

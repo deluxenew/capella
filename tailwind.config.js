@@ -11,6 +11,11 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
+    fontWeight: {
+      'bold': '500',
+      'semibold': '600',
+      'medium': '500',
+    },
     spacing: {
       0: '0',
       1: '4px',
@@ -61,6 +66,9 @@ module.exports = {
           lighten: '#e2e2e2',
           'semi-lighten': '#c4c4c4',
         },
+        'light-blue': {
+          DEFAULT: 'rgba(66, 118, 246, .4)'
+        },
         blue: {
           DEFAULT: '#4276f6',
           darken: '#3c67d0',
@@ -109,7 +117,7 @@ module.exports = {
         'border': 'var(--border-color)',
       },
       boxShadow: {
-        'blue': '0px 9px 24px rgba(66, 118, 246, 0.4)',
+        'light-blue': '0px 12px 16px rgba(66, 118, 246, 0.4)',
       },
       animation: {
         'bounce-loader': 'bounce-loader 1.2s ease-in-out infinite',
