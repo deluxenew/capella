@@ -36,7 +36,7 @@ definePageMeta({
 interface LoginParams {
   login?: string
   password?: string
-  address?: string
+  metaMaskAddress?: string
   source?: string
   invite?: string
 }
@@ -78,7 +78,7 @@ const login = async (params: LoginParams): Promise<void> => {
     loadingLogin.value = true
     // TODO: Добавьте вашу логику входа здесь
     // Например:
-    // await $api.auth.login(params)
+    await useAuth().signIn(params)
     console.log('Login attempt with:', params)
 
     // Временный редирект для демонстрации
@@ -148,7 +148,7 @@ const loginByEmail = async (): Promise<void> => {
   await login({
     login: email.value,
     password: password.value,
-    address: address.value || undefined,
+    metaMaskAddress: address.value || undefined,
     source: '',
     invite: invite.value,
   })
@@ -175,6 +175,12 @@ const metamaskStore = useMetamaskStore()
 const connect = async () => {
   try {
     await $web3Parser.connect()
+    await login({
+      invite: invite.value,
+      metaMaskAddress: address.value,
+      source: '', // Add your UTM source logic here
+    })
+    await router.replace('/cabinet/dashboard')
   } catch (error) {
     console.error('Connection failed:', error)
   }

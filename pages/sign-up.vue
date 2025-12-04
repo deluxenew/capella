@@ -39,6 +39,7 @@
 
 <script setup lang="ts">
 import { useMetamaskStore } from "~/stores/metamask";
+import {useAuthStore} from "#imports";
 
 definePageMeta({
   layout: 'auth'
@@ -126,7 +127,7 @@ const connect = async (): Promise<void> => {
   try {
     await $web3Parser.connect();
 
-    if ($auth.loggedIn && isMetamaskConnected.value) {
+    if (useAuthStore().loggedIn && isMetamaskConnected.value) {
       await router.replace('/cabinet/dashboard');
     } else if (isMetamaskConnected.value) {
       await register({

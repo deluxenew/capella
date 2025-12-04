@@ -1,5 +1,6 @@
 import type {AuthPlugin} from "~/plugins/3.auth";
 import type {Api} from "~/types/api";
+import type {UtmPlugin} from "~/plugins/utm.client";
 interface EthereumProvider {
   request: (args: { method: string }) => Promise<string[]>
   on?: (event: string, callback: (...args: any[]) => void) => void
@@ -14,6 +15,7 @@ declare module '#app' {
       hostToTitle: (host: string) => string
       replaceHostToTitle: (host: string, text: string) => string
     }
+    $utm: UtmPlugin
     $store: {
       state: {
         metamask: {
@@ -53,9 +55,6 @@ declare module '#app' {
       replace: (path: string) => void
       push: (path: string) => void
     }
-    $utm: {
-      getUtm: () => string
-    }
   }
 }
 
@@ -72,7 +71,7 @@ declare module '@vue/runtime-core' {
       open: (name: string) => void
       close: (name: string) => void }
     $router: NuxtApp['$router']
-    $utm: NuxtApp['$utm']
+    $utm: UtmPlugin
     $utils: NuxtApp['$utils']
   }
 }
@@ -80,6 +79,7 @@ declare module '@vue/runtime-core' {
 declare module '#app' {
   interface NuxtApp {
     $api: Api
+    $utm: UtmPlugin
   }
 }
 
@@ -91,6 +91,7 @@ declare module '~/node_modules/nuxt/dist/app/nuxt' {
       isEdge: boolean
       isMobile: boolean
     }
+    $utm: UtmPlugin
   }
 }
 

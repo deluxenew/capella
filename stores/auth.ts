@@ -3,13 +3,15 @@ import { defineStore } from 'pinia'
 export const useAuthStore = defineStore('auth', {
   state: () => ({
     token: useCookie('auth._token.local').value,
+    refreshToken: useCookie('auth._refresh_token.local').value,
     user: null as any | null,
     loggedIn: false
   }),
 
   actions: {
-    setToken(token: string) {
+    setToken(token: string, refreshToken: string) {
       this.token = token
+      this.refreshToken = refreshToken
       this.loggedIn = true
 
       // Сохраняем в localStorage для persistence
