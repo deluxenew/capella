@@ -8,9 +8,10 @@ export interface NetworkAddresses {
   SOL?: string;
   BUSD?: string;
   WAVES?: string;
+  ETH?: string;
 }
 
-export type Currency = 'USDT' | 'USDC' | 'MATIC' | 'BNB' | 'FTM' | 'SOL' | 'BUSD' | 'WAVES';
+export type Currency = 'USDT' | 'USDC' | 'MATIC' | 'BNB' | 'FTM' | 'SOL' | 'BUSD' | 'WAVES' | 'ETH';
 export type Network = 1 | 137 | 56 | 250;
 
 // constants.ts
@@ -121,7 +122,7 @@ class ContractService {
     return str.replace(/[c|C]apella[\.|\s][f|F]inance/gm, title);
   }
 
-  static contactAddress(currency: Currency, network: Network): string {
+  public contactAddress(currency: Currency, network: Network): string {
     const addresses = addressByNetwork(network);
     const address = addresses[currency];
 
@@ -132,11 +133,11 @@ class ContractService {
     return address;
   }
 
-  static get availableCurrencies(): Currency[] {
+  public get availableCurrencies(): Currency[] {
     return availableCurrencies;
   }
 
-  static async contractFactory(currency: Currency, web3: Web3Contract): Promise<any> {
+  public async contractFactory(currency: Currency, web3: Web3Contract): Promise<any> {
     const network: Network = await web3.eth.net.getId();
     return new web3.eth.Contract(
       ERC20ABI,

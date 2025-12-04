@@ -21,7 +21,7 @@
     </label>
 
     <div
-      class="UiInput_inputField relative z-2 bg-secondary text-base w-full border border-border rounded mt-1.75 flex items-center transition-colors duration-200"
+      class="UiInput_inputField relative z-2 bg-secondary text-base w-full border border-border rounded mt-2 flex items-center transition-colors duration-200"
       :style="{ height }"
       :class="{
         'border-green': isValid && isDirty,
@@ -37,7 +37,7 @@
           :type="type"
           :min="min"
           :max="max"
-          class="h-full w-full text-inherit bg-transparent px-2 py-1 outline-none"
+          class="h-full w-full text-inherit bg-transparent px-5 py-3 outline-none"
           v-bind="filteredAttrs"
           @input="onInput"
           @focus="onFocus"

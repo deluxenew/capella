@@ -35,7 +35,7 @@
 <style>
 .AuthLayout .sign-in,
 .AuthLayout .sign-up {
-  @apply w-85;
+  @apply w-full;
 }
 
 .AuthLayout .sign-in .main-block,
@@ -46,7 +46,7 @@
 /* Используем стандартные классы вместо w-85 */
 .AuthLayout .sign-in .content,
 .AuthLayout .sign-up .content {
-  @apply mt-7 w-full max-w-sm mx-auto;
+  @apply mt-14 w-full max-w-[calc(100%_-_20px)] ;
 }
 
 /* Используем CSS variables напрямую для кастомных цветов */
@@ -54,7 +54,7 @@
 .AuthLayout .sign-up .custom-wrapper {
   background-color: var(--bg-secondary);
   border-color: var(--border-color);
-  @apply rounded-lg p-2 mb-4 mt-2 border-0;
+  @apply rounded-lg p-5 mb-4 mt-4 border-0;
 }
 
 .AuthLayout .sign-in .custom-wrapper .title,
@@ -67,7 +67,7 @@
 .AuthLayout .sign-up .main-title {
   font-family: 'TT Commons', sans-serif;
   color: var(--color);
-  @apply font-normal text-3xl text-center;
+  @apply text-3xl text-center;
 }
 
 .AuthLayout .sign-in .custom-wrapper.form,
@@ -130,7 +130,7 @@
 
   .AuthLayout .sign-in .main-block .content,
   .AuthLayout .sign-up .main-block .content {
-    @apply w-full mt-3 pb-0;
+    @apply w-full mt-7 pb-0;
   }
 
   .AuthLayout .sign-in .main-block .content .main-title,

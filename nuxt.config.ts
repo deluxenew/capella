@@ -28,7 +28,7 @@ export default defineNuxtConfig({
     '~/assets/css/fonts.css'
   ],
   app: {
-    baseURL: '/capella/',
+    baseURL: '/',
   },
   auth: {
     // Включаем глобальный middleware для обработки аутентификации

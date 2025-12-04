@@ -13,6 +13,7 @@
             :loading="!loadingLogin && loadingMetamask"
             :disabled="loadingMetamask || loadingLogin"
             class="wallet-btn box-shadow"
+            size="xs"
             @click="connect"
           >
             {{ t('connect_wallet') }}
@@ -25,7 +26,6 @@
 </template>
 
 <script setup lang="ts">
-
 import {useMetamaskStore} from "~/stores/metamask";
 
 definePageMeta({
@@ -96,44 +96,44 @@ const login = async (params: LoginParams): Promise<void> => {
   }
 }
 
-const connect = async (): Promise<void> => {
-  loadingMetamask.value = true
-  if (!window.ethereum) {
-    if ($device.isIos || $device.isAndroid || $device.isEdge || $device.isMobile) {
-      $modal.open('openMetamaskBrowser')
-    } else {
-      $notify({
-        title: 'Error',
-        type: 'error',
-        text: 'Need install metamask extension or open page in metamask browser',
-      })
-    }
-    loadingMetamask.value = false
-    return
-  }
-
-  loadingMetamask.value = false
-  await router.replace('/cabinet/dashboard')
-  if (isMetamaskConnected.value) {
-
-  } else if (isMetamaskConnected.value) {
-    await login({
-      invite: invite.value,
-      address: address.value,
-      source: '', // Add your UTM source logic here
-    })
-  } else {
-    // Emit event for metamask connection and login
-    // TODO: Добавьте логику подключения MetaMask
-    console.log('Need to connect MetaMask first')
-    // $notify({
-    //   title: 'Info',
-    //   type: 'info',
-    //   text: 'Please connect your MetaMask wallet first',
-    // })
-    loadingMetamask.value = false
-  }
-}
+// const connect = async (): Promise<void> => {
+//   loadingMetamask.value = true
+//   if (!window.ethereum) {
+//     if ($device.isIos || $device.isAndroid || $device.isEdge || $device.isMobile) {
+//       $modal.open('openMetamaskBrowser')
+//     } else {
+//       $notify({
+//         title: 'Error',
+//         type: 'error',
+//         text: 'Need install metamask extension or open page in metamask browser',
+//       })
+//     }
+//     loadingMetamask.value = false
+//     return
+//   }
+//
+//   loadingMetamask.value = false
+//   await router.replace('/cabinet/dashboard')
+//   if (isMetamaskConnected.value) {
+//
+//   } else if (isMetamaskConnected.value) {
+//     await login({
+//       invite: invite.value,
+//       address: address.value,
+//       source: '', // Add your UTM source logic here
+//     })
+//   } else {
+//     // Emit event for metamask connection and login
+//     // TODO: Добавьте логику подключения MetaMask
+//     console.log('Need to connect MetaMask first')
+//     // $notify({
+//     //   title: 'Info',
+//     //   type: 'info',
+//     //   text: 'Please connect your MetaMask wallet first',
+//     // })
+//     loadingMetamask.value = false
+//   }
+// }
 
 const loginByEmail = async (): Promise<void> => {
   if (!email.value || !password.value) {
@@ -168,6 +168,21 @@ onMounted(() => {
   }
 })
 
+
+const { $web3Parser } = useNuxtApp()
+const metamaskStore = useMetamaskStore()
+
+const connect = async () => {
+  try {
+    await $web3Parser.connect()
+  } catch (error) {
+    console.error('Connection failed:', error)
+  }
+}
+
+// const disconnect = () => {
+//   $web3Parser.disconnect()
+// }
 // Head
 useHead({
   title: 'Sign In'
@@ -192,11 +207,7 @@ useHead({
 }
 
 .to-auth {
-  @apply text-2xl font-semibold;
-}
-
-.custom-wrapper.wallet-connect {
-
+  @apply text-2xl font-medium;
 }
 
 .title {
