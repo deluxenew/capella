@@ -238,7 +238,6 @@
 import { usdConfig } from '~/composables/useCurrency'
 
 import {type PoolName, usePoolsStore, type Coin } from "~/stores/pools";
-import {useUserStore} from "~/stores/user";
 import {useMetamaskStore} from "~/stores/metamask";
 
 interface Props {
@@ -271,7 +270,7 @@ const showInfoPool = ref(false)
 const { $api, $auth, $filters, $notify } = useNuxtApp()
 const store = usePoolsStore()
 const metamaskStore = useMetamaskStore()
-const userStore = useUserStore()
+const userStore = useAuthStore()
 const route = useRoute()
 
 // Data fetching

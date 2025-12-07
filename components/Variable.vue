@@ -7,6 +7,7 @@ interface Props {
   // Динамические пропсы - можно конкретизировать если известны ожидаемые пропсы
  'item-in-sub-page'?: boolean
   [key: string]: any
+  active?: boolean
 
 }
 

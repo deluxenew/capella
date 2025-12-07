@@ -146,7 +146,7 @@
 import type { SharingPlatform, ReferralData } from '~/types/referral'
 const {$api} = useNuxtApp()
 const { t } = useI18n()
-const auth = useUserStore()
+const auth = useAuthStore()
 
 // Reactive state
 const copySuccess = ref<boolean>(false)

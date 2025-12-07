@@ -16,7 +16,7 @@ export const useAuthStore = defineStore('auth', {
 
       // Сохраняем в localStorage для persistence
       if (process.client) {
-        localStorage.setItem('auth_token', token)
+        localStorage.setItem('auth._token.local', token)
       }
     },
 
@@ -34,7 +34,7 @@ export const useAuthStore = defineStore('auth', {
       this.loggedIn = false
 
       if (process.client) {
-        localStorage.removeItem('auth_token')
+        localStorage.removeItem('auth._token.local')
         localStorage.removeItem('auth_user')
       }
     },
@@ -42,7 +42,7 @@ export const useAuthStore = defineStore('auth', {
     initialize() {
       // Восстанавливаем состояние из localStorage
       if (process.client) {
-        const token = localStorage.getItem('auth_token')
+        const token = localStorage.getItem('auth._token.local')
         const user = localStorage.getItem('auth_user')
 
         if (token) {

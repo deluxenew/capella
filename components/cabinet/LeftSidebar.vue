@@ -22,7 +22,7 @@
             <NuxtLink
               v-if="expandSidebar"
               to="/cabinet/dashboard"
-              class="logo ml-3 text-color font-semibold text-xl"
+              class="logo ml-3 text-color font-semibold text-xl whitespace-nowrap"
             >
               {{ wlTitle }}
             </NuxtLink>
@@ -212,7 +212,6 @@
 
 <script setup lang="ts">
 // Types
-import {navigateTo} from "#imports";
 
 interface NavigationItem {
   text: string

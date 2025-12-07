@@ -27,6 +27,8 @@
 
 <script setup lang="ts">
 import {useMetamaskStore} from "~/stores/metamask";
+import type {SessionData} from "#auth";
+import {useAuthStore} from "#imports";
 
 definePageMeta({
   layout: 'auth'
@@ -78,11 +80,15 @@ const login = async (params: LoginParams): Promise<void> => {
     loadingLogin.value = true
     // TODO: Добавьте вашу логику входа здесь
     // Например:
-    await useAuth().signIn(params)
+    await useAuth().signIn(params, {callbackUrl: '/'})
+    const user:SessionData | null | void = await useAuth().getSession()
+    if (user) useAuthStore().setUser(user)
     console.log('Login attempt with:', params)
 
     // Временный редирект для демонстрации
-    await router.replace('/cabinet/dashboard')
+    await navigateTo({
+      path: '/cabinet/dashboard'
+    })
   } catch (error) {
     console.error('Login error:', error)
     $notify({
@@ -180,7 +186,7 @@ const connect = async () => {
       metaMaskAddress: address.value,
       source: '', // Add your UTM source logic here
     })
-    await router.replace('/cabinet/dashboard')
+    // await router.replace('/cabinet/dashboard')
   } catch (error) {
     console.error('Connection failed:', error)
   }

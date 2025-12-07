@@ -2,10 +2,8 @@
   <div class="sign-up">
     <div class="main-block">
       <div class="content">
-        <h2 class="main-title">
-          <h3 class="to-registration" theme="transparent">
+        <h2 class="main-title to-registration">
             {{ t('AuthHeader.sign_up') }}
-          </h3>
         </h2>
         <form
           class="custom-wrapper form sign-up-form"

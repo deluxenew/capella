@@ -121,8 +121,9 @@
 // Types
 import MetamaskHolder from "~/components/MetamaskHolder.vue";
 import LeftSidebar from "~/components/cabinet/LeftSidebar.vue";
+import {useAuthStore} from "#imports";
 interface MetamaskData {
-  address: string
+  metaMaskAddress: string
 }
 
 // Composables
@@ -140,7 +141,7 @@ const metamask = ref(null)
 
 // Store (замените на вашу реализацию store)
 const store = useMetamaskStore() // Убедитесь что этот store существует
-const userStore = useUserStore()
+const userStore = useAuthStore()
 // Computed properties
 const addresses = computed(() => {
   return store?.address || null
@@ -177,12 +178,14 @@ watch(currentBalance, () => {
 })
 
 // Methods
-const onComplete = async ({ address }: MetamaskData) => {
+const onComplete = async (data: MetamaskData) => {
+  console.log(data)
+  const metaMaskAddress = data.metaMaskAddress
   if (!user.value?.address) {
     try {
       await $api.user.connectMM({
         id: user.value?.id || '',
-        address
+        metaMaskAddress
       })
       // Используем composable для уведомлений вместо $notify
       const { success } = useToast()
@@ -190,7 +193,7 @@ const onComplete = async ({ address }: MetamaskData) => {
     } catch (error) {
       $auth?.logout?.()
     }
-  } else if (user.value.address !== address) {
+  } else if (user.value.address !== metaMaskAddress) {
     await $auth?.logout?.()
     push('/sign-in')
     setTimeout(() => {

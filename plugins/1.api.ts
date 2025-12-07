@@ -89,11 +89,11 @@ export default defineNuxtPlugin(async () => {
         })
       },
 
-      connectMM({id, address}) {
+      connectMM({id, metaMaskAddress}) {
         return $fetch('/api/v1/connect-mm', {
           method: 'POST',
           baseURL: config.public.apiBase,
-          body: {id, address},
+          body: {id, metaMaskAddress},
           headers: getAuthHeaders()
         })
       },

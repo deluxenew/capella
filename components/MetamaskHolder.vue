@@ -1,15 +1,15 @@
 <template>
   <client-only>
     <vue-metamask
-
       ref="metamask"
       :initConnect="true"
-      @onComplete="onComplete"
+      @complete="onComplete"
     ></vue-metamask>
   </client-only>
 </template>
 
-<script setup >
+<script setup lang="ts">
+// @ts-ignore
 import VueMetamask from "vue-metamask";
 // import { ref, computed, onMounted, onUnmounted } from 'vue'
 // import { useNuxtApp } from '#app'
@@ -23,10 +23,10 @@ import VueMetamask from "vue-metamask";
 // }>()
 //
 // // Emits
-// const emit = defineEmits<{
-//   onComplete: [data: any]
-//   onError: []
-// }>()
+const emit = defineEmits<{
+  onComplete: [data: any]
+  onError: []
+}>()
 //
 // // Refs
 // const metamask = ref()
@@ -50,8 +50,8 @@ import VueMetamask from "vue-metamask";
 //   return !!window.ethereum
 // }
 //
-const onComplete = () => {
-  console.log(123)
+const onComplete = (data: any) => {
+  emit('onComplete', data)
 }
 // const onComplete = async (data: any) => {
 //   console.log(123)

@@ -1,7 +1,5 @@
 <template>
   <div class="dao">
-    <div class="page-title text-2xl font-semibold">{{ t('LeftSidebar.dao') }}</div>
-
     <div class="px-2">
       <DAOPrices class="mt-2" />
     </div>

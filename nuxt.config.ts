@@ -28,14 +28,32 @@ export default defineNuxtConfig({
     '~/assets/css/fonts.css'
   ],
   app: {
-    baseURL: '/',
+    baseURL: '/capella/',
   },
   auth: {
     // Включаем глобальный middleware для обработки аутентификации
     // enableGlobalAppMiddleware: true,
     baseURL: process.env.API_BASE_URL,
+    defaultCallbackUrl: '/cabinet/dashboard',
+
     provider: {
       type: 'local',
+      session: {
+        dataType: {
+          id: 'string',
+          email: 'string',
+          name: 'string',
+          role: 'string',
+          address: 'string',
+          coinBalance: 'any',
+          withdrawRequest: 'any',
+          referralCode: 'any',
+          confirmRegistration: 'boolean',
+          addresses: {
+            registrationFee: {}
+          }
+        },
+      },
       refresh: {
         isEnabled: true,
         endpoint: { path: '/api/v1/refresh', method: 'post' },
@@ -48,7 +66,7 @@ export default defineNuxtConfig({
           maxAgeInSeconds: 1800,
           sameSiteAttribute: 'lax',
           secureCookieAttribute: false, // Установите в true, если используете HTTPS!
-          cookieDomain: 'app.liquidnow.me', // УБЕРИТЕ ЭТУ СТРОКУ или измените на текущий домен фронтенда!
+          // cookieDomain: 'app.liquidnow.me', // УБЕРИТЕ ЭТУ СТРОКУ или измените на текущий домен фронтенда!
           httpOnlyCookieAttribute: false, // Установите в true для большей безопасности, если не нужно читать из JS
         }
       },
@@ -57,10 +75,9 @@ export default defineNuxtConfig({
         maxAgeInSeconds: 1800, // 30 минут
         headerName: 'Authorization',
         sameSiteAttribute: 'lax',
-        cookieDomain: 'app.liquidnow.me', // УБЕРИТЕ ЭТУ СТРОКУ или измените на текущий домен фронтенда!
+        // cookieDomain: 'app.liquidnow.me', // УБЕРИТЕ ЭТУ СТРОКУ или измените на текущий домен фронтенда!
         cookieName: 'auth._token.local',
-        // type: 'Bearer',
-        prefix: '',
+        type: 'Bearer',
         secureCookieAttribute: false, // Установите в true, если используете HTTPS!
         httpOnlyCookieAttribute: false, // Установите в true для большей безопасности, если не нужно читать из JS
       },

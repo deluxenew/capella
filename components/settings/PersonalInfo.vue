@@ -100,7 +100,7 @@ interface FormData {
 const { t } = useI18n()
 const { $api, $auth, $notify } = useNuxtApp()
 const store = useMetamaskStore()
-const userStore = useUserStore()
+const userStore = useAuthStore()
 
 // Refs
 const loading = ref<boolean>(false)

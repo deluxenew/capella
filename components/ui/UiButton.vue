@@ -86,7 +86,7 @@ const sizeClasses = computed(() => {
   const classes = {
     xs: 'px-8 py-3 text-xs font-medium rounded',
     sm: 'px-2 py-1 text-sm font-medium rounded-md',
-    md: 'px-4 py-3 text-xs font-medium',
+    md: 'px-4 py-3 text-xs font-medium rounded-md',
     lg: 'px-3 py-2 text-base font-medium rounded-lg',
     xl: 'px-3 py-2 text-base font-medium rounded-lg',
   }

@@ -1,3 +1,5 @@
+import type {SessionData} from "#auth";
+
 declare module '@/api' {
   interface DashboardAPI {
     deposit(params: { pool: string; amount: number; currency: string }): Promise<any>
@@ -67,12 +69,12 @@ export interface ReferralWithdrawParams {
 export interface UserApi {
   register(credentials: RegisterCredentials): Promise<any>
   logout(): Promise<any>
-  getUser(): Promise< User>
+  getUser(): Promise<SessionData>
   updateUser(user: Partial<User>): Promise<any>
   login(credentials: LoginCredentials): Promise<any>
   sendPasswordRecovery(params: { login: string }): Promise<any>
   sendApproveEmail(params: { login: string }): Promise<any>
-  connectMM(params: { id: string; address: string }): Promise<any>
+  connectMM(params: { id: string; metaMaskAddress: string }): Promise<any>
   confirmLogin(params: { login: string; code: string }): Promise<any>
   changePasswordByCode(params: { login: string; password: string; code: string }): Promise<any>
   getBalance(params: BalanceParams): Promise<any>
