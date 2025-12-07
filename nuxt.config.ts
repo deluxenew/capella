@@ -24,6 +24,9 @@ export default defineNuxtConfig({
     storage: 'localStorage', // or 'sessionStorage' or 'cookie'
     storageKey: 'nuxt-color-mode'
   },
+  image: {
+    provider: 'static', // использовать статический провайдер
+  },
   css: [
     '~/assets/css/fonts.css'
   ],
