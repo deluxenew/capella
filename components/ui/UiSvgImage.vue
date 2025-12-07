@@ -1,7 +1,7 @@
 <template>
   <client-only>
     <img
-      :src="`/icons/${svg}.svg`"
+      :src="`${base}/icons/${svg}.svg`"
       :alt="svg"
       class="svg-image"
     />
@@ -17,4 +17,6 @@ interface Props {
 const props = withDefaults(defineProps<Props>(), {
   directory: 'icons'
 })
+const appConfig = useAppConfig()
+const base = appConfig.app?.baseURL || ''
 </script>
