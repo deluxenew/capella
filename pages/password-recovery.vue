@@ -80,7 +80,7 @@ definePageMeta({
 
 // Composables
 const { t } = useI18n();
-const { $auth, $api, $notify, $router, $route, $store } = useNuxtApp();
+const { $api, $notify, $router, $route, $store } = useNuxtApp();
 const router = useRouter();
 const route = useRoute();
 

@@ -267,7 +267,7 @@ const coin = ref<string>('')
 const showInfoPool = ref(false)
 
 // Composable
-const { $api, $auth, $filters, $notify } = useNuxtApp()
+const { $api, $filters, $notify } = useNuxtApp()
 const store = usePoolsStore()
 const metamaskStore = useMetamaskStore()
 const userStore = useAuthStore()

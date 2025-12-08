@@ -336,7 +336,6 @@ const isMobile = computed(() => {
 })
 
 const userName = computed(() => {
-  console.log(userStore.user)
   const user = userStore.user || {}
   return user.name || user.email
 })

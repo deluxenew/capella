@@ -33,7 +33,7 @@ definePageMeta({
 
 // Composables
 const { t } = useI18n();
-const { $auth, $api, $notify, $router, $route, $store } = useNuxtApp();
+const {$api, $notify } = useNuxtApp();
 const router = useRouter();
 const route = useRoute();
 
@@ -93,7 +93,7 @@ onMounted(async () => {
       // Optionally redirect to sign-in on error
       // await router.replace('/sign-in');
     }
-  } else if (!$auth.loggedIn) {
+  } else if (!useAuth().status) {
     await router.replace('/sign-in');
   }
 });

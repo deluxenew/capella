@@ -98,7 +98,7 @@ interface FormData {
 
 // Composables
 const { t } = useI18n()
-const { $api, $auth, $notify } = useNuxtApp()
+const { $api, $notify } = useNuxtApp()
 const store = useMetamaskStore()
 const userStore = useAuthStore()
 
@@ -207,12 +207,12 @@ const handleUpdateUser = handleSubmit(async (values: FormData): Promise<void> =>
     await $api.user.updateUser(updateData)
 
     // Update auth user
-    if ($auth.user) {
+    if (userStore.user) {
       const updatedUser = {
-        ...$auth.user,
+        ...userStore.user,
         ...updateData
       }
-      await $auth.setUser(updatedUser)
+      await userStore.setUser(updatedUser)
     }
 
     // Update user store

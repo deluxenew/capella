@@ -5,16 +5,16 @@
   }">
     <div class="wrapper">
       <LeftSidebar :expand-sidebar="expandSidebar" :class="{ 'expanded': expandSidebar }"
-                   @handle-sidebar="expandSidebar = $event" />
+                   @handle-sidebar="expandSidebar = $event"/>
       <div class="right transition" :class="{ 'expanded': expandSidebar }">
         <div class="right-wrapper" :class="{ 'sidebar-expanded': expandSidebar }">
           <header class="header">
             <div class="user flex items-center">
               <UiButton class="menu-btn px-2" theme="transparent" fill="fill-white"
                         @click="expandSidebar = !expandSidebar">
-                <UiSvgImage :svg="expandSidebar ? 'arrow-left' : 'menu'" />
+                <UiSvgImage :svg="expandSidebar ? 'arrow-left' : 'menu'"/>
               </UiButton>
-              <img src="~/assets/img/avatar.png" alt="" class="w-9 h-9" />
+              <img src="~/assets/img/avatar.png" alt="" class="w-9 h-9"/>
               <h2 class="user-text">
                 {{ t('AuthHeader.greeting') }}, {{ userName }}
               </h2>
@@ -26,32 +26,33 @@
                 </UiButton>
               </div>
               <div v-else>
-                <UiButton class="metamask-button" title="click to copy" @click="copyToClipboard(addresses, t('copied'))">
+                <UiButton class="metamask-button" title="click to copy"
+                          @click="copyToClipboard(addresses, t('copied'))">
                   {{ parseMM(addresses) }}
                 </UiButton>
               </div>
             </div>
           </header>
           <div class="inner-layout pb-10">
-            <slot />
+            <slot/>
           </div>
         </div>
       </div>
     </div>
     <ClientOnly>
 
-        <Notification />
+      <Notification/>
 
     </ClientOnly>
-    <MetamaskHolder :initConnect=" true" ref="metamask" @onComplete="onComplete" />
-    <ModalTermsConditions />
-    <LazyMetamaskBrowserModal />
+    <MetamaskHolder :initConnect=" true" ref="metamask" @onComplete="onComplete"/>
+    <ModalTermsConditions/>
+    <LazyMetamaskBrowserModal/>
     <UiModal name="account-activation" height="auto" classes="account-activation-modal" adaptive>
       <div class="modal-content activation-modal">
         <div class="modal-header flex justify-between items-center">
           <h2 class="modal-title">{{ t('account_activation') }}</h2>
           <UiButton theme="icon" @click="$modal?.close('account-activation')">
-            <UiSvgImage svg="close" />
+            <UiSvgImage svg="close"/>
           </UiButton>
         </div>
         <div class="modal-body">
@@ -86,8 +87,11 @@
           </div>
           <div class="payment-info mb-6">
             <p><strong>{{ t('amount_to_pay') }}:</strong> $250</p>
-            <p><strong>{{ t('your_balance') }}:</strong> {{ currentBalance }} {{ selectedCurrency }}</p>
-            <p><strong>{{ t('required_amount') }}:</strong> {{ requiredAmount }} {{ selectedCurrency }}</p>
+            <p><strong>{{ t('your_balance') }}:</strong> {{ currentBalance }} {{ selectedCurrency }}
+            </p>
+            <p><strong>{{ t('required_amount') }}:</strong> {{ requiredAmount }} {{
+                selectedCurrency
+              }}</p>
           </div>
           <UiButton
             size="md"
@@ -103,7 +107,7 @@
     <div v-if="user && !user.confirmRegistration" class="required-registration">
       <div class="container">
         <p>
-          Attention!<br />
+          Attention!<br/>
           Your account is not verified. To be able to replenish the deposit, pay
           the commission.
         </p>
@@ -122,14 +126,15 @@
 import MetamaskHolder from "~/components/MetamaskHolder.vue";
 import LeftSidebar from "~/components/cabinet/LeftSidebar.vue";
 import {useAuthStore} from "#imports";
+
 interface MetamaskData {
   metaMaskAddress: string
 }
 
 // Composables
-const { $api, $auth, $device, $modal } = useNuxtApp()
-const { t } = useI18n()
-const { push } = useRouter()
+const {$api, $device, $modal} = useNuxtApp()
+const {t} = useI18n()
+const {push} = useRouter()
 
 // Refs
 const expandSidebar = ref(false)
@@ -179,8 +184,12 @@ watch(currentBalance, () => {
 
 // Methods
 const onComplete = async (data: MetamaskData) => {
-  console.log(data)
   const metaMaskAddress = data.metaMaskAddress
+  const token = userStore.token
+  if (token) {
+    const user = await useAuth().getSession()
+    if (user) userStore.setUser(user)
+  }
   if (!user.value?.address) {
     try {
       await $api.user.connectMM({
@@ -188,16 +197,16 @@ const onComplete = async (data: MetamaskData) => {
         metaMaskAddress
       })
       // Используем composable для уведомлений вместо $notify
-      const { success } = useToast()
+      const {success} = useToast()
       success(t('metamask_linked'))
     } catch (error) {
-      $auth?.logout?.()
+      userStore.logout()
     }
   } else if (user.value.address !== metaMaskAddress) {
-    await $auth?.logout?.()
+    await userStore.logout()
     push('/sign-in')
     setTimeout(() => {
-      const { error } = useToast()
+      const {error} = useToast()
       error(t('metamask_invalid'))
     }, 100)
   }
@@ -215,7 +224,7 @@ const showActivationModal = async () => {
     checkBalance()
     $modal?.open('account-activation')
   } catch (error) {
-    const { error: showError } = useToast()
+    const {error: showError} = useToast()
     showError('Failed to load registration fees')
   }
 }
@@ -253,10 +262,10 @@ const processPayment = async () => {
 
     $modal?.close('account-activation')
 
-    const { success } = useToast()
+    const {success} = useToast()
     success('Payment processed successfully')
   } catch (error: any) {
-    const { error: showError } = useToast()
+    const {error: showError} = useToast()
     showError(error.message || 'Payment failed')
   }
 }
@@ -264,10 +273,10 @@ const processPayment = async () => {
 const copyToClipboard = async (text: string, message: string) => {
   try {
     await navigator.clipboard.writeText(text)
-    const { success } = useToast()
+    const {success} = useToast()
     success(message)
   } catch (error) {
-    const { error: showError } = useToast()
+    const {error: showError} = useToast()
     showError('Failed to copy to clipboard')
   }
 }
@@ -279,26 +288,26 @@ const parseMM = (value: string): string => {
 
 // Composable для уведомлений (добавьте в composables/useToast.ts)
 const useToast = () => {
-  const { $notify } = useNuxtApp()
+  const {$notify} = useNuxtApp()
 
   return {
     success: (message: string) => {
       if ($notify) {
-        $notify({ type: 'success', text: message })
+        $notify({type: 'success', text: message})
       } else {
         console.log('✅', message)
       }
     },
     error: (message: string) => {
       if ($notify) {
-        $notify({ type: 'error', text: message })
+        $notify({type: 'error', text: message})
       } else {
         console.error('❌', message)
       }
     },
     info: (message: string) => {
       if ($notify) {
-        $notify({ type: 'info', text: message })
+        $notify({type: 'info', text: message})
       } else {
         console.info('ℹ️', message)
       }

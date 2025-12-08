@@ -1,4 +1,3 @@
-// composables/useWallet.ts
 import { ref, readonly } from 'vue'
 import Web3 from 'web3'
 import detectEthereumProvider from '@metamask/detect-provider'

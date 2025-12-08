@@ -49,7 +49,7 @@ interface EthereumProvider {
 
 const {t} = useI18n()
 // Composables
-const {$auth, $device, $store, $notify, $modal, $router, $route, $api} = useNuxtApp()
+const {$notify, $modal, $api} = useNuxtApp()
 const route = useRoute()
 const router = useRouter()
 const store = useMetamaskStore()
@@ -191,10 +191,6 @@ const connect = async () => {
     console.error('Connection failed:', error)
   }
 }
-
-// const disconnect = () => {
-//   $web3Parser.disconnect()
-// }
 // Head
 useHead({
   title: 'Sign In'

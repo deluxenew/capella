@@ -1,4 +1,3 @@
-import type {AuthPlugin} from "~/plugins/3.auth";
 import type {Api} from "~/types/api";
 import type {UtmPlugin} from "~/plugins/utm.client";
 interface EthereumProvider {
@@ -9,7 +8,6 @@ interface EthereumProvider {
 
 declare module '#app' {
   interface NuxtApp {
-    $auth: AuthPlugin,
     $api: Api
     $utils: {
       hostToTitle: (host: string) => string
@@ -61,7 +59,6 @@ declare module '#app' {
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {
     $api: NuxtApp['$api']
-    $auth: AuthPlugin
     $store: NuxtApp['$store']
     $device: NuxtApp['$device']
     $t: NuxtApp['$t']
