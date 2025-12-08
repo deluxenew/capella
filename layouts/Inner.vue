@@ -10,7 +10,7 @@
         <div class="right-wrapper" :class="{ 'sidebar-expanded': expandSidebar }">
           <header class="header">
             <div class="user flex items-center">
-              <UiButton class="menu-btn px-2" theme="transparent" fill="fill-white"
+              <UiButton class="menu-btn" theme="transparent" fill="fill-white"
                         @click="expandSidebar = !expandSidebar">
                 <UiSvgImage :svg="expandSidebar ? 'arrow-left' : 'menu'"/>
               </UiButton>
@@ -362,7 +362,7 @@ const useToast = () => {
 }
 
 .cabinet .right .user .menu-btn {
-  @apply hidden h-6 w-6 mr-5;
+  @apply hidden h-8 w-8 mr-5;
 }
 
 .cabinet .right .user-text {
@@ -370,7 +370,7 @@ const useToast = () => {
 }
 
 .cabinet .right-wrapper {
-  @apply overflow-x-hidden;
+  @apply overflow-x-hidden bg-raisin-black;
 }
 
 /* Mobile styles */

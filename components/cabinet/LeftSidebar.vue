@@ -3,16 +3,16 @@
     class="LeftSidebar"
     :class="[
       expandSidebar ? 'w-sidebar-opened' : 'w-sidebar-closed',
-      { 'expanded': expandSidebar },
+      { expanded: expandSidebar },
       isMobile ? 'mobile-layout' : 'desktop-layout'
     ]"
   >
     <div class="flex flex-col justify-between h-full">
       <!-- Top Section -->
       <div class="top-section">
-        <div class="logo-block flex items-center min-h-[38px]">
+        <div class="logo-block flex items-center h-9">
           <UiButton
-            class="shrink-0 menu-btn min-w-9 min-h-9 ml-3"
+            class="shrink-0 menu-btn h-8 flex flex-col items-center justify-center"
             theme="transparent"
             @click="handleSidebar"
           >
@@ -58,7 +58,7 @@
             >
               <div>
                 <component
-                  :is="item.submenu ? 'div' : 'NuxtLink'"
+                  :is="item.component"
                   class="nav-item px-1 py-1 flex items-center transition-all duration-300 w-full cursor-pointer"
                   :class="{
                     'router-link-active': itemInSubPage,
@@ -130,8 +130,8 @@
       <!-- Bottom Section -->
       <transition name="fade">
         <div v-if="expandSidebar" class="bottom-section pb-7">
-          <!-- Social Links (commented out) -->
-          <!--
+          <!-- Social Links (Removed or add back if needed) -->
+          <!-- Example of how to add them back:
           <div class="nav-socials flex items-center gap-8 w-50">
             <a
               v-for="(item, idx) in sidebarSocials"
@@ -169,9 +169,7 @@
               theme="transparent"
               @click="setColorMode('light')"
             >
-              <UiSvgImage
-                svg="light"
-              />
+              <UiSvgImage svg="light" />
               <span class="ml-3 text-xs">{{ t('LeftSidebar.light') }}</span>
             </UiButton>
 
@@ -184,9 +182,7 @@
               theme="transparent"
               @click="setColorMode('dark')"
             >
-              <UiSvgImage
-                svg="dark"
-              />
+              <UiSvgImage svg="dark" />
               <span class="ml-3 text-xs">{{ t('LeftSidebar.dark') }}</span>
             </UiButton>
           </div>
@@ -212,63 +208,72 @@
 
 <script setup lang="ts">
 // Types
+interface Utils {
+  // Define the shape of your $utils object here if needed
+  // e.g., hostToTitle: (host: string) => string;
+  [key: string]: any; // Fallback if the exact shape isn't known
+}
 
 interface NavigationItem {
-  text: string
-  svg: string
-  to?: string
-  WIP?: boolean
-  expanded?: boolean
-  submenu?: SubMenuItem[]
+  text: string;
+  svg: string;
+  to?: string;
+  WIP?: boolean;
+  expanded?: boolean;
+  submenu?: SubMenuItem[];
+  component: any
 }
 
 interface SubMenuItem {
-  text: string
-  to: string
+  text: string;
+  to: string;
 }
 
 interface SidebarSocial {
-  svg: string
-  url: string
+  svg: string;
+  url: string;
 }
 
 // Props
 interface Props {
-  expandSidebar: boolean
+  expandSidebar: boolean;
 }
 
-const props = defineProps<Props>()
+const props = defineProps<Props>();
 
 // Emits
 const emit = defineEmits<{
-  'handle-sidebar': [value: boolean]
-}>()
+  'handle-sidebar': [value: boolean];
+}>();
 
-// Composable
-const colorMode = useColorMode()
-const { $utils, $modal } = useNuxtApp()
-const route = useRoute()
-const userStore = useAuthStore()
-const {t} = useI18n()
+// Composables
+const colorMode = useColorMode();
+const { $modal } = useNuxtApp(); // Destructure $modal separately
+const route = useRoute();
+const userStore = useAuthStore();
+const { t } = useI18n();
+// Access $utils correctly
+const $utils = useNuxtApp().$utils as Utils;
+
 // Reactive data
 const sidebarSocials = ref<SidebarSocial[]>([
   {
     svg: 'twitter-dark',
-    url: 'https://twitter.com/capellafinance',
+    url: 'https://twitter.com/capellafinance', // Removed trailing space
   },
   {
     svg: 'telegram',
-    url: 'https://t.me/capellaChannel',
+    url: 'https://t.me/capellaChannel', // Removed trailing space
   },
   {
     svg: 'discord',
-    url: 'https://discord.com/invite/mpMsNyBGw4',
+    url: 'https://discord.com/invite/mpMsNyBGw4', // Removed trailing space
   },
   {
     svg: 'gitbook',
-    url: 'https://docs.capella.finance/',
+    url: 'https://docs.capella.finance/', // Removed trailing space
   },
-])
+]);
 
 const navigation = ref<NavigationItem[]>([
   {
@@ -283,6 +288,7 @@ const navigation = ref<NavigationItem[]>([
       {
         text: t('stable_pool'),
         to: '/cabinet/pools/stable',
+
       },
       {
         text: t('coin_pool'),
@@ -310,73 +316,86 @@ const navigation = ref<NavigationItem[]>([
     svg: 'settings',
     to: '/cabinet/settings/',
   },
-])
+].map((el) => ({...el, component: el.submenu ? 'div' : resolveComponent('nuxt-link')})));
 
 // Computed
 const menuIcon = computed(() =>
   colorMode.value === 'light' ? 'menu-dark' : 'menu'
-)
+);
 
 const arrowIcon = computed(() =>
   colorMode.value === 'light' ? 'arrow-left-dark' : 'arrow-left'
-)
+);
 
+// Corrected usage of $utils
 const wlTitle = computed(() => {
-    return $utils.hostToTitle?.(window?.location?.host)
-  }
-)
-
-
+  // Assuming hostToTitle is a method on $utils
+  // If it's a config value, use useRuntimeConfig().public.hostToTitle
+  return $utils?.hostToTitle?.(window?.location?.host) || 'Capella Finance'; // Added fallback
+});
 
 const isMobile = computed(() => {
   if (process.client) {
-    return window.innerWidth <= 600 || useDevice().isMobile
+    return window.innerWidth <= 600 || useDevice().isMobile; // Ensure useDevice is imported if used
   }
-  return false
-})
+  return false;
+});
 
 const userName = computed(() => {
-  const user = userStore.user || {}
-  return user.name || user.email
-})
+  const user = userStore.user || {};
+  return user.name || user.email;
+});
 
 // Watchers
-watch(() => route.path, () => {
-  if (isMobile.value) {
-    emit('handle-sidebar', false)
-  }
-
-  // Close expanded items when route changes
-  navigation.value.forEach(item => {
-    if (item.expanded && !inSubPage(item)) {
-      item.expanded = false
+watch(
+  () => route.path,
+  () => {
+    if (isMobile.value) {
+      emit('handle-sidebar', false);
     }
-  })
-})
+
+    // Close expanded items when route changes
+    navigation.value.forEach((item) => {
+      if (item.expanded && !inSubPage(item)) {
+        item.expanded = false;
+      }
+    });
+  }
+);
 
 // Methods
 const expandSubMenu = (item: NavigationItem, itemInSubPage: boolean) => {
-  if (!itemInSubPage && item.submenu) {
-    item.expanded = !item.expanded
-  } else  navigateTo(item.to)
-
-  if (!props.expandSidebar) {
-    emit('handle-sidebar', !props.expandSidebar)
+  if (item.submenu) {
+    // If it's a submenu item and not currently in a subpage, toggle expansion
+    if (!itemInSubPage) {
+      item.expanded = !item.expanded;
+    } else if (item.to) {
+      // If it's a submenu item and we are in a subpage, navigate to the main submenu route
+      navigateTo(item.to);
+    }
+  } else if (item.to) {
+    // If it's not a submenu item, navigate directly
+    navigateTo(item.to);
   }
-}
+
+  // Close sidebar on mobile if it was closed
+  if (!props.expandSidebar && item.to) {
+    emit('handle-sidebar', !props.expandSidebar);
+  }
+};
 
 const handleSidebar = () => {
-  emit('handle-sidebar', !props.expandSidebar)
-}
+  emit('handle-sidebar', !props.expandSidebar);
+};
 
 const inSubPage = (item: NavigationItem): boolean => {
-  if (!item.submenu) return false
-  return item.submenu.some(el => route.path.includes(el.to))
-}
+  if (!item.submenu) return false;
+  return item.submenu.some((el) => route.path.includes(el.to));
+};
 
 const setColorMode = (mode: 'light' | 'dark') => {
-  colorMode.preference = mode
-}
+  colorMode.preference = mode;
+};
 </script>
 
 <style scoped>
@@ -479,6 +498,6 @@ const setColorMode = (mode: 'light' | 'dark') => {
 }
 
 .nav-item-icon {
-  @apply shrink-0
+  @apply shrink-0;
 }
 </style>
