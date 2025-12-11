@@ -1,3 +1,4 @@
+// ... остальная часть импортов
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import { defineNuxtConfig } from "nuxt/config";
 
@@ -15,30 +16,35 @@ export default defineNuxtConfig({
     '@nuxt/image'
   ],
   colorMode: {
-    preference: 'system', // default value of $colorMode.preference
-    fallback: 'light', // fallback value if not system preference found
+    preference: 'system',
+    fallback: 'light',
     globalName: '__NUXT_COLOR_MODE__',
     componentName: 'ColorScheme',
     classPrefix: '',
     classSuffix: '',
-    storage: 'localStorage', // or 'sessionStorage' or 'cookie'
+    storage: 'localStorage',
     storageKey: 'nuxt-color-mode'
   },
   image: {
-    provider: 'static', // использовать статический провайдер
+    provider: 'static',
   },
   css: [
     '~/assets/css/fonts.css'
   ],
   app: {
-    baseURL: '/capella/',
+    baseURL: '/capella/', // Это влияет на маршрутизацию Nuxt, но не на API-запросы напрямую
   },
+  // Убедитесь, что API-маршруты вашего GitHub Pages приложения проксируются на stage-frontend.liquidnow.me
+  // Но если это невозможно, используйте baseURL для модуля auth
   auth: {
-    // Включаем глобальный middleware для обработки аутентификации
-    // enableGlobalAppMiddleware: true,
-    baseURL: process.env.API_BASE_URL,
-    defaultCallbackUrl: '/cabinet/dashboard',
+    // baseURL будет использоваться для формирования URL всех эндпоинтов аутентификации
+    // Убедитесь, что это значение корректно установлено в runtimeConfig.public
+    // или жестко закодировано здесь, если оно не меняется.
+    // Однако, стандартный auth.baseURL может добавлять префикс ко всем маршрутам, включая getSession.
+    // Более точный способ - указать полный URL в самих endpoint'ах.
+    // baseURL: process.env.API_BASE_URL, // Не рекомендуется использовать вместе с endpoint'ами ниже
 
+    defaultCallbackUrl: '/cabinet/dashboard',
     provider: {
       type: 'local',
       session: {
@@ -59,46 +65,59 @@ export default defineNuxtConfig({
       },
       refresh: {
         isEnabled: true,
-        endpoint: { path: '/api/v1/refresh', method: 'post' },
+        // ИСПРАВЛЕНО: Указываем полный URL для refresh
+        endpoint: {
+          path: `${process.env.API_BASE_URL || 'https://stage-frontend.liquidnow.me'}/api/v1/refresh`,
+          method: 'post'
+        },
         refreshOnlyToken: true,
         token: {
-          // signInResponseRefreshTokenPointer: '/refresh', // Проверьте, что в ответе на signIn поле refresh
-          refreshResponseTokenPointer: '/refreshToken', // Проверьте, что в ответе на refresh поле refreshToken
-          // refreshRequestTokenPointer: 'refreshToken', // Проверьте, как refresh токен отправляется в запросе
+          refreshResponseTokenPointer: '/refreshToken',
           cookieName: 'auth._refresh_token.local',
           maxAgeInSeconds: 1800,
           sameSiteAttribute: 'lax',
-          secureCookieAttribute: false, // Установите в true, если используете HTTPS!
-          // cookieDomain: 'app.liquidnow.me', // УБЕРИТЕ ЭТУ СТРОКУ или измените на текущий домен фронтенда!
-          httpOnlyCookieAttribute: false, // Установите в true для большей безопасности, если не нужно читать из JS
+          secureCookieAttribute: false,
+          httpOnlyCookieAttribute: false, // Рассмотрите установку в true для безопасности
         }
       },
       token: {
-        signInResponseTokenPointer: '/token', // Проверьте, что в ответе на signIn поле token
+        signInResponseTokenPointer: '/token',
         maxAgeInSeconds: 1800, // 30 минут
         headerName: 'Authorization',
         sameSiteAttribute: 'lax',
-        // cookieDomain: 'app.liquidnow.me', // УБЕРИТЕ ЭТУ СТРОКУ или измените на текущий домен фронтенда!
         cookieName: 'auth._token.local',
         type: 'Bearer',
-        secureCookieAttribute: false, // Установите в true, если используете HTTPS!
-        httpOnlyCookieAttribute: false, // Установите в true для большей безопасности, если не нужно читать из JS
+        secureCookieAttribute: false, // Рассмотрите установку в true для безопасности
+        httpOnlyCookieAttribute: false, // Рассмотрите установку в true для безопасности
       },
       refreshToken: {
-        signInResponseRefreshTokenPointer: '/refreshToken', // Проверьте, что в ответе на signIn поле refreshToken
+        signInResponseRefreshTokenPointer: '/refreshToken',
         maxAgeInSeconds: 60 * 60 * 24 * 30 // 30 дней
       },
       user: {
-        signInResponseUserPointer: false // Оставляем как есть, если используете getSession
-        // Или укажите путь к пользователю в ответе signIn, например '/user'
+        signInResponseUserPointer: false
       },
       endpoints: {
-        signIn: { path: '/api/v1/login-v2', method: 'post' },
-        signOut: { path: '/api/v1/logout', method: 'post' },
-        refresh: { path: '/api/v1/refresh', method: 'post' },
-        getSession: { path: '/api/v1/profile', method: 'get' } // Убедитесь, что этот эндпоинт требует токен
+        // ИСПРАВЛЕНО: Указываем полные URLs для эндпоинтов
+        signIn: {
+          path: `${process.env.API_BASE_URL || 'https://stage-frontend.liquidnow.me'}/api/v1/login-v2`,
+          method: 'post'
+        },
+        signOut: {
+          path: `${process.env.API_BASE_URL || 'https://stage-frontend.liquidnow.me'}/api/v1/logout`,
+          method: 'post'
+        },
+        // refresh уже определен выше в блоке refresh.endpoint
+        // Оставляем getSession как относительный путь, если он также находится на API_BASE_URL
+        // Если getSession НЕ на API_BASE_URL, его нужно тоже указать как полный URL
+        // getSession: {
+        //   path: `${process.env.API_BASE_URL || 'https://stage-frontend.liquidnow.me'}/api/v1/profile`,
+        //   method: 'get'
+        // }
+        // ИЛИ, если baseURL для auth используется, можно оставить относительный путь для getSession
+        // и настроить baseURL выше (но это влияет на все эндпоинты, что может быть нежелательно)
+        getSession: { path: '/api/v1/profile', method: 'get' } // Этот путь будет добавлен к baseURL auth
       },
-      // addDefaultCallbackUrl: true, // Уберите, если дублируется
     },
     session: {
       maxAge: 1800,
@@ -106,13 +125,12 @@ export default defineNuxtConfig({
     },
     sessionRefresh: {
       // enableOnWindowFocus: true,
-      // enablePeriodically: 60000 // Опционально: обновлять каждую минуту
+      // enablePeriodically: 60000
     },
     globalAppMiddleware: {
-      // isEnabled: true, // Используем новый стиль
-      // allow404WithoutAuth: true, // Опционально
+      // isEnabled: true,
+      // allow404WithoutAuth: true,
     },
-    // Удаляем refreshTokenCookieName, если уже задан в refresh.token.cookieName
   },
 
   i18n: {
@@ -170,9 +188,10 @@ export default defineNuxtConfig({
     dirs: ['stores', 'types/**/*.ts']
   },
   runtimeConfig: {
+    // baseURL: '', // Это для внутреннего использования Nuxt, не влияет на auth
     public: {
-      baseURL: process.env.API_DEV_URL || 'https://stage-frontend.liquidnow.me'|| 'http://localhost:3000',
-      apiBase: process.env.API_BASE_URL || 'https://stage-frontend.liquidnow.me'
+      // baseURL: process.env.API_DEV_URL || 'https://stage-frontend.liquidnow.me' || 'http://localhost:3000', // Переименовал или удалил, чтобы не путать
+      apiBase: process.env.API_BASE_URL || 'https://stage-frontend.liquidnow.me' // Используйте это имя
     }
   },
-})
+});
