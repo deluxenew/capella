@@ -171,8 +171,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      baseURL: process.env.API_DEV_URL || 'http://localhost:3000',
-      apiBase: process.env.API_BASE_URL || 'https://stage-frontend.liquidnow.me/'
+      baseURL: process.env.API_DEV_URL || 'https://stage-frontend.liquidnow.me'|| 'http://localhost:3000',
+      apiBase: process.env.API_BASE_URL || 'https://stage-frontend.liquidnow.me'
     }
   },
 })
