@@ -21,7 +21,7 @@
         />
       </div>
 
-      <div class="flex flex-col pt-2 right-column flex-1 lg:flex-[8_10_390px] lg:pl-2">
+      <div class="flex flex-col pt-3 right-column flex-1 lg:flex-[8_10_390px] lg:pl-3">
         <!-- <DepositCard /> -->
         <AppROICard
           :price="graphData?.price"

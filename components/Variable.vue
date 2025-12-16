@@ -8,7 +8,6 @@ interface Props {
  'item-in-sub-page'?: boolean
   [key: string]: any
   active?: boolean
-
 }
 
 const props = defineProps<Props>()

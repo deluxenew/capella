@@ -316,7 +316,7 @@ const navigation = ref<NavigationItem[]>([
     svg: 'settings',
     to: '/cabinet/settings/',
   },
-].map((el) => ({...el, component: el.submenu ? 'div' : resolveComponent('nuxt-link')})));
+].map((el) => ({...el, component: el.submenu ? 'div' : shallowRef(resolveComponent('nuxt-link'))})));
 
 // Computed
 const menuIcon = computed(() =>

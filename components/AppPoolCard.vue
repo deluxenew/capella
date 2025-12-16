@@ -10,7 +10,7 @@
         <div class="name text-2xl">{{ name }}</div>
         <UiButton
           theme="icon"
-          class="ml-auto mr-5"
+          class="ml-auto "
           @click="refreshPool()"
         >
           <UiSvgImage svg="refresh" class="refreshIcon w-4 h-4" />

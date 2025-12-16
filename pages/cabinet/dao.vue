@@ -11,7 +11,7 @@
         <DAOGovernance class="mt-2" />
       </div>
 
-      <div class="pt-2 right-column lg:pl-2 flex-[8_10_360px]">
+      <div class="pt-3 right-column lg:pl-3 flex-[8_10_360px]">
         <!-- <Converter /> -->
         <DAOPersonalInfo />
         <DAOLiquidityPools class="mt-2" />

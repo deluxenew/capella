@@ -200,8 +200,8 @@ const footerItems = computed((): FooterItem[] => {
 
 const chartItems = computed(() => {
   return props.graphData.chart
-    .filter(item => $dayjs(item.createdAt, 'YYYY-MM-DD').isSameOrAfter(afterMoment.value))
-    .map(item => {
+    ?.filter(item => $dayjs(item.createdAt, 'YYYY-MM-DD').isSameOrAfter(afterMoment.value))
+    ?.map(item => {
       let value = item.price
 
       switch (currentValue.value) {
@@ -219,7 +219,7 @@ const chartItems = computed(() => {
         value: value,
         daily: item.daily
       }
-    })
+    }) || []
 })
 
 const afterMoment = computed(() => {

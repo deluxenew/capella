@@ -8,7 +8,7 @@
       </AppBalance>
     </div>
     <div class="flex mt-2 pl-3 wrapper">
-      <div class="flex pt-2 flex-col left-column">
+      <div class="flex pt-3 flex-col left-column">
         <AppPoolCard
           class="w-full mt-0"
           marker-color="#AAFFCB"
@@ -35,7 +35,7 @@
           @deposit="deposit"
         />
       </div>
-      <div class="pt-2 right-column">
+      <div class="pt-3 right-column">
         <AppYieldCard />
         <CapellaLearn class="w-full mt-2" />
       </div>
@@ -60,12 +60,8 @@ interface DepositParams {
 }
 
 // Composables
-const { $store, $notify, $utils } = useNuxtApp()
+const { $notify, $utils } = useNuxtApp()
 const { t } = useI18n()
-
-// Constants
-const METAMASK_IS_CONNECT = 'metamask/IS_CONNECT'
-const METAMASK_NET_ID = 'metamask/NET_ID'
 
 // Data
 const curs = ref<Record<number, Currency[]>>({
