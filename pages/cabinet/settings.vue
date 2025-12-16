@@ -39,7 +39,7 @@ const router = useRouter()
 
 // Head configuration
 useHead({
-  title: $utils.hostToTitle?.(window.location.host)
+  title: $utils.hostToTitle?.(window?.location?.host)
 })
 
 // Layout

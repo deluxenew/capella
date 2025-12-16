@@ -42,7 +42,7 @@ const { $utils } = useNuxtApp()
 // Head
 useHead({
   title: computed(() =>
-    $utils?.hostToTitle?.(process.client ? window.location.host : '') || 'Referral Program'
+    $utils?.hostToTitle?.(process.client ? window?.location?.host : '') || 'Referral Program'
   )
 })
 </script>

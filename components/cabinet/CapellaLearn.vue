@@ -74,7 +74,7 @@ const modal = ref<ModalData>({
 
 // Computed
 const wlTitle = computed(() =>
-  $utils?.hostToTitle?.(window.location.host ) || 'Capella Finance'
+  $utils?.hostToTitle?.(window?.location?.host ) || 'Capella Finance'
 )
 
 // Data fetching

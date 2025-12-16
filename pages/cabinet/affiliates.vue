@@ -28,7 +28,7 @@ definePageMeta({
 
 // Head configuration
 useHead({
-  title: $utils.hostToTitle?.(window.location.host)
+  title: $utils.hostToTitle?.(window?.location?.host)
 })
 </script>
 

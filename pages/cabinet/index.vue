@@ -17,7 +17,7 @@ const { $utils } = useNuxtApp()
 // Head
 useSeoMeta({
   title: computed(() =>
-    $utils?.hostToTitle?.(process.client ? window.location.host : '') || 'Cabinet'
+    $utils?.hostToTitle?.(process.client ? window?.location?.host : '') || 'Cabinet'
   ),
   description: 'User cabinet dashboard'
 })

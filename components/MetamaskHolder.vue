@@ -38,7 +38,7 @@ const emit = defineEmits<{
 //
 // // Computed properties
 // const wltitle = computed(() => {
-//   return $utils.hostToTitle?.(window.location.host)
+//   return $utils.hostToTitle?.(window?.location?.host)
 // })
 //
 // const account = computed(() => metamaskStore.METAMASK_ACCOUNT)

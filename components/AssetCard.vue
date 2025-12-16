@@ -77,7 +77,7 @@ const props = defineProps({
 // Computed
 const assetDescription = computed(() => {
   const text = props.description[locale.value] || props.description.en || ''
-  const platformName = $utils.hostToTitle?.(window.location.host)
+  const platformName = $utils.hostToTitle?.(window?.location?.host)
   return text.replace('{platform}', platformName)
 })
 

@@ -155,7 +155,7 @@ const windowOptions = ref<string>('')
 
 // Computed properties
 const referralLink = computed<string>(() => {
-  return `${window.location.protocol}//${window.location.host}/sign-up?invite=${userReferralCode.value}`
+  return `${window.location.protocol}//${window?.location?.host}/sign-up?invite=${userReferralCode.value}`
 })
 
 const userReferralCode = computed(() => {

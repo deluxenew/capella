@@ -33,7 +33,7 @@ const { $utils } = useNuxtApp()
 // Head
 useHead({
   title: computed(() =>
-    $utils?.hostToTitle?.(process.client ? window.location.host : '') || 'DAO'
+    $utils?.hostToTitle?.(process.client ? window?.location?.host : '') || 'DAO'
   )
 })
 </script>

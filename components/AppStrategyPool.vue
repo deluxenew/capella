@@ -128,11 +128,11 @@ const props = defineProps({
 
 // Computed
 const partner = computed(() => {
-  return props.strategy.find(item => item.partner === window.location.host)
+  return props.strategy.find(item => item.partner === window?.location?.host)
 })
 
 const vaults = computed(() => {
-  const vaultData = props.vault.find(item => item.partner === window.location.host)
+  const vaultData = props.vault.find(item => item.partner === window?.location?.host)
   return vaultData ? vaultData.vaults : []
 })
 
@@ -142,7 +142,7 @@ const isShowStrategy = computed(() => {
 
 const strategyText = computed(() => {
   const text = props.description[locale.value] || props.description.en || ''
-  const platformName = $utils.hostToTitle?.(window.location.host)
+  const platformName = $utils.hostToTitle?.(window?.location?.host)
   return text.replace('{platform}', platformName)
 })
 
