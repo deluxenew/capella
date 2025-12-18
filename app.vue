@@ -1,14 +1,6 @@
 <script setup lang="ts">
 import {ModalsContainer} from 'vue-final-modal'
-
-// onMounted(async () => {
-//   const {getSession, refresh} = useAuth()
-//   // await  refresh()
-//   await getSession({force: true, onUnauthenticated: () => refresh()})
-//
-// })
-
-
+const PopupNotifications = defineAsyncComponent(() => import('~/components/PopupNotification.vue'))
 </script>
 
 <template>
@@ -18,6 +10,10 @@ import {ModalsContainer} from 'vue-final-modal'
     <NuxtPage/>
   </NuxtLayout>
   <ModalsContainer/>
+<client-only>
+  <popup-notification/>
+</client-only>
+
   </Body>
   </Html>
 </template>

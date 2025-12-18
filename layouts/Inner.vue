@@ -39,15 +39,11 @@
         </div>
       </div>
     </div>
-    <ClientOnly>
 
-      <Notification/>
-
-    </ClientOnly>
     <MetamaskHolder :initConnect=" true" ref="metamask" @onComplete="onComplete"/>
     <ModalTermsConditions/>
     <LazyMetamaskBrowserModal/>
-    <UiModal name="account-activation" height="auto" classes="account-activation-modal" adaptive>
+    <UiModal modal-id="account-activation" height="auto" classes="account-activation-modal" adaptive>
       <div class="modal-content activation-modal">
         <div class="modal-header flex justify-between items-center">
           <h2 class="modal-title">{{ t('account_activation') }}</h2>
@@ -275,6 +271,15 @@ const copyToClipboard = async (text: string, message: string) => {
   try {
     await navigator.clipboard.writeText(text)
     const {success} = useToast()
+    useNuxtApp().$notify({
+      type: 'warn',
+      title: 'Не удалось отправить обращение',
+      duration: 3000,
+      data: {
+        icon: 'warning',
+        closable: true,
+      },
+    })
     success(message)
   } catch (error) {
     const {error: showError} = useToast()

@@ -5,12 +5,12 @@
       <slot />
     </div>
     <ClientOnly>
-      <notifications
-        position="top center"
-        width="100%"
-        :duration="3000"
-        :max="3"
-      />
+<!--      <notifications-->
+<!--        position="top center"-->
+<!--        width="100%"-->
+<!--        :duration="3000"-->
+<!--        :max="3"-->
+<!--      />-->
     </ClientOnly>
     <AuthFooter />
     <MetamaskBrowserModal />
