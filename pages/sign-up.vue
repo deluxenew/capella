@@ -59,7 +59,7 @@ interface EthereumProvider {
 const { t } = useI18n();
 
 // Composables
-const { $device, $notify, $modal, $router, $route, $api, $web3Parser } = useNuxtApp();
+const { $device, $notify, $modal, $web3Parser } = useNuxtApp();
 const router = useRouter();
 const route = useRoute();
 const metamaskStore = useMetamaskStore();

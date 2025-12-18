@@ -26,7 +26,6 @@ class Web3Parser {
       const Web3 = (await import('web3')).default
       this.web3 = new Web3(window.ethereum)
 
-      console.log(this.web3)
       // Получаем данные подключения
       const networkId = await this.web3.eth.net.getId()
       const account = accounts[0]

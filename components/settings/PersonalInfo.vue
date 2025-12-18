@@ -28,13 +28,10 @@
           :error="errorMessage"
         >
           <!-- PhoneMaskInput will be integrated here -->
-          <input
-            v-bind="field"
-            type="tel"
-            class="w-full h-full bg-transparent border-none outline-none text-color"
-            :placeholder="t('your_phone')"
-            @blur="field?.onBlur"
-          />
+          <PhoneInput :placeholder="t('your_phone')"
+                      class="w-full h-full bg-transparent border-none outline-none text-color"
+                      v-bind="field" country="RU"
+                      @blur="field?.onBlur" />
         </UiInput>
       </Field>
 
@@ -97,8 +94,8 @@ interface FormData {
 }
 
 // Composables
-const { t } = useI18n()
-const { $api, $notify } = useNuxtApp()
+const {t} = useI18n()
+const {$api, $notify} = useNuxtApp()
 const store = useMetamaskStore()
 const userStore = useAuthStore()
 
@@ -106,7 +103,7 @@ const userStore = useAuthStore()
 const loading = ref<boolean>(false)
 
 // Form setup with manual validation
-const { handleSubmit, meta, values, setValues, resetForm } = useForm<FormData>({
+const {handleSubmit, meta, values, setValues, resetForm} = useForm<FormData>({
   initialValues: {
     name: '',
     phone: '',
@@ -115,7 +112,7 @@ const { handleSubmit, meta, values, setValues, resetForm } = useForm<FormData>({
 })
 
 // Define fields with useField for individual field control
-const { value: name, errorMessage: nameError } = useField<string>('name',
+const {value: name, errorMessage: nameError} = useField<string>('name',
   (value) => {
     if (!value || value.trim() === '') {
       return t('validation.required') || 'Name is required'
@@ -124,7 +121,7 @@ const { value: name, errorMessage: nameError } = useField<string>('name',
   }
 )
 
-const { value: phone, errorMessage: phoneError } = useField<string>('phone',
+const {value: phone, errorMessage: phoneError} = useField<string>('phone',
   (value) => {
     if (!value) return true
     if (value.length < 10) {
@@ -134,7 +131,7 @@ const { value: phone, errorMessage: phoneError } = useField<string>('phone',
   }
 )
 
-const { value: telegram, errorMessage: telegramError } = useField<string>('telegram',
+const {value: telegram, errorMessage: telegramError} = useField<string>('telegram',
   (value) => {
     if (!value) return true
     const telegramRegex = /^@[a-zA-Z0-9_]{5,32}$/
@@ -266,7 +263,7 @@ watch(user, (newUser) => {
   if (newUser) {
     initializeForm()
   }
-}, { immediate: true })
+}, {immediate: true})
 
 // Lifecycle
 onMounted(() => {

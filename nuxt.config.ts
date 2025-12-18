@@ -12,7 +12,8 @@ export default defineNuxtConfig({
     '@nuxtjs/device',
     '@nuxtjs/i18n',
     '@nuxtjs/color-mode',
-    '@nuxt/image'
+    '@nuxt/image',
+    '@desource/phone-mask-nuxt'
   ],
   colorMode: {
     preference: 'system', // default value of $colorMode.preference
@@ -41,6 +42,9 @@ export default defineNuxtConfig({
 
     provider: {
       type: 'local',
+      pages: {
+        login: '/sign-in'
+      },
       session: {
         dataType: {
           id: 'string',
@@ -59,7 +63,7 @@ export default defineNuxtConfig({
       },
       refresh: {
         isEnabled: true,
-        endpoint: { path: '/api/v1/refresh', method: 'post' },
+        // endpoint: { path: '/api/v1/refresh', method: 'post' },
         refreshOnlyToken: true,
         token: {
           // signInResponseRefreshTokenPointer: '/refresh', // Проверьте, что в ответе на signIn поле refresh
@@ -78,7 +82,6 @@ export default defineNuxtConfig({
         maxAgeInSeconds: 1800, // 30 минут
         headerName: 'Authorization',
         sameSiteAttribute: 'lax',
-        // cookieDomain: 'app.liquidnow.me', // УБЕРИТЕ ЭТУ СТРОКУ или измените на текущий домен фронтенда!
         cookieName: 'auth._token.local',
         type: 'Bearer',
         secureCookieAttribute: false, // Установите в true, если используете HTTPS!
@@ -100,18 +103,16 @@ export default defineNuxtConfig({
       },
     },
     session: {
-      maxAge: 1800,
-      updateAge: 300,
+      maxAge: 18000000,
+      updateAge: 3000000,
     },
     sessionRefresh: {
-      // enableOnWindowFocus: true,
-      // enablePeriodically: 60000 // Опционально: обновлять каждую минуту
+      enableOnWindowFocus: false,
     },
     globalAppMiddleware: {
-      // isEnabled: true, // Используем новый стиль
+      isEnabled: true, // Используем новый стиль
       // allow404WithoutAuth: true, // Опционально
     },
-    // Удаляем refreshTokenCookieName, если уже задан в refresh.token.cookieName
   },
 
   i18n: {

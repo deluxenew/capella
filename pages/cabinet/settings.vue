@@ -30,6 +30,7 @@
 import Avatar from "~/components/settings/Avatar.vue";
 import PersonalInfo from "~/components/settings/PersonalInfo.vue";
 import Wallets from "~/components/settings/Wallets.vue";
+import {useAuthStore} from "#imports";
 
 // Composables
 const { t } = useI18n()
@@ -52,6 +53,7 @@ const logout = async (): Promise<void> => {
   try {
     await $api.user.logout()
 
+    useAuthStore().logout()
     // Navigate to sign-in page
     await router.replace('/sign-in')
 

@@ -1,13 +1,9 @@
 <template>
   <div class="dashboard">
     <div class="pl-3">
-      <AppBalance class="w-full">
-        <!-- <div class="right">
-          <AppWallet />
-        </div> -->
-      </AppBalance>
+      <AppBalance class="w-full" />
     </div>
-    <div class="flex mt-2 pl-3 wrapper">
+    <div class="flex mt-3 pl-3 wrapper">
       <div class="flex pt-3 flex-col left-column">
         <AppPoolCard
           class="w-full mt-0"
@@ -44,6 +40,13 @@
 </template>
 
 <script setup lang="ts">
+
+
+definePageMeta({
+  layout: 'inner',
+  auth: true
+})
+
 // Types
 import {useMetamaskStore} from "~/stores/metamask";
 
@@ -62,7 +65,9 @@ interface DepositParams {
 // Composables
 const { $notify, $utils } = useNuxtApp()
 const { t } = useI18n()
-
+useHead({
+  title: $utils.hostToTitle?.(window?.location?.host) || 'Dashboard'
+})
 // Data
 const curs = ref<Record<number, Currency[]>>({
   1: [
@@ -155,13 +160,6 @@ const fetchData = async () => {
 }
 
 // Head
-useHead({
-  title: $utils.hostToTitle?.(window?.location?.host) || 'Dashboard'
-})
-
-definePageMeta({
-  layout: 'inner'
-})
 
 // Fetch on server side
 // await fetchData()

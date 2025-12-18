@@ -32,16 +32,6 @@
           svg="metamask"
         />
 
-        <!-- Success Badge -->
-        <div
-          v-if="metaMaskAddress"
-          class="success-badge absolute -top-2 -right-2 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center"
-        >
-          <UiSvgImage
-            svg="check"
-            class="w-3 h-3 text-white"
-          />
-        </div>
       </UiButton>
 
       <!-- Other Wallets -->
@@ -71,11 +61,7 @@
           />
 
           <!-- Coming Soon Badge -->
-          <div class="coming-soon-badge absolute -top-2 -right-2 px-1 py-1 bg-gray-500 rounded-full">
-            <span class="text-xs text-white font-medium">
-              Soon
-            </span>
-          </div>
+
         </UiButton>
       </div>
     </div>

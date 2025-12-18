@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@auth/core": "^0.34.3",
+    "@desource/phone-mask-nuxt": "^0.2.1",
     "@kyvg/vue3-notification": "^2.9.1",
     "@metamask/detect-provider": "^2.0.0",
     "@nuxt/image": "^2.0.0",

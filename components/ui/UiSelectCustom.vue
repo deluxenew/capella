@@ -21,7 +21,7 @@
     </UiButton>
     <div
       ref="UiSelect"
-      class="items flex-col absolute bg-charade left-0 right-0 z-10 hidden"
+      class="items flex-col absolute bg-charade left-0 right-0 z-20"
       :class="{
         'flex': open,
         'hidden': !open,
@@ -32,7 +32,7 @@
       <div
         v-for="(option, i) in options"
         :key="i"
-        class="p-4 cursor-pointer select-none text-gray transition-all duration-300 hover:text-white hover:bg-gray"
+        class="p-2 cursor-pointer select-none text-gray transition-all duration-300 hover:text-white hover:bg-gray"
         :class="reversed ? 'text-left' : 'text-right'"
         @click="selectOption(option)"
       >

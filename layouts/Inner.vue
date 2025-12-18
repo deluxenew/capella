@@ -7,10 +7,10 @@
       <LeftSidebar :expand-sidebar="expandSidebar" :class="{ 'expanded': expandSidebar }"
                    @handle-sidebar="expandSidebar = $event"/>
       <div class="right transition" :class="{ 'expanded': expandSidebar }">
-        <div class="right-wrapper" :class="{ 'sidebar-expanded': expandSidebar }">
+        <div class="right-wrapper overflow-x-hidden" :class="{ 'sidebar-expanded': expandSidebar }">
           <header class="header">
             <div class="user flex items-center">
-              <UiButton class="menu-btn" theme="transparent" fill="fill-white"
+              <UiButton class="menu-btn" theme="transparent" size="sm" fill="fill-white"
                         @click="expandSidebar = !expandSidebar">
                 <UiSvgImage :svg="expandSidebar ? 'arrow-left' : 'menu'"/>
               </UiButton>
@@ -145,11 +145,11 @@ const registrationFees = ref<Record<string, number>>({})
 const metamask = ref(null)
 
 // Store (замените на вашу реализацию store)
-const store = useMetamaskStore() // Убедитесь что этот store существует
+const metamaskStore = useMetamaskStore() // Убедитесь что этот store существует
 const userStore = useAuthStore()
 // Computed properties
 const addresses = computed(() => {
-  return store?.address || null
+  return userStore.user?.metaMaskAddress || null
 })
 
 const user = computed((): User | null => {
@@ -161,7 +161,7 @@ const userName = computed(() => {
 })
 
 const currentBalance = computed(() => {
-  const balance = store?.BALANCE?.(selectedCurrency.value)
+  const balance = metamaskStore?.BALANCE?.(selectedCurrency.value)
   return balance || 0
 })
 
@@ -186,11 +186,12 @@ watch(currentBalance, () => {
 const onComplete = async (data: MetamaskData) => {
   const metaMaskAddress = data.metaMaskAddress
   const token = userStore.token
-  if (token) {
-    const user = await useAuth().getSession()
-    if (user) userStore.setUser(user)
-  }
-  if (!user.value?.address) {
+  // if (token) {
+  //   const user = await useAuth().getSession()
+  //   console.log(user)
+  //   if (user) userStore.setUser(user)
+  // }
+  if (!metaMaskAddress) {
     try {
       await $api.user.connectMM({
         id: user.value?.id || '',
@@ -200,10 +201,10 @@ const onComplete = async (data: MetamaskData) => {
       const {success} = useToast()
       success(t('metamask_linked'))
     } catch (error) {
-      userStore.logout()
+      // userStore.logout()
     }
-  } else if (user.value.address !== metaMaskAddress) {
-    await userStore.logout()
+  } else if (!metaMaskAddress) {
+    // await userStore.logout()
     push('/sign-in')
     setTimeout(() => {
       const {error} = useToast()
@@ -314,6 +315,9 @@ const useToast = () => {
     }
   }
 }
+onMounted(() => {
+   useNuxtApp().$web3Parser.connect()
+})
 </script>
 
 <style scoped>
@@ -370,7 +374,7 @@ const useToast = () => {
 }
 
 .cabinet .right-wrapper {
-  @apply overflow-x-hidden bg-raisin-black;
+  background-color: var(--bg);
 }
 
 /* Mobile styles */

@@ -9,6 +9,10 @@ export const useAuthStore = defineStore('auth', {
   }),
 
   actions: {
+    initTokens() {
+      this.token = useCookie('auth._token.local').value
+      this.refreshToken = useCookie('auth._refresh_token.local').value
+    },
     setToken(token: string, refreshToken: string) {
       this.token = token
       this.refreshToken = refreshToken
@@ -23,6 +27,7 @@ export const useAuthStore = defineStore('auth', {
     setUser(user: any) {
       this.user = user
 
+
       if (process.client) {
         localStorage.setItem('auth_user', JSON.stringify(user))
       }
@@ -34,6 +39,8 @@ export const useAuthStore = defineStore('auth', {
       this.loggedIn = false
 
       if (process.client) {
+        useCookie('auth._token.local').value = null
+        useCookie('auth._refresh_token.local').value = null
         localStorage.removeItem('auth._token.local')
         localStorage.removeItem('auth_user')
       }
@@ -43,16 +50,16 @@ export const useAuthStore = defineStore('auth', {
       // Восстанавливаем состояние из localStorage
       if (process.client) {
         const token = localStorage.getItem('auth._token.local')
-        const user = localStorage.getItem('auth_user')
+        // const user = localStorage.getItem('auth_user')
 
         if (token) {
           this.token = token
           this.loggedIn = true
         }
 
-        if (user) {
-          this.user = JSON.parse(user)
-        }
+        // if (user) {
+        //   this.user = JSON.parse(user)
+        // }
       }
     }
   }

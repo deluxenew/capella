@@ -81,6 +81,7 @@ const login = async (params: LoginParams): Promise<void> => {
     // TODO: Добавьте вашу логику входа здесь
     // Например:
     await useAuth().signIn(params, {callbackUrl: '/'})
+    useAuthStore().initTokens()
     const user:SessionData | null | void = await useAuth().getSession()
     if (user) useAuthStore().setUser(user)
     console.log('Login attempt with:', params)
@@ -176,7 +177,6 @@ onMounted(() => {
 
 
 const { $web3Parser } = useNuxtApp()
-const metamaskStore = useMetamaskStore()
 
 const connect = async () => {
   try {

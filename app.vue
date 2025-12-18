@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import {ModalsContainer} from 'vue-final-modal'
 
-onMounted(async () => {
-  const {getSession, refresh} = useAuth()
-  // await  refresh()
-  await getSession({force: true, onUnauthenticated: () => refresh()})
-
-})
+// onMounted(async () => {
+//   const {getSession, refresh} = useAuth()
+//   // await  refresh()
+//   await getSession({force: true, onUnauthenticated: () => refresh()})
+//
+// })
 
 
 </script>

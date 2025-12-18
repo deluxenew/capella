@@ -32,7 +32,7 @@
         <!-- Navigation -->
         <div class="middle-section mt-10 mb-10">
           <!-- Profile (Mobile only) -->
-          <div class="profile hidden mobile:block pb-2 border-b border-border mb-2">
+          <div v-if="isMobile" class="profile pb-2 border-b border-border mb-2">
             <div class="user flex items-center">
               <img class="avatar w-9 h-9 min-w-9 mr-2" src="~/assets/img/avatar.png" alt="avatar" />
               <h2 class="user-text whitespace-nowrap text-sm">
@@ -52,77 +52,122 @@
               'WIP': item.WIP
             }"
           >
-            <Variable
-              v-slot="{ itemInSubPage = '' } = {}"
-              :item-in-sub-page="inSubPage(item)"
+            <!-- Main Navigation Item -->
+            <div
+              class="nav-item-container"
+              :class="{ 'router-link-active': isItemActive(item) }"
             >
-              <div>
-                <component
-                  :is="item.component"
-                  class="nav-item px-1 py-1 flex items-center transition-all duration-300 w-full cursor-pointer"
+              <!-- For items with submenu -->
+              <div
+                v-if="item.submenu"
+                class="nav-item px-1 py-1 flex items-center transition-all duration-300 w-full cursor-pointer"
+                :class="{
+                  'active-nav-item': isItemActive(item),
+                  'expanded-nav-item': item.expanded
+                }"
+                @click="expandSubMenu(item)"
+              >
+                <div
+                  class="nav-item-icon rounded-full w-8 h-8 p-2 flex justify-center items-center transition-all duration-300"
                   :class="{
-                    'router-link-active': itemInSubPage,
+                    'bg-[#ffe6b3]': isItemActive(item) || item.expanded,
+                    'bg-secondary': !item.expanded && !isItemActive(item)
                   }"
-                  :to="item.to"
-                  @click="expandSubMenu(item, itemInSubPage)"
                 >
-                  <div
-                    class="nav-item-icon rounded-full w-9 h-9 p-2 flex justify-center items-center transition-all duration-300"
+                  <UiSvgImage
+                    :svg="item.svg"
                     :class="{
-                      'bg-[#ffe6b3]': itemInSubPage || item.expanded,
-                      'bg-secondary': !item.expanded
+                      '[&>path]:fill-[#dd7c37]': isItemActive(item) || item.expanded,
+                      '[&>path]:fill-gray-400': !isItemActive(item) && !item.expanded
                     }"
-                  >
-                    <UiSvgImage
-                      :svg="item.svg"
-                      :class="{
-                        '[&>path]:fill-[#dd7c37]': itemInSubPage || item.expanded
-                      }"
-                    />
-                  </div>
-                  <div
-                    class="nav-item-title ml-2 font-medium text-base text-gray transition-all duration-300"
-                    :class="{
-                      'opacity-100': expandSidebar,
-                      'opacity-0': !expandSidebar,
-                      'text-color': itemInSubPage || item.expanded
-                    }"
-                  >
-                    {{ item.text }}
-                  </div>
-                  <div
-                    v-if="item.submenu"
-                    class="text-gray text-xs transition-transform duration-300 ml-auto"
-                    :class="{
-                      'rotate-90': item.expanded,
-                      '-rotate-90': !item.expanded
-                    }"
-                  >
-                    <span>&#10094;</span>
-                  </div>
-                </component>
-
-                <UiTransitionExpand>
-                  <div
-                    v-if="item.submenu && (item.expanded || itemInSubPage) && expandSidebar"
-                    class="submenu ml-10 pl-2 overflow-hidden transition-all duration-300"
-                  >
-                    <NuxtLink
-                      v-for="(menuItem, index) in item.submenu"
-                      :key="index"
-                      class="submenu-item block font-medium text-base text-gray py-1 cursor-pointer whitespace-nowrap transition-colors duration-300"
-                      :class="{
-                        'border-b border-border': index !== item.submenu.length - 1,
-                        'text-color hover:text-color': true
-                      }"
-                      :to="menuItem.to"
-                    >
-                      {{ menuItem.text }}
-                    </NuxtLink>
-                  </div>
-                </UiTransitionExpand>
+                  />
+                </div>
+                <div
+                  class="nav-item-title ml-2 font-medium text-base transition-all duration-300"
+                  :class="{
+                    'opacity-100': expandSidebar,
+                    'opacity-0': !expandSidebar,
+                    'text-color': isItemActive(item) || item.expanded,
+                    'text-gray': !isItemActive(item) && !item.expanded
+                  }"
+                >
+                  {{ item.text }}
+                </div>
+                <div
+                  v-if="item.submenu"
+                  class="arrow-icon text-xs transition-transform duration-300 ml-auto"
+                  :class="{
+                    'rotate-90': item.expanded,
+                    '-rotate-90': !item.expanded,
+                    'text-color': isItemActive(item),
+                    'text-gray': !isItemActive(item)
+                  }"
+                >
+                  <span>&#10094;</span>
+                </div>
               </div>
-            </Variable>
+
+              <!-- For simple link items -->
+              <NuxtLink
+                v-else
+                :to="item.to"
+                class="nav-item px-1 py-1 flex items-center transition-all duration-300 w-full cursor-pointer"
+                active-class="active-nav-item"
+                exact-active-class="exact-active-nav-item"
+                @click="handleNavClick(item)"
+              >
+                <div
+                  class="nav-item-icon rounded-full w-8 h-8 p-2 flex justify-center items-center transition-all duration-300"
+                  :class="{
+                    'bg-[#ffe6b3]': isItemActive(item),
+                    'bg-secondary': !isItemActive(item)
+                  }"
+                >
+                  <UiSvgImage
+                    :svg="item.svg"
+                    :class="{
+                      '[&>path]:fill-[#dd7c37]': isItemActive(item),
+                      '[&>path]:fill-gray-400': !isItemActive(item)
+                    }"
+                  />
+                </div>
+                <div
+                  class="nav-item-title ml-2 font-medium text-base transition-all duration-300"
+                  :class="{
+                    'opacity-100': expandSidebar,
+                    'opacity-0': !expandSidebar,
+                    'text-color': isItemActive(item),
+                    'text-gray': !isItemActive(item)
+                  }"
+                >
+                  {{ item.text }}
+                </div>
+              </NuxtLink>
+
+              <!-- Submenu -->
+              <UiTransitionExpand>
+                <div
+                  v-if="item.submenu && (item.expanded || isItemActive(item)) && expandSidebar"
+                  class="submenu ml-10 pl-2 overflow-hidden transition-all duration-300"
+                >
+                  <NuxtLink
+                    v-for="(menuItem, index) in item.submenu"
+                    :key="index"
+                    :to="menuItem.to"
+                    class="submenu-item block font-medium text-base py-1 cursor-pointer whitespace-nowrap transition-colors duration-300"
+                    :class="{
+                      'border-b border-border': index !== item.submenu.length - 1,
+                      'active-submenu-item': isSubItemActive(menuItem),
+                      'text-gray hover:text-color': true
+                    }"
+                    active-class="active-submenu-item"
+                    exact-active-class="exact-active-submenu-item"
+                  >
+                    {{ menuItem.text }}
+                  </NuxtLink>
+                </div>
+              </UiTransitionExpand>
+            </div>
           </div>
         </div>
       </div>
@@ -130,21 +175,6 @@
       <!-- Bottom Section -->
       <transition name="fade">
         <div v-if="expandSidebar" class="bottom-section pb-7">
-          <!-- Social Links (Removed or add back if needed) -->
-          <!-- Example of how to add them back:
-          <div class="nav-socials flex items-center gap-8 w-50">
-            <a
-              v-for="(item, idx) in sidebarSocials"
-              :key="idx"
-              :href="item.url"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <UiSvgImage :svg="item.svg" class="max-w-6" />
-            </a>
-          </div>
-          -->
-
           <!-- Theme Toggle -->
           <div
             class="switch-toggle relative bg-secondary rounded-[25px] flex relative text-md min-h-[50px] mx-auto my-0 transition-all duration-300"
@@ -209,9 +239,7 @@
 <script setup lang="ts">
 // Types
 interface Utils {
-  // Define the shape of your $utils object here if needed
-  // e.g., hostToTitle: (host: string) => string;
-  [key: string]: any; // Fallback if the exact shape isn't known
+  [key: string]: any;
 }
 
 interface NavigationItem {
@@ -221,17 +249,11 @@ interface NavigationItem {
   WIP?: boolean;
   expanded?: boolean;
   submenu?: SubMenuItem[];
-  component: any
 }
 
 interface SubMenuItem {
   text: string;
   to: string;
-}
-
-interface SidebarSocial {
-  svg: string;
-  url: string;
 }
 
 // Props
@@ -248,38 +270,19 @@ const emit = defineEmits<{
 
 // Composables
 const colorMode = useColorMode();
-const { $modal } = useNuxtApp(); // Destructure $modal separately
+const { $modal } = useNuxtApp();
 const route = useRoute();
+const router = useRouter();
 const userStore = useAuthStore();
 const { t } = useI18n();
-// Access $utils correctly
 const $utils = useNuxtApp().$utils as Utils;
 
 // Reactive data
-const sidebarSocials = ref<SidebarSocial[]>([
-  {
-    svg: 'twitter-dark',
-    url: 'https://twitter.com/capellafinance', // Removed trailing space
-  },
-  {
-    svg: 'telegram',
-    url: 'https://t.me/capellaChannel', // Removed trailing space
-  },
-  {
-    svg: 'discord',
-    url: 'https://discord.com/invite/mpMsNyBGw4', // Removed trailing space
-  },
-  {
-    svg: 'gitbook',
-    url: 'https://docs.capella.finance/', // Removed trailing space
-  },
-]);
-
 const navigation = ref<NavigationItem[]>([
   {
     text: t('LeftSidebar.dashboard'),
     svg: 'bag',
-    to: '/cabinet/dashboard/',
+    to: '/cabinet/dashboard',
   },
   {
     text: t('LeftSidebar.pools'),
@@ -288,7 +291,6 @@ const navigation = ref<NavigationItem[]>([
       {
         text: t('stable_pool'),
         to: '/cabinet/pools/stable',
-
       },
       {
         text: t('coin_pool'),
@@ -314,9 +316,9 @@ const navigation = ref<NavigationItem[]>([
   {
     text: t('LeftSidebar.settings'),
     svg: 'settings',
-    to: '/cabinet/settings/',
+    to: '/cabinet/settings',
   },
-].map((el) => ({...el, component: el.submenu ? 'div' : shallowRef(resolveComponent('nuxt-link'))})));
+]);
 
 // Computed
 const menuIcon = computed(() =>
@@ -327,16 +329,13 @@ const arrowIcon = computed(() =>
   colorMode.value === 'light' ? 'arrow-left-dark' : 'arrow-left'
 );
 
-// Corrected usage of $utils
 const wlTitle = computed(() => {
-  // Assuming hostToTitle is a method on $utils
-  // If it's a config value, use useRuntimeConfig().public.hostToTitle
-  return $utils?.hostToTitle?.(window?.location?.host) || 'Capella Finance'; // Added fallback
+  return $utils?.hostToTitle?.(window?.location?.host) || 'Capella Finance';
 });
 
 const isMobile = computed(() => {
   if (process.client) {
-    return window.innerWidth <= 600 || useDevice().isMobile; // Ensure useDevice is imported if used
+    return window.innerWidth <= 600;
   }
   return false;
 });
@@ -346,41 +345,60 @@ const userName = computed(() => {
   return user.name || user.email;
 });
 
-// Watchers
-watch(
-  () => route.path,
-  () => {
-    if (isMobile.value) {
-      emit('handle-sidebar', false);
-    }
-
-    // Close expanded items when route changes
-    navigation.value.forEach((item) => {
-      if (item.expanded && !inSubPage(item)) {
-        item.expanded = false;
-      }
-    });
-  }
-);
-
 // Methods
-const expandSubMenu = (item: NavigationItem, itemInSubPage: boolean) => {
+const isItemActive = (item: NavigationItem): boolean => {
   if (item.submenu) {
-    // If it's a submenu item and not currently in a subpage, toggle expansion
-    if (!itemInSubPage) {
-      item.expanded = !item.expanded;
-    } else if (item.to) {
-      // If it's a submenu item and we are in a subpage, navigate to the main submenu route
-      navigateTo(item.to);
-    }
-  } else if (item.to) {
-    // If it's not a submenu item, navigate directly
-    navigateTo(item.to);
+    // For items with submenu, check if any subitem is active
+    return item.submenu.some(subItem => isSubItemActive(subItem));
   }
 
-  // Close sidebar on mobile if it was closed
-  if (!props.expandSidebar && item.to) {
-    emit('handle-sidebar', !props.expandSidebar);
+  // For simple items, check if current route matches
+  if (!item.to) return false;
+
+  // Check exact match for dashboard and settings
+  if (item.to === '/cabinet/dashboard' || item.to === '/cabinet/settings') {
+    return route.path === item.to;
+  }
+
+  // For other items, check if route starts with the item's to
+  return route.path.startsWith(item.to);
+};
+
+const isSubItemActive = (subItem: SubMenuItem): boolean => {
+  if (!subItem.to) return false;
+
+  // Check exact match for submenu items
+  return route.path === subItem.to ||
+    route.path.startsWith(subItem.to + '/');
+};
+
+const expandSubMenu = (item: NavigationItem) => {
+  if (!item.submenu) return;
+
+  // Toggle expansion
+  item.expanded = !item.expanded;
+  if (!props.expandSidebar) emit('handle-sidebar', true);
+
+  // If expanding and on mobile, close sidebar
+  if (props.expandSidebar && isMobile.value && item.expanded) {
+    emit('handle-sidebar', false);
+  }
+};
+
+const handleNavClick = (item: NavigationItem) => {
+  if (item.WIP) {
+    // Show WIP message or prevent navigation
+    return;
+  }
+
+  // Navigate to the item
+  if (item.to) {
+    router.push(item.to);
+  }
+
+  // Close sidebar on mobile
+  if (isMobile.value) {
+    emit('handle-sidebar', false);
   }
 };
 
@@ -388,29 +406,38 @@ const handleSidebar = () => {
   emit('handle-sidebar', !props.expandSidebar);
 };
 
-const inSubPage = (item: NavigationItem): boolean => {
-  if (!item.submenu) return false;
-  return item.submenu.some((el) => route.path.includes(el.to));
-};
-
 const setColorMode = (mode: 'light' | 'dark') => {
   colorMode.preference = mode;
 };
+
+// Initialize expanded state based on current route
+onMounted(() => {
+  navigation.value.forEach(item => {
+    if (item.submenu) {
+      item.expanded = item.submenu.some(subItem => isSubItemActive(subItem));
+    }
+  });
+});
+
+// Watch for route changes
+watch(
+  () => route.path,
+  () => {
+    if (isMobile.value) {
+      emit('handle-sidebar', false);
+    }
+
+    // Update expanded state based on new route
+    navigation.value.forEach(item => {
+      if (item.submenu) {
+        item.expanded = item.submenu.some(subItem => isSubItemActive(subItem));
+      }
+    });
+  }
+);
 </script>
 
 <style scoped>
-.dark {
-  color: #ffffff !important;
-}
-.nav-item {
-  position: relative;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  transition: all 0.3s;
-  width: 100%;
-  cursor: pointer;
-}
 .LeftSidebar {
   height: 100vh;
   z-index: 100;
@@ -421,12 +448,15 @@ const setColorMode = (mode: 'light' | 'dark') => {
   border-right: 1px solid var(--border-color);
   padding-top: 10px;
   padding-left: 60px;
-  padding-right: 20px;
+  padding-right: 12px;
   transition: width 0.3s;
+  background-color: var(--bg);
 
-  /* Hide scrollbar for Webkit browsers */
+  /* Hide scrollbar */
+  scrollbar-width: none;
   &::-webkit-scrollbar {
     width: 0;
+    display: none;
   }
 }
 
@@ -436,6 +466,92 @@ const setColorMode = (mode: 'light' | 'dark') => {
 
 .w-sidebar-closed {
   width: 125px;
+}
+
+/* Navigation item styles */
+.nav-item {
+  position: relative;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s;
+  width: 100%;
+  cursor: pointer;
+  border-radius: 8px;
+  margin-bottom: 4px;
+
+  &:hover {
+    background-color: var(--bg-secondary);
+
+    .nav-item-icon:not(.bg-[#ffe6b3]) {
+      background-color: var(--bg-tertiary);
+    }
+
+    .nav-item-title:not(.text-color) {
+      color: var(--text-color);
+    }
+
+    .arrow-icon:not(.text-color) {
+      color: var(--text-color);
+    }
+  }
+}
+
+/* Active state for navigation items */
+.active-nav-item {
+  .nav-item-title {
+    color: var(--text-color) !important;
+    font-weight: 600;
+  }
+
+  .nav-item-icon {
+    background-color: #ffe6b3 !important;
+  }
+
+  .arrow-icon {
+    color: var(--text-color) !important;
+  }
+}
+
+.exact-active-nav-item {
+  /* Additional styles for exact active items if needed */
+}
+
+/* Submenu item styles */
+.submenu-item {
+  position: relative;
+  padding: 8px 12px;
+  border-radius: 6px;
+  margin: 2px 0;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: var(--bg-secondary);
+    color: var(--text-color) !important;
+    transform: translateX(4px);
+  }
+}
+
+.active-submenu-item {
+  color: var(--text-color) !important;
+  font-weight: 600;
+  background-color: var(--bg-secondary);
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background-color: #dd7c37;
+    border-radius: 0 2px 2px 0;
+  }
+}
+
+.exact-active-submenu-item {
+  /* Additional styles for exact active submenu items */
 }
 
 /* Mobile styles */
@@ -449,11 +565,12 @@ const setColorMode = (mode: 'light' | 'dark') => {
   &.expanded {
     width: 100%;
     position: fixed;
+    z-index: 9999;
   }
 
   .logo-block {
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 20px;
+    padding: 0 20px 20px 20px;
 
     .logo {
       font-size: 20px;
@@ -462,7 +579,7 @@ const setColorMode = (mode: 'light' | 'dark') => {
 
   .middle-section {
     margin-top: 10px;
-    padding: 0 10px;
+    padding: 0 20px;
 
     .profile {
       display: block;
@@ -470,7 +587,7 @@ const setColorMode = (mode: 'light' | 'dark') => {
   }
 
   .bottom-section {
-    padding: 0 10px 30px 10px;
+    padding: 0 20px 30px 20px;
   }
 }
 
@@ -499,5 +616,16 @@ const setColorMode = (mode: 'light' | 'dark') => {
 
 .nav-item-icon {
   @apply shrink-0;
+  transition: all 0.3s;
+}
+
+/* WIP item styling */
+.WIP {
+  opacity: 0.6;
+  cursor: not-allowed;
+
+  .nav-item:hover {
+    background-color: transparent !important;
+  }
 }
 </style>
