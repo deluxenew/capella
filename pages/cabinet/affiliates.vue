@@ -1,6 +1,6 @@
 <template>
-  <div class="refferal">
-    <div class="px-2 mt-2">
+  <div class="refferal pt-3">
+    <div class="px-3 ">
       <Earned />
     </div>
 
@@ -23,7 +23,8 @@ const { $utils } = useNuxtApp()
 
 // Layout
 definePageMeta({
-  layout: 'inner'
+  layout: 'inner',
+  auth: true
 })
 
 // Head configuration

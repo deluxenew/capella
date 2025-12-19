@@ -5,29 +5,12 @@
 </template>
 
 <script setup lang="ts">
-// Устанавливаем layout
 definePageMeta({
   layout: 'inner',
-  // middleware: ['auth'] // если нужен middleware
+  auth: true
 })
-
-// Composable
-const { $utils } = useNuxtApp()
-
-// Head
-useSeoMeta({
-  title: computed(() =>
-    $utils?.hostToTitle?.(process.client ? window?.location?.host : '') || 'Cabinet'
-  ),
-  description: 'User cabinet dashboard'
-})
-
-// Можно добавить дополнительную логику для cabinet страницы
-const route = useRoute()
-
-// Например, отслеживание изменения роута
-watch(() => route.path, (newPath) => {
-  console.log('Cabinet route changed:', newPath)
+onMounted(async () => {
+  await navigateTo('/cabinet/dashboard')
 })
 </script>
 

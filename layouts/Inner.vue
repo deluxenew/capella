@@ -181,12 +181,6 @@ watch(currentBalance, () => {
 // Methods
 const onComplete = async (data: MetamaskData) => {
   const metaMaskAddress = data.metaMaskAddress
-  const token = userStore.token
-  // if (token) {
-  //   const user = await useAuth().getSession()
-  //   console.log(user)
-  //   if (user) userStore.setUser(user)
-  // }
   if (!metaMaskAddress) {
     try {
       await $api.user.connectMM({
@@ -271,15 +265,6 @@ const copyToClipboard = async (text: string, message: string) => {
   try {
     await navigator.clipboard.writeText(text)
     const {success} = useToast()
-    useNuxtApp().$notify({
-      type: 'warn',
-      title: 'Не удалось отправить обращение',
-      duration: 3000,
-      data: {
-        icon: 'warning',
-        closable: true,
-      },
-    })
     success(message)
   } catch (error) {
     const {error: showError} = useToast()

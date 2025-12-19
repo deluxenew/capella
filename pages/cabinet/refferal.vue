@@ -32,7 +32,8 @@
 import Earned from "~/components/refferal/Earned.vue";
 
 definePageMeta({
-  layout: 'inner'
+  layout: 'inner',
+  auth: true
 })
 
 // Composable

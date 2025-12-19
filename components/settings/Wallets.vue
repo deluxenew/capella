@@ -1,5 +1,5 @@
 <template>
-  <AppCard class="settingsWallets p-3 pb-15">
+  <AppCard class="settingsWallets  pb-15">
     <h2 class="text-lg font-semibold text-color mb-8">
       {{ t('connect_wallet') }}
     </h2>

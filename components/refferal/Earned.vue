@@ -1,8 +1,8 @@
 <template>
   <!-- Main container with grid layout -->
-  <div class="earned-container grid grid-cols-1 xl:grid-cols-3 gap-6 w-full">
+  <div class="earned-container grid grid-cols-1 md:grid-cols-3 gap-3 w-full">
     <!-- Referral Earned Section (col-span-2) -->
-    <div class="refferal-earned xl:col-span-2">
+    <div class="refferal-earned md:col-span-2">
       <AppCard class="Earned">
         <!-- Main Earnings Header -->
         <div class="earnings-header text-center mb-8 py-2">
@@ -17,7 +17,7 @@
         </div>
 
         <!-- Content Grid: Withdraw Section + Summary Cards -->
-        <div class="content-grid grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div class="content-grid grid grid-cols-1 md:grid-cols-3 gap-6">
           <!-- Withdraw Section (col-span-2) -->
           <div class="withdraw-section lg:col-span-2">
             <div class="withdraw-header flex justify-between items-center mb-6 px-3 pt-6">
@@ -366,7 +366,7 @@ watch(unifiedAmount, (newAmount) => {
 }
 
 /* Mobile responsive design */
-@media screen and (max-width: 1280px) {
+@media screen and (max-width: 768px) {
   .earned-container {
     @apply grid-cols-1;
   }

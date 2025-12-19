@@ -109,7 +109,7 @@
 
               <!-- For simple link items -->
               <NuxtLink
-                v-else
+                v-else-if="!item.WIP"
                 :to="item.to"
                 class="nav-item px-1 py-1 flex items-center transition-all duration-300 w-full cursor-pointer"
                 active-class="active-nav-item"
@@ -143,6 +143,35 @@
                   {{ item.text }}
                 </div>
               </NuxtLink>
+
+              <div v-else class="nav-item px-1 py-1 flex items-center transition-all duration-300 w-full cursor-pointer">
+                <div
+                  class="nav-item-icon rounded-full w-8 h-8 p-2 flex justify-center items-center transition-all duration-300"
+                  :class="{
+                    'bg-[#ffe6b3]': isItemActive(item),
+                    'bg-secondary': !isItemActive(item)
+                  }"
+                >
+                  <UiSvgImage
+                    :svg="item.svg"
+                    :class="{
+                      '[&>path]:fill-[#dd7c37]': isItemActive(item),
+                      '[&>path]:fill-gray-400': !isItemActive(item)
+                    }"
+                  />
+                </div>
+                <div
+                  class="nav-item-title ml-2 font-medium text-base transition-all duration-300"
+                  :class="{
+                    'opacity-100': expandSidebar,
+                    'opacity-0': !expandSidebar,
+                    'text-color': isItemActive(item),
+                    'text-gray': !isItemActive(item)
+                  }"
+                >
+                  {{ item.text }}
+                </div>
+              </div>
 
               <!-- Submenu -->
               <UiTransitionExpand>
@@ -386,6 +415,7 @@ const expandSubMenu = (item: NavigationItem) => {
 };
 
 const handleNavClick = (item: NavigationItem) => {
+
   if (item.WIP) {
     // Show WIP message or prevent navigation
     return;
@@ -440,7 +470,6 @@ watch(
 <style scoped>
 .LeftSidebar {
   height: 100vh;
-  z-index: 100;
   overflow-x: hidden;
   overflow-y: auto;
   position: fixed;
@@ -457,6 +486,17 @@ watch(
   &::-webkit-scrollbar {
     width: 0;
     display: none;
+  }
+}
+
+@media screen and (max-width: 600px){
+  .LeftSidebar {
+    display: none;
+  }
+  .expanded {
+    position: fixed;
+    width: 100%;
+    display: block;
   }
 }
 
@@ -621,11 +661,41 @@ watch(
 
 /* WIP item styling */
 .WIP {
-  opacity: 0.6;
   cursor: not-allowed;
+  position: relative;
+  transition: filter 0.4s ease;
+  z-index: 10;
 
   .nav-item:hover {
     background-color: transparent !important;
+  }
+  &::after {
+    position: relative;
+    z-index: 99;
+    width: 64px;
+    transition: opacity 0.4s ease;
+    opacity: 0;
+    pointer-events: none;
+    content: 'Work in progress!';
+    color: black;
+    background: white;
+    padding: 5px 10px;
+    position: absolute;
+    right: -5px;
+    bottom: -35px;
+    font-weight: 400;
+    font-size: 10px;
+  }
+  &:hover::after {
+    opacity: 1;
+  }
+  &:hover {
+    filter: grayscale(1);
+    cursor: not-allowed;
+  }
+  & > * {
+    opacity: 0.4;
+    pointer-events: none;
   }
 }
 </style>

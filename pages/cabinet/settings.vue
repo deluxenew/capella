@@ -1,16 +1,16 @@
 <template>
-  <div class="settings pl-5 pr-5">
+  <div class="settings pl-3 pr-3">
 
-    <div class="flex flex-col lg:flex-row gap-6 wrapper">
+    <div class="flex flex-col lg:flex-row gap-3 wrapper pt-3">
       <!-- Left Column -->
-      <div class="flex flex-col left-column flex-1 lg:flex-[10_8_370px] lg:border-r lg:border-border lg:pr-2">
-        <Avatar class="mt-2" />
-        <PersonalInfo class="mt-2" />
+      <div class="flex gap-3 flex-col left-column flex-1 lg:flex-[10_8_370px] lg:border-r lg:border-border lg:pr-2">
+        <Avatar />
+        <PersonalInfo />
       </div>
 
       <!-- Right Column -->
-      <div class="flex flex-col right-column flex-1 lg:flex-[8_10_290px] lg:pl-2">
-        <Wallets class="mt-2" />
+      <div class="flex flex-col right-column flex-1 lg:flex-[8_10_290px]">
+        <Wallets />
       </div>
     </div>
 
@@ -45,7 +45,8 @@ useHead({
 
 // Layout
 definePageMeta({
-  layout: 'inner'
+  layout: 'inner',
+  auth: true
 })
 
 // Methods

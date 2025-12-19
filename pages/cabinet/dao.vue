@@ -23,7 +23,8 @@
 <script setup lang="ts">
 // Устанавливаем layout
 definePageMeta({
-  layout: 'inner'
+  layout: 'inner',
+  auth: true
 })
 
 // Composable
