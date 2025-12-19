@@ -1,16 +1,16 @@
 <template>
   <div class="pools">
 
-    <div class="px-2">
+    <div class="px-3">
       <AppStablePool
-        class="mt-2"
+        class="mt-3"
         :graph-data="graphData"
         :pool="poolName"
       />
     </div>
 
-    <div class="flex px-2 mt-2 wrapper border-t border-border">
-      <div class="flex flex-col pt-2 left-column flex-1 lg:flex-[10_8_470px] lg:border-r lg:border-border lg:pr-2">
+    <div class="flex px-3 mt-3 wrapper border-t border-border">
+      <div class="flex flex-col pt-3 left-column flex-1 lg:flex-[10_8_470px] lg:border-r lg:border-border lg:pr-3">
         <AppStrategyPool v-bind="strategy" />
         <AssetCard
           v-for="asset in assets"

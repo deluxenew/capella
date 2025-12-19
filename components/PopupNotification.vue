@@ -6,7 +6,7 @@ defineOptions({
 
 <template>
   <notifications :duration="3000"
-                 animation-name="slide-up" :close-on-click="true" :max="1"
+                 animation-name="slide-up" :close-on-click="true" :max="3"
                  class="notifications-wrapper">
     <template #body="props">
       <div

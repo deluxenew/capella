@@ -1,6 +1,6 @@
 <template>
   <div class="dao">
-    <div class="px-2">
+    <div class="px-3">
       <DAOPrices class="mt-2" />
     </div>
 

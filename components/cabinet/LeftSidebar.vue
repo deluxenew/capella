@@ -467,7 +467,7 @@ watch(
 );
 </script>
 
-<style scoped>
+<style >
 .LeftSidebar {
   height: 100vh;
   overflow-x: hidden;
@@ -541,7 +541,7 @@ watch(
 .active-nav-item {
   .nav-item-title {
     color: var(--text-color) !important;
-    font-weight: 600;
+    font-weight: 500;
   }
 
   .nav-item-icon {
@@ -574,7 +574,7 @@ watch(
 
 .active-submenu-item {
   color: var(--text-color) !important;
-  font-weight: 600;
+  font-weight: 500;
   background-color: var(--bg-secondary);
 
   &::before {
