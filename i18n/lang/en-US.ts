@@ -110,8 +110,8 @@ export default {
 
   withdraw_request: 'Withdraw request',
   metamask_connected: 'Metamask connected',
-  save: 'save',
-  copied: 'copied to clipboard!',
+  save: 'Save',
+  copied: 'Metamask id is copied to clipboard!',
   metamask_invalid: 'Metamask is not valid!',
   metamask_linked: 'Metamask is successfully linked to the account!',
   no_balance_by_coin: 'You do not have enough money in your Metamask account by coin {coin}',

@@ -8,13 +8,16 @@
           :style="{ backgroundColor: markerColor }"
         />
         <div class="name text-2xl">{{ name }}</div>
-        <UiButton
+        <!-- <UiButton
           theme="icon"
           class="ml-auto "
           @click="refreshPool()"
         >
+          
+        </UiButton> -->
+        <div class="flex items-center justify-center ml-auto mr-2 cursor-pointer" @click="refreshPool()" :class="{ refreshClicked }">
           <UiSvgImage svg="refresh" class="refreshIcon w-4 h-4" />
-        </UiButton>
+        </div>
         <AppInfoButton @click="showInfoPool = !showInfoPool" />
       </div>
 
@@ -294,6 +297,8 @@ const balanceMax = computed(() =>
 
 const user = computed(() => userStore?.user)
 
+const refreshClicked = ref(false)
+
 const max = computed(() => balanceMax.value * 0.95)
 
 const userCoinBalanceByPool = computed(() =>
@@ -378,12 +383,19 @@ const sendDeposit = () => {
 }
 
 const refreshPool = async () => {
-  try {
-    await $api.dashboard.refreshPool({ pool: props.pool })
-    await refresh()
-  } catch (error) {
-    console.error('Error refreshing pool:', error)
+  if (!refreshClicked.value) {
+  refreshClicked.value = true
+        setTimeout(() => {
+        refreshClicked.value = false
+      }, 1000)
+    try {
+      await $api.dashboard.refreshPool({ pool: props.pool })
+      await refresh()
+    } catch (error) {
+      console.error('Error refreshing pool:', error)
+    }
   }
+ 
 }
 
 const withdraw = async () => {
@@ -417,6 +429,20 @@ const withdraw = async () => {
 <style scoped>
 .refreshIcon :deep(g) path {
 
+}
+
+.refreshClicked {
+  animation: rotateIcon 1s forwards; 
+}
+
+@keyframes rotateIcon {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+   transform: rotate(-360deg);
+  }
 }
 
 .heightLiqudityItems-enter-active,

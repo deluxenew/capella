@@ -79,7 +79,7 @@ module.exports = {
         },
         green: {
           DEFAULT: '#76c499',
-          darken: 'rgba(118, 196, 153, 0.2)',
+          darken: '#428a62',
         },
         red: {
           DEFAULT: '#f34c2d',
