@@ -109,6 +109,7 @@ interface Period {
 
 // Composables
 const { $api, $filters } = useNuxtApp()
+const colorMode = useColorMode();
 const { t } = useI18n()
 
 // Data
@@ -252,6 +253,10 @@ onUnmounted(() => {
 .AppBalance .chart {
   width: calc(100% + 70px);
   @apply h-32 bottom-0;
+}
+
+.AppBalance > .left .header-buttons .UiButton.active {
+  @apply text-blue bg-blue/20
 }
 
 /* Mobile styles */

@@ -12,16 +12,16 @@ defineOptions({
       <div
         class="notification mb-2 flex items-start justify-start gap-2 rounded-4 p-2 shadow  border-l-4 border-gray-200"
         :class="[
-          ['dark', 'error', 'warn'].includes(props.item?.type || '') ? 'bg-dark' : 'bg-green',
+          ['dark', 'error', 'warn'].includes(props.item?.type || '') ? 'bg-dark' : 'bg-green border-green-darken',
         ]"
         @click="props.close"
       >
-        <div class="flex flex-1 flex-col gap-1">
+        <div class="flex flex-1 py-2 flex-col gap-1">
           <div
             v-if="props.item.title"
             class="text-xs"
             :class="[
-              ['dark', 'error', 'warn'].includes(props.item?.type || '')
+              ['dark', 'error', 'warn', 'success'].includes(props.item?.type || '')
                 ? 'text-white'
                 : 'text-headline',
             ]"
@@ -32,7 +32,7 @@ defineOptions({
             v-if="props.item.text"
             class="text-sm"
             :class="[
-              ['dark', 'error', 'warn'].includes(props.item?.type || '')
+              ['dark', 'error', 'warn', 'success'].includes(props.item?.type || '')
                 ? 'text-white'
                 : 'text-headline',
             ]"

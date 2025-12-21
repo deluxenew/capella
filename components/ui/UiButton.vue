@@ -15,6 +15,8 @@
 
 <script setup lang="ts">
 // Types
+const colorMode = useColorMode();
+
 interface Props {
   to?: string
   theme?: 'primary' | 'dark' | 'outline' | 'transparent' | 'gray' | 'icon' | 'link'
@@ -39,6 +41,10 @@ const props = withDefaults(defineProps<Props>(), {
 const tag = computed(() => {
   if (!props.to) return 'button'
   return props.external ? 'a' : resolveComponent('nuxt-link')
+})
+
+const isDarkThemeActive = computed<boolean>(()=> {
+  return colorMode.preference === 'dark'
 })
 
 const componentProps = computed(() => {
@@ -67,7 +73,7 @@ const loaderSize = computed(() => {
 })
 
 // Classes
-const baseClasses = 'UiButton inline-flex justify-center items-center transition-all duration-300 cursor-pointer'
+const baseClasses = 'UiButton inline-flex justify-center items-center transition-all duration-300 cursor-pointer uppercase'
 
 const themeClasses = computed(() => {
   const classes = {
@@ -78,6 +84,10 @@ const themeClasses = computed(() => {
     gray: 'bg-color text-gray hover:text-blue focus:ring-blue disabled:bg-gray-lighten',
     icon: 'bg-transparent p-0 hover:bg-white/10 focus:ring-blue',
     link: 'bg-transparent p-0 text-color hover:text-blue focus:ring-blue underline disabled:text-gray'
+  }
+  if (!isDarkThemeActive.value) {
+
+    classes.dark = 'bg-white text-gray'
   }
   return classes[props.theme] || classes.primary
 })

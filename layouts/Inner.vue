@@ -312,7 +312,7 @@ onMounted(() => {
 
 <style scoped>
 .required-registration {
-  @apply fixed bottom-0 left-0 w-full h-24 z-50 backdrop-blur;
+  @apply fixed bottom-0 left-0 w-full h-24 z-50 backdrop-blur flex items-center justify-center;
 }
 
 .required-registration .container {

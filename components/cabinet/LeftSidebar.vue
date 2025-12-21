@@ -215,12 +215,12 @@
             <div
               class="background absolute top-1 h-[42px] bg-bg pointer-events-none rounded-[25px] transition-all duration-300 z-0"
               :class="[
-                colorMode.preference === 'light' ? 'left-1 w-[calc(50%-8px)]' : 'left-[calc(100%-50%+4px)] w-[calc(50%-8px)]'
+                colorMode.preference === 'light' ? 'left-1 w-[calc(50%-8px)] bg-[#FCFCFC] shadow-sm' : 'left-[calc(100%-50%+4px)] w-[calc(50%-8px)] bg-charade'
               ]"
             />
 
             <UiButton
-              class="light flex items-center py-2 px-3 z-10 capitalize transition-colors duration-300 !rounded-[25px]"
+              class="light flex items-center py-2 px-3 z-10 capitalize transition-colors duration-300 !rounded-[25px] !bg-transparent"
               :class="[
                 colorMode.preference === 'light' ? 'text-color' : 'text-gray',
                 isMobile ? 'w-1/2' : 'w-[calc(50%-8px)]'
@@ -233,7 +233,7 @@
             </UiButton>
 
             <UiButton
-              class="dark flex items-center py-2 px-3 z-10 capitalize transition-colors duration-300 !rounded-[25px]"
+              class="dark flex items-center py-2 px-3 z-10 capitalize transition-colors duration-300 !rounded-[25px] !bg-transparent"
               :class="[
                 colorMode.preference === 'dark' ? 'text-color' : 'text-gray',
                 isMobile ? 'w-1/2' : 'w-[calc(50%-8px)]'
@@ -467,7 +467,7 @@ watch(
 );
 </script>
 
-<style >
+<style scoped >
 .LeftSidebar {
   height: 100vh;
   overflow-x: hidden;
