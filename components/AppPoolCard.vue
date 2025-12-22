@@ -148,6 +148,7 @@
                     <UiButton
                       theme="outline"
                       outline
+                      class="py-2"
                       size="sm"
                       :disabled="!user?.confirmRegistration"
                       @click="sendDeposit"
@@ -195,12 +196,13 @@
                     {{ t('no_balance_by_pool', { coin }) }}
                   </div>
 
-                  <div class="footer-items mt-auto flex flex-col gap-1">
+                  <div class="footer-items mt-auto flex  flex-col gap-1">
                     <UiButton
                       v-if="!userWithdrawRequestByPool"
                       theme="outline"
                       outline
                       size="sm"
+                      class="py-2"
                       :disabled="deposit.value == 0"
                       @click="withdraw"
                     >
@@ -210,7 +212,7 @@
                       v-else
                       theme="outline"
                       outline
-                      class="withdraw_requested relative"
+                      class="withdraw_requested relative py-2"
                       size="sm"
                       :disabled="true"
                       @click="withdraw"
