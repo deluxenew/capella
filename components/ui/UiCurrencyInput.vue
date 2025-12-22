@@ -58,7 +58,7 @@ const handleBlur = () => {
   emit('blur', numberValue)
 }
 
-const getNumberValue = (value: number): number | undefined => {
+const getNumberValue = (value: number | string): number | undefined => {
   if (!inputElement.value) return undefined
 
   let numberValue: number | undefined = undefined
@@ -66,10 +66,12 @@ const getNumberValue = (value: number): number | undefined => {
   try {
     // Пытаемся использовать vue-currency-input
     if (typeof window !== 'undefined' && (window as any).$ci) {
+      // For vue-currency-input, we need to get the value from the actual input element
       numberValue = (window as any).$ci.getValue(inputElement.value)
     } else {
       // Fallback парсинг
-      const cleanValue = value.toString().replace(/[^\d.-]/g, '')
+      const stringValue = typeof value === 'number' ? value.toString() : value
+      const cleanValue = stringValue ? stringValue.toString().replace(/[^\d.-]/g, '') : ''
       numberValue = cleanValue ? parseFloat(cleanValue) : undefined
     }
 
@@ -78,8 +80,8 @@ const getNumberValue = (value: number): number | undefined => {
       const options = props.currencyOptions || internalCurrencyOptions.value
       if (options?.valueRange) {
         const { min, max } = options.valueRange
-        if (max !== undefined) numberValue = Math.min(numberValue, max)
-        if (min !== undefined) numberValue = Math.max(numberValue, min)
+        if (max !== undefined && !isNaN(max)) numberValue = Math.min(numberValue, max)
+        if (min !== undefined && !isNaN(min)) numberValue = Math.max(numberValue, min)
       }
     }
   } catch (error) {
@@ -96,8 +98,8 @@ const setFormattedValue = (value: number | undefined) => {
   try {
     if (typeof window !== 'undefined' && (window as any).$ci) {
       (window as any).$ci.setValue(inputElement.value, value)
-      formattedValue.value = inputElement.value.value
     } else {
+      // Update formattedValue based on the actual value
       formattedValue.value = value || 0
     }
   } catch (error) {
@@ -106,15 +108,26 @@ const setFormattedValue = (value: number | undefined) => {
   }
 }
 
-const handleInput = (value: number) => {
-  formattedValue.value = value
+const handleInput = (value: string | number) => {
+  // Convert string to number if needed
+  let numericValue: number
+  if (typeof value === 'string') {
+    // Parse the string value
+    const cleanValue = value.replace(/[^\d.-]/g, '')
+    numericValue = cleanValue ? parseFloat(cleanValue) : 0
+  } else {
+    numericValue = value
+  }
 
-  if (value === 0) {
+  // Update formatted value
+  formattedValue.value = numericValue
+
+  if (numericValue === 0) {
     emit('update:modelValue', undefined)
     return
   }
 
-  const numberValue = getNumberValue(value)
+  const numberValue = getNumberValue(numericValue)
   emit('update:modelValue', numberValue)
 }
 

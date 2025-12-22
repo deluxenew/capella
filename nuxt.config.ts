@@ -29,7 +29,8 @@ export default defineNuxtConfig({
     provider: 'static', // использовать статический провайдер
   },
   css: [
-    '~/assets/css/fonts.css'
+    '~/assets/css/fonts.css',
+    'flag-icons/css/flag-icons.min.css'
   ],
   app: {
     baseURL: '/capella/',

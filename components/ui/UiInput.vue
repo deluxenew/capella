@@ -31,7 +31,7 @@
       <slot>
         <input
           ref="input"
-          :value="modelValue"
+          :value="fieldValue"
           :form="form"
           :disabled="disabled"
           :type="type"
@@ -83,7 +83,7 @@ interface Props {
 }
 
 interface Emits {
-  (e: 'update:modelValue', value: number): void
+  (e: 'update:modelValue', value: string | number): void // Fixed: should be string | number, not just number
   (e: 'input', value: string | number): void
   (e: 'focus', event: Event): void
   (e: 'blur', event: Event): void
@@ -108,7 +108,7 @@ const props = withDefaults(defineProps<Props>(), {
 const emit = defineEmits<Emits>()
 
 // VeeValidate field
-const { value: fieldValue, errorMessage, meta , validate } = useField(
+const { value: fieldValue, handleChange, handleBlur, errorMessage, meta, validate } = useField(
   () => props.name,
   props.rules,
   {
@@ -143,7 +143,7 @@ const focusInput = () => {
 
 const onBlur = (event: Event) => {
   isFocus.value = false
-  meta.touched = true
+  handleBlur() // Use VeeValidate's handleBlur instead of modifying meta directly
   emit('blur', event)
 }
 
@@ -154,17 +154,18 @@ const onFocus = (event: Event) => {
 
 const onInput = (event: Event) => {
   const target = event.target as HTMLInputElement
-  fieldValue.value = target.value
-  emit('update:modelValue', parseFloat(target.value))
+  // Use VeeValidate's handleChange to properly update the field value
+  handleChange(target.value)
+  emit('update:modelValue', target.value) // Fixed: emit the correct value
   emit('input', target.value)
 }
 
-// Watch for external value changes
+// Watch for external value changes - sync vee-validate field with props
 watch(() => props.modelValue, (newValue) => {
   if (newValue !== fieldValue.value) {
-    fieldValue.value = newValue
+    handleChange(newValue) // Use handleChange instead of direct assignment
   }
-})
+}, { immediate: true })
 
 // Expose methods
 defineExpose({

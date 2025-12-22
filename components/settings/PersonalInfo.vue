@@ -28,10 +28,13 @@
           :error="errorMessage"
         >
           <!-- PhoneMaskInput will be integrated here -->
-          <PhoneInput :placeholder="t('your_phone')"
-                      class="w-full h-full bg-transparent border-none outline-none text-color"
-                      v-bind="field" country="RU"
-                      @blur="field?.onBlur" />
+          <PhoneMaskInput
+            showFlag
+            v-bind="field"
+            :placeholder="t('your_phone')"
+            class="w-full h-full bg-transparent border-none outline-none text-color"
+            @blur="field?.onBlur"
+          />
         </UiInput>
       </Field>
 
