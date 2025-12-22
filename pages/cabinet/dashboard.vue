@@ -226,14 +226,14 @@ const fetchData = async () => {
 :global(.cabinet:not(.cabinet_mobile)) {
   @media screen and (max-width: 600px) {
     :global(.AppBalance .right) {
-      @apply max-w-full mx-0 my-2 bg-secondary py-1 rounded-lg;
+      @apply max-w-full mx-0 my-0 bg-secondary py-1 rounded-lg;
     }
   }
 }
 
 :global(.cabinet_mobile) {
   :global(.AppBalance .right) {
-    @apply max-w-full mx-0 my-2 bg-secondary py-1 rounded-lg;
+    @apply max-w-full mx-0 my-0 bg-secondary py-1 rounded-lg;
   }
 }
 </style>

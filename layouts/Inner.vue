@@ -372,6 +372,9 @@ onMounted(() => {
   .cabinet .right {
     @apply ml-0;
   }
+  .cabinet .right.expanded {
+    margin-left: 0;
+  }
 
   .cabinet .right .user .menu-btn {
     @apply block;
