@@ -79,7 +79,7 @@ const themeClasses = computed(() => {
   const classes = {
     primary: 'bg-blue text-white hover:bg-blue-darken uppercase focus:ring-blue hover:shadow-light-blue disabled:bg-gray-lighten disabled:text-gray disabled:cursor-not-allowed',
     dark: 'bg-dark text-gray hover:text-blue hover:bg-blue/20 focus:ring-blue disabled:transparent disabled:text-gray-semi-lighten',
-    outline: 'bg-transparent border border-border-color text-color hover:border-gray focus:ring-gray disabled:border-gray-lighten disabled:text-gray uppercase',
+    outline: 'bg-transparent border border-border-color text-color hover:border-gray focus:ring-gray disabled:border-gray-lighten2 disabled:text-gray uppercase',
     transparent: 'bg-transparent text-color hover:bg-white/10 focus:ring-blue disabled:text-gray',
     gray: 'bg-color text-gray hover:text-blue focus:ring-blue disabled:bg-gray-lighten',
     icon: 'bg-transparent p-0 hover:bg-white/10 focus:ring-blue',
@@ -88,6 +88,7 @@ const themeClasses = computed(() => {
   if (!isDarkThemeActive.value) {
 
     classes.dark = 'bg-white text-gray'
+    classes.outline = 'bg-transparent border border-border-color text-color hover:border-gray focus:ring-gray disabled:border-gray-lighten disabled:text-gray uppercase'
   }
   return classes[props.theme] || classes.primary
 })

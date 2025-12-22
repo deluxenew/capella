@@ -10,11 +10,11 @@
         v-if="isShowStrategy && partner "
         size="sm"
         theme="outline"
-        class="flex items-center gap-2 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg"
+        class="flex items-center gap-2 transition-all duration-300 px-[12px] py-[10px] hover:shadow-lg"
         @click="openLink(partner.url)"
       >
         {{ t('strategy_address') }}
-        <UiSvgImage class="w-4 h-4" svg="link" />
+        <UiSvgImage class="w-4 h-4 inbuttonIcon" svg="link" />
       </UiButton>
 
       <UiButton
@@ -22,11 +22,11 @@
         :key="vault.url"
         size="sm"
         theme="outline"
-        class="flex items-center gap-2 transition-all duration-300 hover:transform hover:-translate-y-1 hover:shadow-lg"
+        class="flex items-center gap-2 transition-all duration-300 px-[12px] py-[10px] hover:shadow-lg"
         @click="openLink(vault.url)"
       >
         {{ t('vault_address') }} {{ vault.label }}
-        <UiSvgImage class="w-4 h-4" svg="link" />
+        <UiSvgImage class="w-4 h-4 inbuttonIcon" svg="link" />
       </UiButton>
     </div>
 
@@ -170,6 +170,10 @@ const openLink = (url: string): void => {
 </script>
 
 <style scoped>
+
+.dark .inbuttonIcon {
+  filter: brightness(120%)
+}
 /* Base styles */
 .AppStrategyPool {
   @apply overflow-hidden;

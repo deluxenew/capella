@@ -63,8 +63,9 @@ module.exports = {
         'raisin-black': '#22252f',
         gray: {
           DEFAULT: '#787b89',
-          lighten: '#e2e2e2',
+          lighten: 'rgb(194 194 194)',
           'semi-lighten': '#c4c4c4',
+          lighten2: 'rgb(93 93 93)',
         },
         'light-blue': {
           DEFAULT: 'rgba(66, 118, 246, .4)'
