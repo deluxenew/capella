@@ -3,7 +3,7 @@
     'cabinet_mobile': $device?.isMobile,
     'sidebar_expanded': expandSidebar,
   }">
-    <div class="wrapper">
+    <div class="wrapper w-full">
       <LeftSidebar :expand-sidebar="expandSidebar" :class="{ 'expanded': expandSidebar }"
                    @handle-sidebar="expandSidebar = $event"/>
       <div class="right transition" :class="{ 'expanded': expandSidebar }">
@@ -12,7 +12,7 @@
             <div class="user flex items-center">
               <UiButton class="menu-btn" theme="transparent" size="sm" fill="fill-white"
                         @click="expandSidebar = !expandSidebar">
-                <UiSvgImage :svg="expandSidebar ? 'arrow-left' : 'menu'"/>
+                <UiSvgImage class="menu-btn-icon" :svg="expandSidebar ? 'arrow-left' : 'menu'"/>
               </UiButton>
               <img src="~/assets/img/avatar.png" alt="" class="w-9 h-9"/>
               <h2 class="user-text">
@@ -310,9 +310,24 @@ onMounted(() => {
 })
 </script>
 
+<style>
+  .menu-btn-icon {
+    filter: brightness(30%)
+  }
+
+  .dark .menu-btn-icon {
+    filter: brightness(0%)
+  }
+</style>
+
 <style scoped>
 .required-registration {
   @apply fixed bottom-0 left-0 w-full h-24 z-50 backdrop-blur flex items-center justify-center;
+}
+
+.cabinet_mobile {
+  padding-top:0;
+  margin-top:0;
 }
 
 .required-registration .container {
@@ -372,13 +387,15 @@ onMounted(() => {
   .cabinet .right {
     @apply ml-0;
   }
-  .cabinet .right.expanded {
-    margin-left: 0;
-  }
 
   .cabinet .right .user .menu-btn {
-    @apply block;
+    @apply block mr-1;
+    min-width: 32px;
   }
+
+  .cabinet .right.expanded {
+  margin-left: 0;
+}
 }
 
 /* Activation modal styles */
