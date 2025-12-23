@@ -10,7 +10,7 @@
     <div class="flex flex-col justify-between h-full">
       <!-- Top Section -->
       <div class="top-section">
-        <div class="logo-block flex items-center h-9">
+        <div class="logo-block flex items-center h-[57px]">
           <UiButton
             class="shrink-0 menu-btn h-8 flex flex-col items-center justify-center"
             theme="transparent"
@@ -407,11 +407,11 @@ const expandSubMenu = (item: NavigationItem) => {
   // Toggle expansion
   item.expanded = !item.expanded;
   if (!props.expandSidebar) emit('handle-sidebar', true);
-
+  console.log(item, props.expandSidebar, isMobile.value, item.expanded)
   // If expanding and on mobile, close sidebar
-  if (props.expandSidebar && isMobile.value && item.expanded) {
-    emit('handle-sidebar', false);
-  }
+  // if (props.expandSidebar && isMobile.value && item.expanded) {
+  //   emit('handle-sidebar', false);
+  // }
 };
 
 const handleNavClick = (item: NavigationItem) => {
@@ -594,11 +594,12 @@ watch(
   /* Additional styles for exact active submenu items */
 }
 
+
 /* Mobile styles */
 .mobile-layout {
   min-height: 100%;
   width: 0px;
-  padding: 15px 0 0 0;
+  padding: 0 0 0 0;
   border: 0;
   background-color: var(--bg);
 
@@ -608,9 +609,17 @@ watch(
     z-index: 9999;
   }
 
+  .active-nav-item {
+    pointer-events: none;
+  }
+
+  .submenu-item {
+    display:flex;
+  }
+
   .logo-block {
     border-bottom: 1px solid var(--border-color);
-    padding: 0 20px 20px 20px;
+    padding: 0 20px 0 20px;
 
     .logo {
       font-size: 20px;
@@ -629,6 +638,24 @@ watch(
   .bottom-section {
     padding: 0 20px 30px 20px;
   }
+
+  .menu-btn {
+    padding: 0;
+  }
+
+  /* .submenu {
+    display:flex;
+    flex-flow:column;
+    align-items: flex-start;
+    padding-left:51px;
+    margin-left:0;
+  }
+  .submenu-item {
+    width:100%;
+    display:flex;
+    align-items: center;
+    justify-content: flex-start;
+  } */
 }
 
 /* Transitions */
@@ -698,4 +725,12 @@ watch(
     pointer-events: none;
   }
 }
+</style>
+
+<style>
+.cabinet_mobile.sidebar_expanded {
+  height:100dvh;
+  overflow:hidden;
+}
+
 </style>
