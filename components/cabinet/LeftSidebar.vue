@@ -267,6 +267,8 @@
 
 <script setup lang="ts">
 // Types
+import {usePageStore} from "~/stores/page";
+
 interface Utils {
   [key: string]: any;
 }
@@ -305,6 +307,7 @@ const router = useRouter();
 const userStore = useAuthStore();
 const { t } = useI18n();
 const $utils = useNuxtApp().$utils as Utils;
+const pageStore = usePageStore()
 
 // Reactive data
 const navigation = ref<NavigationItem[]>([
@@ -362,11 +365,13 @@ const wlTitle = computed(() => {
   return $utils?.hostToTitle?.(window?.location?.host) || 'Capella Finance';
 });
 
+
+
 const isMobile = computed(() => {
   if (process.client) {
-    return window.innerWidth <= 600;
+    return pageStore.windowSize.width <= 600;
   }
-  return false;
+  return useNuxtApp().$device.isMobile;
 });
 
 const userName = computed(() => {
