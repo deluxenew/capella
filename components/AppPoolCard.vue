@@ -13,7 +13,7 @@
           class="ml-auto "
           @click="refreshPool()"
         >
-          
+
         </UiButton> -->
         <div class="flex items-center justify-center ml-auto mr-2 cursor-pointer" @click="refreshPool()" :class="{ refreshClicked }">
           <UiSvgImage svg="refresh" class="refreshIcon w-4 h-4" />
@@ -100,8 +100,8 @@
 
           <!-- Liquidity Items -->
           <div class="liqudity-items_wrapper w-full">
-            <UiTransitionExpand name="heightLiqudityItems">
-              <div v-if="showliquidity" class="liqudity-items row flex flex-wrap gap-4">
+            <UiTransitionExpand :opened="showliquidity" name="heightLiqudityItems">
+              <div class="liqudity-items row flex flex-wrap gap-4">
                 <!-- Balance Column -->
                 <div class="column-wrapper flex flex-col gap-2 flex-[10_5_200px] min-w-[40%]">
                   <UiCurrencyInput
@@ -301,7 +301,7 @@ const user = computed(() => userStore?.user)
 
 const refreshClicked = ref(false)
 
-const max = computed(() => balanceMax.value * 0.95)
+const max = computed(() => balanceMax.value)
 
 const userCoinBalanceByPool = computed(() =>
   parseFloat(userStore.user?.coinBalance?.[props.pool].toFixed(4) || '0')
@@ -397,7 +397,7 @@ const refreshPool = async () => {
       console.error('Error refreshing pool:', error)
     }
   }
- 
+
 }
 
 const withdraw = async () => {
@@ -434,7 +434,7 @@ const withdraw = async () => {
 }
 
 .refreshClicked {
-  animation: rotateIcon 1s forwards; 
+  animation: rotateIcon 1s forwards;
 }
 
 @keyframes rotateIcon {
@@ -450,8 +450,7 @@ const withdraw = async () => {
 .heightLiqudityItems-enter-active,
 .heightLiqudityItems-leave-active {
   transition: 0.8s;
-  margin-top: 18px;
-  max-height: 170px;
+  max-height: 190px;
 }
 
 .heightLiqudityItems-enter,
@@ -519,7 +518,7 @@ const withdraw = async () => {
   }
 
   .AppPoolCard .content .content-data .liqudity-items_wrapper .liqudity-items .column-wrapper:first-of-type {
-    padding-bottom: 20px;
+
     border-bottom: 2px solid ;
   }
 

@@ -24,7 +24,6 @@
       class="UiInput_inputField relative z-2 bg-secondary text-base w-full border border-border rounded mt-2 flex items-center transition-colors duration-200"
       :style="{ height }"
       :class="{
-        'border-green': isValid && isDirty,
         'border-red': hasError,
       }"
     >
@@ -55,8 +54,8 @@
     </div>
 
     <div class="mt-0.25">
-      <UiTransitionExpand>
-        <div v-if="errorMessage" class="UiInput__errors text-xs text-red">
+      <UiTransitionExpand :opened="Boolean(errorMessage)">
+        <div class="UiInput__errors text-xs text-red">
           {{ errorMessage }}
         </div>
       </UiTransitionExpand>

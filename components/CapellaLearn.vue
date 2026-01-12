@@ -1,5 +1,5 @@
 <template>
-  <div class="capella-learn overflow-hidden cabinet-block-style w-[430px] max-h-[210px]">
+  <div class="AppCard capella-learn overflow-hidden cabinet-block-style w-[430px] max-h-[210px]">
     <h3 class="title text-xs text-gray border-b border-border pb-2">
       {{ wlTitle }} Learn
     </h3>

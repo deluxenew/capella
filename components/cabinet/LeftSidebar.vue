@@ -174,9 +174,9 @@
               </div>
 
               <!-- Submenu -->
-              <UiTransitionExpand>
+              <UiTransitionExpand :opened="Boolean(item.submenu && (item.expanded || isItemActive(item)) && expandSidebar)">
                 <div
-                  v-if="item.submenu && (item.expanded || isItemActive(item)) && expandSidebar"
+                  v-if="item.submenu"
                   class="submenu ml-10 pl-2 overflow-hidden transition-all duration-300"
                 >
                   <NuxtLink

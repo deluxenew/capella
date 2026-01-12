@@ -4,7 +4,7 @@
   </div>
 </template>
 
-<style scoped>
+<style >
 .AppCard {
   @apply p-5 rounded-lg bg-secondary overflow-hidden;
 }
